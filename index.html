@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>好用！Yoooov</title>
+    <script type="text/javascript" src="https://npmcdn.com/parse@5.3.0/dist/parse.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -228,9 +229,10 @@
             </div>
             <div class="card">
                 <!-- Google AdSense Code -->
+
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -246,7 +248,7 @@
         <h2 class="zh">AI 工具</h2>
         <div class="card-container">
             <div class="card">
-                <img src="https://theinpaint.com/images/screenshot1.jpg" alt="Placeholder Image 1">
+                <img src="https://theinpaint.com/images/screenshot4.jpg" alt="Placeholder Image 1">
                 <h3 class="en">Inpaint</h3>
                 <h3 class="zh">Inpaint</h3>
                 <p class="en">Remove unwanted objects from photos using AI.</p>
@@ -257,7 +259,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -300,7 +302,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -343,7 +345,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -386,7 +388,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -429,7 +431,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -472,7 +474,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -507,7 +509,7 @@
                 <!-- Google AdSense Code -->
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="pub-7264754231767067"
+                     data-ad-client="ca-pub-7264754231767067"
                      data-ad-slot="YYYYYYYYYY"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
@@ -537,6 +539,7 @@
     <div class="submit-section">
         <h2 class="en">Submit Your Tool</h2>
         <h2 class="zh">提交你的工具</h2>
+
         <form onsubmit="sendEmail(event)">
             <input type="text" name="website" placeholder="Enter your website URL" required>
             <input type="submit" value="Submit">
@@ -544,4 +547,29 @@
     </div>
 
 </body>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+    Parse.initialize("tuNE0aZ5Rbr94LyQnJP6Brw8HnK5DdTaAXVTiSOP", "jOt1jJd6xqFOwb1MIJAS6GP8KighIHOTh7XPA5ad");
+    //javascriptKey is required only if you have it on server.
+
+    Parse.serverURL = 'https://pg-app-odazo0qfxqx360pc0egv5yetyud3bq.scalabl.cloud/1/';
+
+    const ReqSite = Parse.Object.extend("YoooovUserRequestSites");
+    const reqSite = new ReqSite();
+
+    reqSite.set("siteUrl", "www.google.com");
+
+    reqSite.save()
+    .then((reqSite) => {
+      // Execute any logic that should take place after the object is saved.
+      alert('New object created with objectId: ' + reqSite.id);
+    }, (error) => {
+      // Execute any logic that should take place if the save fails.
+      // error is a Parse.Error with an error code and message.
+      alert('Failed to create new object, with error code: ' + error.message);
+    });
+
+</script>
 </html>
