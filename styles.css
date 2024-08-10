@@ -1,0 +1,205 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/pixel-weave.png') repeat; /* Pixel art background */
+    color: white;
+    padding: 20px;
+}
+
+header {
+    background-color: #FF6347; /* Tomato Red */
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1, header h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.language-switcher button {
+    background-color: #32CD32; /* Lime Green */
+    color: white;
+    border: 2px solid #228B22; /* Forest Green */
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 10px 20px;
+}
+
+.language-switcher button:hover {
+    background-color: #228B22;
+}
+
+.section {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.section h2 {
+    text-align: center;
+    color: #FF6347; /* Tomato Red */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #FFD700; /* Gold */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 300px;
+    height: 450px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #32CD32; /* Lime Green */
+}
+
+.card p {
+    font-size: 14px;
+    color: #2F4F4F; /* Dark Slate Gray */
+    margin-bottom: 10px;
+}
+
+.card a {
+    background-color: #32CD32; /* Lime Green */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid #228B22; /* Forest Green */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card a:hover {
+    background-color: #228B22;
+}
+
+.submit-section {
+    background-color: #FF6347; /* Tomato Red */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.submit-section h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.submit-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-section input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FF4500; /* Orange Red */
+    margin-bottom: 20px;
+    font-size: 16px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.submit-section button {
+    background-color: #32CD32; /* Lime Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.submit-section button:hover {
+    background-color: #228B22;
+}
+
+.ad-container {
+    width: 300px;
+    height: 250px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ad-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .submit-section input {
+        width: 90%;
+    }
+}
+
+.en {
+    display: block;
+}
+
+.zh {
+    display: none;
+}
