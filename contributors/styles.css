@@ -52,61 +52,6 @@ header h1 {
     margin-bottom: 40px;
 }
 
-.card_profile{
-    background-color: #FFD98E; /* Light Yellow */
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    font-size: 14px;
-    transition: transform 0.2s;
-    color: #333333; /* Dark Grey */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card_profile img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-
-.card {
-    background-color: #FFD98E; /* Light Yellow */
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    width: 400px;
-    text-align: center;
-    font-size: 14px;
-    transition: transform 0.2s;
-    color: #333333; /* Dark Grey */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.card h2, .card h3 {
-    margin: 10px 0;
-}
-
-.card p {
-    color: #333333; /* Dark Grey */
-}
-
 .game-info {
     list-style-type: none;
     padding: 0;
@@ -119,21 +64,6 @@ header h1 {
     margin-bottom: 10px;
 }
 
-.play-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #6BD5E1; /* Light Blue */
-    color: #FFFFFF; /* White */
-    text-decoration: none;
-    border-radius: 5px;
-    border: 2px solid #FFB677; /* Peach */
-}
-
-.play-button:hover {
-    background-color: #FFB677; /* Peach */
-    border-color: #FF8364; /* Warm Red */
-}
 
 footer {
     width: 100%;
