@@ -116,22 +116,22 @@ header h1, header h2 {
     color: black;
 }
 
-.card a {
-/*    display: inline-block;*/
+/*.card a {
+
     margin-top: 15px;
     padding: 10px 30px;
-    background-color: #FF8364; /* Bright Orange */
+    background-color: #FF8364; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    border: 2px solid #FA4659; /* Vivid Red */
+    border: 2px solid #FA4659; 
     flex-shrink: 0;
 }
 
 .card a:hover {
-    background-color: #FA4659; /* Vivid Red */
-    border-color: #11CBD7; /* Bright Cyan */
-}
+    background-color: #FA4659; 
+    border-color: #11CBD7; 
+}*/
 
 .submit-section {
     width: 100%;
