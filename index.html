@@ -11,27 +11,13 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
 
-    <script>
-        function switchLanguage(lang) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (lang === 'en') {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-                } else {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-                }
-            });
-        }
-    </script>
 </head>
 
 <body onload="switchLanguage('zh')">
 
     <header>
-        <h3>有物游戏 // YOOOOV</h3>
-        <h1 class="en">YOOOOV，有点东西！</h1>
+        <h3>有物游戏 // Yoooov</h3>
+        <h1 class="en">Yoooov，有点东西！</h1>
         <!-- <h1 class="zh">制造快乐游戏的独立开发者！</h1> -->
 
     </header>
@@ -127,9 +113,23 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 YOOOOV Games. All rights reserved.</p>
+        <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
     </footer>
 </body>
+<script>
+    function switchLanguage(lang) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            if (lang === 'en') {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
+            } else {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
+            }
+        });
+    }
+</script>
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous">
 </script> -->
 

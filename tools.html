@@ -4,27 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7264754231767067">
-    <title>有物 | YOOOOV</title>
+    <title>有物 | Yoooov</title>
     <script type="text/javascript" src="javascript/parse.min.js"></script>
     <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
-
-    <script>
-        function switchLanguage(lang) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (lang === 'en') {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-                } else {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-                }
-            });
-        }
-
-    </script>
 </head>
 
 
@@ -450,54 +434,28 @@ We’ll give you a link to share it.</p>
             </div>
         </div>
     </div>
-
-    <div class="submit-section">
-        <h2 class="en">Submit Your Tool</h2>
-        <h2 class="zh">提交你的工具</h2>
-
-        <div>
-            <input type="text" id="websiteInput" name="website" placeholder="Enter your website URL" required>
-            <button type="button" value="Submit" onclick="submitWebsite()">Submit</button>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
+    </footer>
 
 </body>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous">
 </script>
 
-<script type="text/javascript">
-
-    var isSending = false;
-    var submitWebsite = function() {
-        Parse.initialize("tuNE0aZ5Rbr94LyQnJP6Brw8HnK5DdTaAXVTiSOP", "jOt1jJd6xqFOwb1MIJAS6GP8KighIHOTh7XPA5ad");
-        //javascriptKey is required only if you have it on server.
-
-        Parse.serverURL = 'https://pg-app-odazo0qfxqx360pc0egv5yetyud3bq.scalabl.cloud/1/';
-
-        const ReqSite = Parse.Object.extend("YoooovUserRequestSites");
-        const reqSite = new ReqSite();
-
-        reqSite.set("siteUrl", document.getElementById("websiteInput").value);
-
-        var isEmpty = document.getElementById("websiteInput").value.length == 0;
-
-        if (!false && !isEmpty) {
-            isSending = true;
-
-            reqSite.save().then((reqSite) => {
-                // Execute any logic that should take place after the object is saved.
-                alert('New object created with objectId: ' + reqSite.id);
-                document.getElementById("websiteInput").value = '';
-                isSending = false
-            }, (error) => {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
-                alert('Failed to create new object, with error code: ' + error.message);
-            });
-        }
-        
+<script>
+    function switchLanguage(lang) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            if (lang === 'en') {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
+            } else {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
+            }
+        });
     }
-    
 
 </script>
+
 </html>
