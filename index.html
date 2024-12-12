@@ -11,27 +11,13 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
 
-    <script>
-        function switchLanguage(lang) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (lang === 'en') {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-                } else {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-                }
-            });
-        }
-    </script>
 </head>
 
 <body onload="switchLanguage('zh')">
 
     <header>
         <h3>有物游戏 // Yoooov</h3>
-        <h1 class="en">Independent teenage developers who create games for teenagers!</h1>
+        <h1 class="en">Yoooov，有点东西！</h1>
         <!-- <h1 class="zh">制造快乐游戏的独立开发者！</h1> -->
 
     </header>
@@ -96,7 +82,7 @@
                 <p><a href="contributors/haohaoran.html" class="btn btn-outline-info">@Tim</a></p>
                 <p class="en">A top down shooting game which you have to survival from zombies attact.</p>
                 <p class="zh">一款射击生存类肉鸽游戏！</p>
-                <a href="https://gd.games/instant-builds/fa7b4a54-ff9e-44dd-82ec-538015b92897" class="btn btn-dark" target="_blank">生存</a>
+                <a href="https://gd.games/instant-builds/0aa49a4f-f2f1-4d5d-ad9b-5e081016eab1" class="btn btn-dark" target="_blank">生存</a>
             </div>
 
             <div class="card">
@@ -127,9 +113,23 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 YOOOOV Games. All rights reserved.</p>
+        <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
     </footer>
 </body>
+<script>
+    function switchLanguage(lang) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            if (lang === 'en') {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
+            } else {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
+            }
+        });
+    }
+</script>
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous">
 </script> -->
 

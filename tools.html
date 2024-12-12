@@ -4,27 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7264754231767067">
-    <title>有物 | YOOOOV</title>
+    <title>有物 | Yoooov</title>
     <script type="text/javascript" src="javascript/parse.min.js"></script>
     <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
-
-    <script>
-        function switchLanguage(lang) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (lang === 'en') {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-                } else {
-                    section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                    section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-                }
-            });
-        }
-
-    </script>
 </head>
 
 
@@ -124,6 +108,15 @@
                 <p class="en">GPT for Excel, Word, Google Sheets and Docs</p>
                 <p class="zh">GPT用于Excel、Word、Google表格和文档翻译</p>
                 <a href="https://gptforwork.com/tools/translate" target="_blank" class="btn btn-dark">GPT 翻译工具</a>
+            </div>
+
+             <div class="card">
+                <img src="https://ttsmaker.com/wp-content/uploads/2023/04/ttsmaker_home-1024x609.png" alt="TTSMAKER">
+                <h3 class="en">TTSMAKER | Text to Audio</h3>
+                <h3 class="zh">TTSMAKER | 在线文本转语音工具</h3>
+                <p class="en">Text to audio free tool</p>
+                <p class="zh">在线配音工具</p>
+                <a href="https://ttsmaker.cn/" target="_blank" class="btn btn-dark">GPT 翻译工具</a>
             </div>
         </div>
     </div>
@@ -350,7 +343,7 @@
                 </script>
             </div>
             <div class="card">
-                <img src="https://mixkit.imgix.net/video-templates/preview/mixkit-music-logo-reveal-visualizer-799-5.jpg?q=80&auto=format%2Ccompress" alt="Placeholder Image 2">
+                <img src="https://assets.mixkit.co/mixkit-social-meta.png" alt="Placeholder Image 2">
                 <h3 class="en">mixkit</h3>
                 <h3 class="zh">音效片段</h3>
                 <p class="en">Incredible Free Sound Effects</p>
@@ -450,54 +443,28 @@ We’ll give you a link to share it.</p>
             </div>
         </div>
     </div>
-
-    <div class="submit-section">
-        <h2 class="en">Submit Your Tool</h2>
-        <h2 class="zh">提交你的工具</h2>
-
-        <div>
-            <input type="text" id="websiteInput" name="website" placeholder="Enter your website URL" required>
-            <button type="button" value="Submit" onclick="submitWebsite()">Submit</button>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
+    </footer>
 
 </body>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous">
 </script>
 
-<script type="text/javascript">
-
-    var isSending = false;
-    var submitWebsite = function() {
-        Parse.initialize("tuNE0aZ5Rbr94LyQnJP6Brw8HnK5DdTaAXVTiSOP", "jOt1jJd6xqFOwb1MIJAS6GP8KighIHOTh7XPA5ad");
-        //javascriptKey is required only if you have it on server.
-
-        Parse.serverURL = 'https://pg-app-odazo0qfxqx360pc0egv5yetyud3bq.scalabl.cloud/1/';
-
-        const ReqSite = Parse.Object.extend("YoooovUserRequestSites");
-        const reqSite = new ReqSite();
-
-        reqSite.set("siteUrl", document.getElementById("websiteInput").value);
-
-        var isEmpty = document.getElementById("websiteInput").value.length == 0;
-
-        if (!false && !isEmpty) {
-            isSending = true;
-
-            reqSite.save().then((reqSite) => {
-                // Execute any logic that should take place after the object is saved.
-                alert('New object created with objectId: ' + reqSite.id);
-                document.getElementById("websiteInput").value = '';
-                isSending = false
-            }, (error) => {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
-                alert('Failed to create new object, with error code: ' + error.message);
-            });
-        }
-        
+<script>
+    function switchLanguage(lang) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            if (lang === 'en') {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
+            } else {
+                section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+                section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
+            }
+        });
     }
-    
 
 </script>
+
 </html>
