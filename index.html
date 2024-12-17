@@ -212,14 +212,11 @@
     function fetchGames(){
         const query = new AV.Query("Games");
         query.find().then((games) => {
-            console.log(games);
             this.games = games;
-
             games.forEach((game) => {
                 document.querySelector('#pt' + game.id).innerText = game.get('Plays');
                 document.querySelector('#lt' + game.id).innerText = game.get('Likes');
             });
-
         });
     }
 
@@ -234,11 +231,10 @@
                 game.increment('Plays', 1);
                 game.save().then(
                   (game) => {
-                    // 成功保存之后，执行其他逻辑
-                    console.log(`保存成功。objectId：${game.id}`);
+                    console.log(`保存Plays成功。objectId：${game.id}`);
                   },
                   (error) => {
-                    // 异常处理
+                    console.log(error)
                   }
                 );
             }
@@ -247,21 +243,20 @@
     });
 
     $('button').click(function(e){ 
-        // console.log()
+
         let like = $(this).attr("id");
         let likeId = like.slice(5,like.length);
-        console.log(likeId)
         games.forEach( (game) => {
             if(game.id == likeId) {
 
                 game.increment('Likes', 1);
                 game.save().then(
                   (game) => {
-                    // 成功保存之后，执行其他逻辑
-                    console.log(`保存成功。objectId：${game.id}`);
+                    console.log(`保存Like成功。objectId：${game.id}`);
                   },
                   (error) => {
                     // 异常处理
+                    console.log(error);
                   }
                 );
             }
