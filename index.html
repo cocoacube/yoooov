@@ -244,8 +244,15 @@
 
     $('button').click(function(e){ 
 
+
+        let nlikes = parseInt($(this).text()) + 1;
+        
         let like = $(this).attr("id");
         let likeId = like.slice(5,like.length);
+
+        document.querySelector('#lt' + likeId).innerText = nlikes;
+
+
         games.forEach( (game) => {
             if(game.id == likeId) {
 
@@ -261,6 +268,15 @@
                 );
             }
         });
+
+        // Disable the button
+        $(this).prop("disabled", true);
+
+        // Re-enable the button after 30 seconds
+        setTimeout(() => {
+            $(this).prop("disabled", false);
+            console.log(`Button ${like} is now re-enabled.`);
+        }, 30000); // 30 seconds
         
     });
 </script>
