@@ -58,7 +58,7 @@
                     <p class="en">A relax bike riding game for fun! It is difficult to pass all levels, but don't take it seriously.</p>
                     <p class="zh">一款自行车挑战游戏。这是一款难度较高的游戏，很难通过所有挑战。不要太认真，这只是为了好玩！ </p>
                     
-                    <button id='plays6760f8d19d8d290d25f1e076' type="button" class="btn btn-outline-warning">
+                    <button id='plays6760f8d19d8d290d25f1e076' type="button" class="btn btn-info">
                         <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f8d19d8d290d25f1e076'>Played</span>
                     </button>
 
@@ -81,7 +81,7 @@
                     <p class="en">A puzzle game which you have to find hidden door to pass each level.</p>
                     <p class="zh">一个解密类游戏，你需要找到隐藏在游戏中的门来通关。游戏中有很多小机关，需要玩家玩家耐心寻找。</p>
 
-                    <button id='plays6760f9c103d7a07961e9fee2' type="button" class="btn btn-outline-warning">
+                    <button id='plays6760f9c103d7a07961e9fee2' type="button" class="btn btn-info">
                         <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9c103d7a07961e9fee2'>Played</span>
                     </button>
 
@@ -106,7 +106,7 @@
                     <p class="en">A relax fishing game to catch different fishes.</p>
                     <p class="zh">一款放松的捕鱼游戏。可以通过观看广告来获取金币，金币可以购买不同的鱼钩，尽情享受钓鱼的乐趣吧。</p>
                     
-                    <button id='plays6760f9e89d8d290d25f1e07b' type="button" class="btn btn-outline-warning">
+                    <button id='plays6760f9e89d8d290d25f1e07b' type="button" class="btn btn-info">
                         <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9e89d8d290d25f1e07b'>Played</span>
                     </button>
 
@@ -128,7 +128,7 @@
                     <p class="en">A top down shooting game which you have to survival from zombies attact.</p>
                     <p class="zh">一款射击生存类肉鸽游戏！需要坚持120秒来通关。有不同种类的僵尸类型回来攻击玩家，做好准备！</p>
                     
-                    <button id='plays6760f9f903d7a07961e9fee3' type="button" class="btn btn-outline-warning">
+                    <button id='plays6760f9f903d7a07961e9fee3' type="button" class="btn btn-info">
                         <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9f903d7a07961e9fee3'>Played</span>
                     </button>
 
@@ -150,7 +150,7 @@
                     <p class="en">A relax game for girls. Fight the ugly octopus and pass the level!</p>
                     <p class="zh">趣味休闲游戏！打倒丑章鱼获得通关！汉堡好吃，但是吃多了就跳不高了哦！所以不要太贪吃。祝愿你顺利通关！</p>   
 
-                    <button id='plays6760fa0f9d8d290d25f1e07c' type="button" class="btn btn-outline-warning">
+                    <button id='plays6760fa0f9d8d290d25f1e07c' type="button" class="btn btn-info">
                         <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760fa0f9d8d290d25f1e07c'>Played</span>
                     </button>
 
@@ -223,7 +223,7 @@
     fetchGames()
 
     $('a').click(function(e){ 
-        // console.log()
+
         let link = $(this).attr("href");
         games.forEach( (game) => {
             if(game.get('gameLink') == link) {
@@ -249,34 +249,41 @@
         
         let like = $(this).attr("id");
         let likeId = like.slice(5,like.length);
+        let likeType = like.slice(0,2);
 
-        document.querySelector('#lt' + likeId).innerText = nlikes;
 
+        console.log(likeType);
 
-        games.forEach( (game) => {
-            if(game.id == likeId) {
+        if(likeType == 'lt') {
+            document.querySelector('#lt' + likeId).innerText = nlikes;
 
-                game.increment('Likes', 1);
-                game.save().then(
-                  (game) => {
-                    console.log(`保存Like成功。objectId：${game.id}`);
-                  },
-                  (error) => {
-                    // 异常处理
-                    console.log(error);
-                  }
-                );
-            }
-        });
+            games.forEach( (game) => {
+                if(game.id == likeId) {
 
-        // Disable the button
-        $(this).prop("disabled", true);
+                    game.increment('Likes', 1);
+                    game.save().then(
+                      (game) => {
+                        console.log(`保存Like成功。objectId：${game.id}`);
+                      },
+                      (error) => {
+                        // 异常处理
+                        console.log(error);
+                      }
+                    );
+                }
+            });
 
-        // Re-enable the button after 30 seconds
-        setTimeout(() => {
-            $(this).prop("disabled", false);
-            console.log(`Button ${like} is now re-enabled.`);
-        }, 30000); // 30 seconds
+            // Disable the button
+            $(this).prop("disabled", true);
+
+            // Re-enable the button after 30 seconds
+            setTimeout(() => {
+                $(this).prop("disabled", false);
+                console.log(`Button ${like} is now re-enabled.`);
+            }, 30000); // 30 seconds
+
+        }
+        
         
     });
 </script>
