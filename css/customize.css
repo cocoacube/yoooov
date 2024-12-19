@@ -114,6 +114,7 @@ header h1, header h2 {
 
 .card p {
     color: black;
+    font-size: 16px;
 }
 
 .submit-section {
