@@ -7,6 +7,9 @@
     <title>有物 | Yoooov</title>
     <script type="text/javascript" src="javascript/parse.min.js"></script>
     <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
 </head>
@@ -15,9 +18,9 @@
     
 <body onload="switchLanguage('en')">
     <header>
-        <h3>有物 // Yoooov</h3>
-        <h1 class="en">Free tools collection</h1>
-        <h1 class="zh">免费在线好用工具集合</h1>
+        <h3>有物工具 // Yoooov</h3>
+        <h1 class="zh">「  Yoooov, 有点工具  」</h1>
+        <span id="counter">210293</span>
 
     </header>
     <nav class="nav">
@@ -327,6 +330,32 @@ We’ll give you a link to share it.</p>
             }
         });
     }
+
+    AV.init({
+      appId: "vhHhq71X0qsLBO9NwPMmgXfm-gzGzoHsz",
+      appKey: "ral3lhTrNyTaJCCqEBZiSaUQ",
+      serverURL: "https://vhhhq71x.lc-cn-n1-shared.com"
+    });
+
+    const query = new AV.Query("PageClick");
+    query.get("6768f7379d8d290d25f9f46a").then((page) => {
+
+        let clicks = page.get("clicks");
+        console.log(clicks)
+        page.increment('clicks', 1);
+
+        page.save().then(
+          (p) => {
+            // 成功保存之后，执行其他逻辑
+            console.log(`保存成功。objectId：${p.id}`);
+            console.log(p.get('clicks'));
+            document.getElementById('counter').innerText = p.get('clicks');
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    });
 
 </script>
 
