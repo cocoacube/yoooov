@@ -33,6 +33,22 @@ header h1, header h2 {
     font-size: 20px;
 }
 
+
+
+#counter {
+  font-family: Menlo, Andale Mono, monospace;
+  color: #fff;
+  text-shadow: 1px 1px 0px #444;
+  width: 180px;
+  overflow: hidden;
+  position: relative;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 20px auto;
+  display: block;
+}
+
 .language-switcher {
     display: flex;
     justify-content: center;
