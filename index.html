@@ -247,9 +247,12 @@
     $('a').click(function(e){ 
 
         let link = $(this).attr("href");
-        games.forEach( (game) => {
-            if(game.get('gameLink') == link) {
+        console.log(link);
 
+        games.forEach( (game) => {
+            console.log(game.get('gameLink'));
+            if(game.get('gameLink') == link) {
+                console.log('link match');
                 game.increment('Plays', 1);
                 game.save().then(
                   (game) => {
@@ -271,12 +274,12 @@
         
         let like = $(this).attr("id");
         let likeId = like.slice(5,like.length);
-        let likeType = like.slice(0,2);
+        let likeType = like.slice(0,5);
 
 
         console.log(likeType);
 
-        if(likeType == 'lt') {
+        if(likeType == 'likes') {
             document.querySelector('#lt' + likeId).innerText = nlikes;
 
             games.forEach( (game) => {
