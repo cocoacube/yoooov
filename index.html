@@ -247,12 +247,10 @@
     $('a').click(function(e){ 
 
         let link = $(this).attr("href");
-        console.log(link);
 
         games.forEach( (game) => {
-            console.log(game.get('gameLink'));
+
             if(game.get('gameLink') == link) {
-                console.log('link match');
                 game.increment('Plays', 1);
                 game.save().then(
                   (game) => {
