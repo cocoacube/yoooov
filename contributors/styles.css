@@ -39,6 +39,12 @@ header h3 {
     font-size: 100px;
 }
 
+header h4 {
+    padding-top: 10px;
+    font-family: 'Nunito';
+    font-size: 35px;
+}
+
 header h1 {
     padding-top: 50px;
     margin: 10px 0;
