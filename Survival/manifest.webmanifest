@@ -1,0 +1,12 @@
+{
+  "name": "Survival",
+  "short_name": "Survival",
+  "id": "com.example.gamename",
+  "description": "All other people are infecting, else of you.Now, fight or die",
+  "orientation": "any",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": ["games", "entertainment"],
+  "icons": []
+}
