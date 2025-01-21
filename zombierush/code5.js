@@ -24,6 +24,15 @@ gdjs.gun_32shopCode.GDNewSprite3Objects3= [];
 gdjs.gun_32shopCode.GDYellowButtonObjects1= [];
 gdjs.gun_32shopCode.GDYellowButtonObjects2= [];
 gdjs.gun_32shopCode.GDYellowButtonObjects3= [];
+gdjs.gun_32shopCode.GDgunshopObjects1= [];
+gdjs.gun_32shopCode.GDgunshopObjects2= [];
+gdjs.gun_32shopCode.GDgunshopObjects3= [];
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects1= [];
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects2= [];
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects3= [];
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1= [];
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects2= [];
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects3= [];
 gdjs.gun_32shopCode.GDAgentMikeObjects1= [];
 gdjs.gun_32shopCode.GDAgentMikeObjects2= [];
 gdjs.gun_32shopCode.GDAgentMikeObjects3= [];
@@ -60,6 +69,9 @@ gdjs.gun_32shopCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.gun_32shopCode.GDNewSprite14Objects1= [];
 gdjs.gun_32shopCode.GDNewSprite14Objects2= [];
 gdjs.gun_32shopCode.GDNewSprite14Objects3= [];
+gdjs.gun_32shopCode.GDNewSprite13Objects1= [];
+gdjs.gun_32shopCode.GDNewSprite13Objects2= [];
+gdjs.gun_32shopCode.GDNewSprite13Objects3= [];
 
 
 gdjs.gun_32shopCode.eventsList0 = function(runtimeScene) {
@@ -69,13 +81,13 @@ gdjs.gun_32shopCode.eventsList0 = function(runtimeScene) {
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) >= 500;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) >= 5000;
 if (isConditionTrue_0) {
 gdjs.copyArray(gdjs.gun_32shopCode.GDRedButtonWithGoldFrameObjects1, gdjs.gun_32shopCode.GDRedButtonWithGoldFrameObjects2);
 
 {gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-31-52.mp3", false, 100, 1);
 }{runtimeScene.getGame().getVariables().getFromIndex(6).getChild(0).setBoolean(true);
-}{runtimeScene.getGame().getVariables().getFromIndex(2).sub(500);
+}{runtimeScene.getGame().getVariables().getFromIndex(2).sub(5000);
 }{for(var i = 0, len = gdjs.gun_32shopCode.GDRedButtonWithGoldFrameObjects2.length ;i < len;++i) {
     gdjs.gun_32shopCode.GDRedButtonWithGoldFrameObjects2[i].deleteFromScene(runtimeScene);
 }
@@ -89,7 +101,7 @@ gdjs.copyArray(gdjs.gun_32shopCode.GDRedButtonWithGoldFrameObjects1, gdjs.gun_32
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) < 500;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) < 5000;
 if (isConditionTrue_0) {
 {gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-34-53.mp3", false, 100, 1);
 }}
@@ -104,13 +116,13 @@ if (isConditionTrue_0) {
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) >= 800;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) >= 2300;
 if (isConditionTrue_0) {
 gdjs.copyArray(gdjs.gun_32shopCode.GDGreenButtonWithStoneFrameObjects1, gdjs.gun_32shopCode.GDGreenButtonWithStoneFrameObjects2);
 
 {gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-31-52.mp3", false, 100, 1);
 }{runtimeScene.getGame().getVariables().getFromIndex(6).getChild(1).setBoolean(true);
-}{runtimeScene.getGame().getVariables().getFromIndex(2).sub(800);
+}{runtimeScene.getGame().getVariables().getFromIndex(2).sub(2300);
 }{for(var i = 0, len = gdjs.gun_32shopCode.GDGreenButtonWithStoneFrameObjects2.length ;i < len;++i) {
     gdjs.gun_32shopCode.GDGreenButtonWithStoneFrameObjects2[i].deleteFromScene(runtimeScene);
 }
@@ -124,7 +136,7 @@ gdjs.copyArray(gdjs.gun_32shopCode.GDGreenButtonWithStoneFrameObjects1, gdjs.gun
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) < 800;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) < 2300;
 if (isConditionTrue_0) {
 {gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-34-53.mp3", false, 100, 1);
 }}
@@ -168,6 +180,35 @@ if (isConditionTrue_0) {
 
 
 };gdjs.gun_32shopCode.eventsList3 = function(runtimeScene) {
+
+{
+
+
+let isConditionTrue_0 = false;
+isConditionTrue_0 = false;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) >= 600;
+if (isConditionTrue_0) {
+{gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-31-52.mp3", false, 100, 1);
+}{runtimeScene.getGame().getVariables().getFromIndex(8).setBoolean(true);
+}}
+
+}
+
+
+{
+
+
+let isConditionTrue_0 = false;
+isConditionTrue_0 = false;
+isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(2)) < 600;
+if (isConditionTrue_0) {
+{gdjs.evtTools.sound.playSound(runtimeScene, "ttsmaker-file-2024-12-18-18-34-53.mp3", false, 50, 1);
+}}
+
+}
+
+
+};gdjs.gun_32shopCode.eventsList4 = function(runtimeScene) {
 
 {
 
@@ -261,9 +302,22 @@ if (isConditionTrue_0) {
 
 {
 
+gdjs.copyArray(runtimeScene.getObjects("BrownButtonWithShadow"), gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1);
 
 let isConditionTrue_0 = false;
-{
+isConditionTrue_0 = false;
+for (var i = 0, k = 0, l = gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1.length;i<l;++i) {
+    if ( gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1[i].IsClicked((typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)) ) {
+        isConditionTrue_0 = true;
+        gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1[k] = gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1[i];
+        ++k;
+    }
+}
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1.length = k;
+if (isConditionTrue_0) {
+
+{ //Subevents
+gdjs.gun_32shopCode.eventsList3(runtimeScene);} //End of subevents
 }
 
 }
@@ -298,6 +352,15 @@ gdjs.gun_32shopCode.GDNewSprite3Objects3.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects1.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects2.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects3.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects1.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects2.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects3.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects1.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects2.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects3.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects2.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects3.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects1.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects2.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects3.length = 0;
@@ -334,8 +397,11 @@ gdjs.gun_32shopCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.gun_32shopCode.GDNewSprite14Objects1.length = 0;
 gdjs.gun_32shopCode.GDNewSprite14Objects2.length = 0;
 gdjs.gun_32shopCode.GDNewSprite14Objects3.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects1.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects2.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects3.length = 0;
 
-gdjs.gun_32shopCode.eventsList3(runtimeScene);
+gdjs.gun_32shopCode.eventsList4(runtimeScene);
 gdjs.gun_32shopCode.GDNewSpriteObjects1.length = 0;
 gdjs.gun_32shopCode.GDNewSpriteObjects2.length = 0;
 gdjs.gun_32shopCode.GDNewSpriteObjects3.length = 0;
@@ -360,6 +426,15 @@ gdjs.gun_32shopCode.GDNewSprite3Objects3.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects1.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects2.length = 0;
 gdjs.gun_32shopCode.GDYellowButtonObjects3.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects1.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects2.length = 0;
+gdjs.gun_32shopCode.GDgunshopObjects3.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects1.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects2.length = 0;
+gdjs.gun_32shopCode.GDWhiteSquareDecoratedButtonObjects3.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects1.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects2.length = 0;
+gdjs.gun_32shopCode.GDBrownButtonWithShadowObjects3.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects1.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects2.length = 0;
 gdjs.gun_32shopCode.GDAgentMikeObjects3.length = 0;
@@ -396,6 +471,9 @@ gdjs.gun_32shopCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.gun_32shopCode.GDNewSprite14Objects1.length = 0;
 gdjs.gun_32shopCode.GDNewSprite14Objects2.length = 0;
 gdjs.gun_32shopCode.GDNewSprite14Objects3.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects1.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects2.length = 0;
+gdjs.gun_32shopCode.GDNewSprite13Objects3.length = 0;
 
 
 return;

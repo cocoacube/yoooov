@@ -30,6 +30,8 @@ gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524037_9529305_9521035_95292562Objects2= [];
 gdjs.you_32loseCode.GDNewSprite14Objects1= [];
 gdjs.you_32loseCode.GDNewSprite14Objects2= [];
+gdjs.you_32loseCode.GDNewSprite13Objects1= [];
+gdjs.you_32loseCode.GDNewSprite13Objects2= [];
 
 
 gdjs.you_32loseCode.eventsList0 = function(runtimeScene) {
@@ -122,6 +124,8 @@ gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524037_9529305_9521035_95292562Objects2.length = 0;
 gdjs.you_32loseCode.GDNewSprite14Objects1.length = 0;
 gdjs.you_32loseCode.GDNewSprite14Objects2.length = 0;
+gdjs.you_32loseCode.GDNewSprite13Objects1.length = 0;
+gdjs.you_32loseCode.GDNewSprite13Objects2.length = 0;
 
 gdjs.you_32loseCode.eventsList0(runtimeScene);
 gdjs.you_32loseCode.GDTransparentButtonWithWhiteBlueBorderObjects1.length = 0;
@@ -154,6 +158,8 @@ gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524
 gdjs.you_32loseCode.GD_9528608_9520809_9528846_9595_9522823_9531206_9520891_9524037_9529305_9521035_95292562Objects2.length = 0;
 gdjs.you_32loseCode.GDNewSprite14Objects1.length = 0;
 gdjs.you_32loseCode.GDNewSprite14Objects2.length = 0;
+gdjs.you_32loseCode.GDNewSprite13Objects1.length = 0;
+gdjs.you_32loseCode.GDNewSprite13Objects2.length = 0;
 
 
 return;
