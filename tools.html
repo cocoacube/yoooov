@@ -8,37 +8,63 @@
     <script type="text/javascript" src="javascript/parse.min.js"></script>
     <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
 </head>
 
 
     
 <body onload="switchLanguage('en')">
-    <header>
+    <header style="width: 100%;font-family: Bagel Fat One;">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <a class="navbar-brand" style="font-family: Bagel Fat One; color: white;">YOOOOV</a>
+
+            <form class="justify-content-center" style="font-color:white; width: 50%;">
+                <div class="input-group" role="search">
+                  
+                  <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-solid fa-magnifying-glass"></i></span>
+                </div>  
+            </form> 
+            
+            <div style="margin-top: 5px; margin-bottom: 5px;"> 
+                <div class="btn-group btn-group" role="group">
+                    <button type="button" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      中文
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li onclick="switchLanguage('zh')"><a class="dropdown-item btn btn-sm btn-outline-light">中文</a></li>
+                      <li onclick="switchLanguage('en')"><a class="dropdown-item btn btn-sm btn-outline-light">English</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-light">Sign in</button>
+            </div>
+          </div>
+        </nav>
+
+
         <h3>有物工具 // Yoooov</h3>
-        <h1 class="zh">「  Yoooov, 有点工具  」</h1>
+        <h1 class="en">「  Yoooov, 有点东西  」</h1>
+
         <span id="counter">210293</span>
 
-        <div class="language-switcher">
-            <button class="badge rounded-pill text-bg-warning" onclick="switchLanguage('zh')">中文</button>
-            <button class="badge rounded-pill text-bg-warning" onclick="switchLanguage('en')">English</button>
-            
+        <div class="justify-content-center">
+            <ul class="nav nav-underline justify-content-center">
+              <li class="nav-item">
+                <a class="btn btn-sm btn-light" aria-current="page" href="index.html">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-sm btn-light" href="tools.html">Tools</a>
+              </li>
+            </ul>
         </div>
 
+        <!-- <h1 class="zh">制造快乐游戏的独立开发者！</h1> -->
     </header>
-    <nav class="nav">
-        <ul class="nav nav-underline justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link"  href="index.html">游戏</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="tools.html">工具</a>
-          </li>
-        </ul>
-    </nav>
 
     <div class="section">
 
@@ -309,7 +335,7 @@ We’ll give you a link to share it.</p>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
+        <p style="color:white">&copy; 2024 Yoooov Games. All rights reserved.</p>
     </footer>
 
 </body>

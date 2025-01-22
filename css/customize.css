@@ -8,11 +8,12 @@ body {
     margin: 0;
     background: url('https://www.toptal.com/designers/subtlepatterns/patterns/pixel-weave.png') repeat; /* Pixel art background */
     color: #000000; /* Black text color for readability */
+    background-color: #191919;
     padding: 20px;
 }
 
 header {
-    background-color: #FF8364; /* Bright Orange */
+    background-color: #FE5F55; /* Bright Orange */
     color: white;
     padding: 10px;
     width: 100%;
@@ -34,8 +35,9 @@ header h1, header h2 {
     font-size: 20px;
 }
 
-
-
+footer p{
+    color: white;
+}
 #counter {
   font-family: Menlo, Andale Mono, monospace;
   color: #fff;
@@ -50,35 +52,10 @@ header h1, header h2 {
   display: block;
 }
 
-.language-switcher {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.language-switcher button {
-/*    color: black;*/
-    border-color: white;
-    border-width: 0px;
-    height: 20px;
-    width: 50px;
-/*    border-radius: 2px; */
-    font-family: 'Nunito';
-    font-size: 10px;
-/*    cursor: pointer;*/
-    margin: 0 5px;
-    
-}
-
-/*.language-switcher button:hover {
-    background-color: #FFB677;
-    color: white;
-}*/
-
 .nav {
     margin-bottom: 20px;
 }
+
 .section {
     width: 100%;
     margin-bottom: 40px;
@@ -100,7 +77,8 @@ header h1, header h2 {
 }
 
 .gcard {
-    background-color: #E3F6F5; /* Light Aqua */
+/*    background-color: #E3F6F5;*/
+    background-color: white;
     border: none;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -138,49 +116,8 @@ header h1, header h2 {
     font-size: 16px;
 }
 
-.submit-section {
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-}
-
-.submit-section h2 {
-    color: #FF8364; /* Bright Orange */
-    font-size: 24px;
-}
-
-.submit-section form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.submit-section input[type="text"] {
-    width: 300px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 2px solid #6BD5E1; /* Light Blue */
-    font-family: 'Nunito';
-    font-size: 14px;
-}
-
-.submit-section input[type="submit"], 
-.submit-section button[type="button"] {
-    background-color: #FFD98E; /* Pale Yellow */
-    color: black;
-    padding: 10px 20px;
-    border: 2px solid #FFB677; /* Light Orange */
-    border-radius: 5px;
-    font-family: 'Nunito';
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.submit-section input[type="submit"]:hover, 
-.submit-section button[type="button"]:hover {
-    background-color: #11CBD7; /* Bright Cyan */
-    color: white;
+.card-play-btn{
+    background-color: #FE5F55;
 }
 
 .ad-container {
@@ -192,4 +129,8 @@ header h1, header h2 {
 #hearticon {
     width: 10px;
     height: 10px;
+}
+
+#footer p{
+    color:white;
 }
