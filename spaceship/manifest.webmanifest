@@ -1,0 +1,12 @@
+{
+  "name": "星际战舰",
+  "short_name": "星际战舰",
+  "id": "com.GDevelop.Asteroids",
+  "description": "",
+  "orientation": "landscape",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": ["games", "entertainment"],
+  "icons": []
+}
