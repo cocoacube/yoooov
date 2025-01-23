@@ -35,9 +35,6 @@ header h1, header h2 {
     font-size: 20px;
 }
 
-footer p{
-    color: white;
-}
 #counter {
   font-family: Menlo, Andale Mono, monospace;
   color: #fff;
@@ -131,6 +128,6 @@ footer p{
     height: 10px;
 }
 
-#footer p{
+/*#footer p{
     color:white;
-}
+}*/
