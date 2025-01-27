@@ -15,6 +15,10 @@ body {
     margin: 4px;
 }
 
+.h5bgcolor{
+    background-color: #F8FAFC;
+}
+
 header {
     background-color: #FF8364; /* Warm Red */
     color: #FFFFFF; /* White */
@@ -55,6 +59,7 @@ header h1 {
     font-size: 100px;
 }
 
+.list-group
 .game-details {
     width: 100%;
     display: flex;
