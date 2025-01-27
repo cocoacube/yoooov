@@ -11,6 +11,10 @@ body {
     padding: 20px;
 }
 
+.centerbtng{
+    margin: 5px;
+}
+
 header {
     background-color: #FF8364; /* Warm Red */
     color: #FFFFFF; /* White */
