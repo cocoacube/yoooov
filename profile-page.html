@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin-top: 30px;
+        }
+        .profile-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-card .card-header {
+            background-color: #fbc02d;
+            color: white;
+            text-align: center;
+        }
+        .profile-card .card-body {
+            text-align: center;
+        }
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+        .profile-card .btn {
+            margin-top: 10px;
+        }
+        .upload-section {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 30px;
+        }
+        .upload-section h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .upload-section .form-group {
+            margin-bottom: 20px;
+        }
+        .upload-section .btn {
+            width: 100%;
+        }
+
+        /* Drag-and-Drop Style */
+        .upload-drop-zone {
+            border: 2px dashed #4caf50;
+            background-color: #f7f7f7;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .upload-drop-zone:hover {
+            background-color: #f1f1f1;
+        }
+        .upload-drop-zone p {
+            color: #777;
+            font-size: 18px;
+        }
+        .upload-drop-zone i {
+            font-size: 30px;
+            color: #4caf50;
+        }
+        .upload-drop-zone.active {
+            background-color: #e8ffe8;
+        }
+        .file-uploaded {
+            margin-top: 10px;
+            color: #4caf50;
+        }
+
+        /* Modal Style */
+        .modal-body input, .modal-body select, .modal-body textarea {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <!-- Left Column: User Profile Card -->
+        <div class="col-md-4">
+            <div class="card profile-card">
+                <div class="card-header">
+                    <h4>User Profile</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Profile Picture -->
+                    <img id="profilePhoto" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="User Photo" id="profilePhoto">
+                    <!-- User Information -->
+                    <h5 class="card-title" id="userName">John Doe</h5>
+                    <p class="card-text" id="userEmail">johndoe@example.com</p>
+                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editProfileModal">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Upload Section -->
+        <div class="col-md-8">
+            <div class="upload-section">
+                <h3>Upload Your Game</h3>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <!-- Drag and Drop Zone -->
+                    <div class="upload-drop-zone mb-4" id="dropZone" onclick="triggerFileInput()">
+                        <i class="fa fa-upload"></i>
+                        <p>Drag & drop your game ZIP file here or click to select</p>
+                        <input type="file" id="gameFile" name="gameFile" accept=".zip" style="display: none;" onchange="updateFileName()" required>
+                    </div>
+
+                    <!-- Game Basic Information -->
+                    <div class="form-group mb-3">
+                        <label for="gameTitle">Game Title</label>
+                        <input type="text" class="form-control" id="gameTitle" name="gameTitle" placeholder="Enter Game Title" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="gameDescription">Game Description</label>
+                        <textarea class="form-control" id="gameDescription" name="gameDescription" rows="4" placeholder="Enter Game Description" required></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-success">Upload Game</button>
+                    <p class="file-uploaded mt-3" id="fileStatus"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select a Profile Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center" id="avatarContainer">
+                <!-- Avatars will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Modal for Editing Profile -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit Form -->
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label for="emailInput">Email address</label>
+                        <input type="email" class="form-control" id="emailInput" placeholder="Enter new email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput">Change Password</label>
+                        <input type="password" class="form-control" id="passwordInput" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="genderInput">Gender</label>
+                        <select class="form-control" id="genderInput">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdateInput">Birthdate</label>
+                        <input type="date" class="form-control" id="birthdateInput" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Trigger file input when clicking the drop zone
+    function triggerFileInput() {
+        document.getElementById("gameFile").click();
+    }
+
+    document.getElementById("profilePhoto").addEventListener("click", function () {
+        fetchAvatars();
+        $('#avatarModal').modal('show');
+    });
+
+    function fetchAvatars() {
+        var avatarContainer = document.getElementById("avatarContainer");
+        avatarContainer.innerHTML = ""; // Clear previous content
+        
+        fetch('/avatars') // Assuming an API or server route returns the file list
+            .then(response => response.json())
+            .then(avatarImages => {
+                avatarImages.forEach(function (src) {
+                    var img = document.createElement("img");
+                    img.src = `./avatars/${src}`;
+                    img.classList.add("avatar-option");
+                    img.style.width = "80px";
+                    img.style.height = "80px";
+                    img.style.margin = "10px";
+                    img.style.cursor = "pointer";
+                    img.style.borderRadius = "50%";
+                    img.onclick = function () {
+                        document.getElementById("profilePhoto").src = `./avatars/${src}`;
+                        $('#avatarModal').modal('hide');
+                    };
+                    avatarContainer.appendChild(img);
+                });
+            })
+            .catch(error => console.error('Error fetching avatars:', error));
+    }
+
+    // Update the file name when the user selects a file
+    function updateFileName() {
+        var fileInput = document.getElementById("gameFile");
+        var fileName = fileInput.files[0] ? fileInput.files[0].name : "No file selected";
+        document.getElementById("fileStatus").innerText = "Selected file: " + fileName;
+    }
+
+    // LeanCloud API call for updating user profile
+    function updateProfile(email, password, gender, birthdate) {
+        // LeanCloud API integration
+        // Example for email change:
+        // var User = AV.Object.extend('_User');
+        // var user = AV.User.current();
+        // user.set('email', email);
+        // user.save();
+    }
+
+    // Handle profile edit form submission
+    document.getElementById("editProfileForm").onsubmit = function (event) {
+        event.preventDefault();
+
+        var email = document.getElementById("emailInput").value;
+        var password = document.getElementById("passwordInput").value;
+        var gender = document.getElementById("genderInput").value;
+        var birthdate = document.getElementById("birthdateInput").value;
+
+        updateProfile(email, password, gender, birthdate);
+
+        // Close modal after submitting
+        $('#editProfileModal').modal('hide');
+    }
+</script>
+
+</body>
+</html>
