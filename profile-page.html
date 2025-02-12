@@ -203,35 +203,36 @@
     }
 
     document.getElementById("profilePhoto").addEventListener("click", function () {
-        fetchAvatars();
+        
         $('#avatarModal').modal('show');
+        fetchAvatars();
     });
 
     function fetchAvatars() {
         var avatarContainer = document.getElementById("avatarContainer");
         avatarContainer.innerHTML = ""; // Clear previous content
-        
-        fetch('/avatars') // Assuming an API or server route returns the file list
-            .then(response => response.json())
-            .then(avatarImages => {
-                avatarImages.forEach(function (src) {
-                    var img = document.createElement("img");
-                    img.src = `./avatars/${src}`;
-                    img.classList.add("avatar-option");
-                    img.style.width = "80px";
-                    img.style.height = "80px";
-                    img.style.margin = "10px";
-                    img.style.cursor = "pointer";
-                    img.style.borderRadius = "50%";
-                    img.onclick = function () {
-                        document.getElementById("profilePhoto").src = `./avatars/${src}`;
-                        $('#avatarModal').modal('hide');
-                    };
-                    avatarContainer.appendChild(img);
-                });
-            })
-            .catch(error => console.error('Error fetching avatars:', error));
+
+        var avatarImages = ['image8x1.png', 'image8x3.png', 'image2x8.png', 'image2x9.png', 'image8x2.png', 'image8x6.png', 'image6x9.png', 'image6x8.png', 'image8x7.png', 'image4x8.png', 'image8x5.png', 'image8x4.png', 'image4x9.png', 'image3x8.png', 'image9x3.png', 'image9x2.png', 'image3x9.png', 'image1x9.png', 'image9x1.png', 'image1x8.png', 'image9x5.png', 'image5x8.png', 'image5x9.png', 'image9x4.png', 'image9x6.png', 'image7x9.png', 'image7x8.png', 'image9x7.png', 'image3x1.png', 'image1x3.png', 'image7x5.png', 'image5x7.png', 'image5x6.png', 'image7x4.png', 'image1x2.png', 'image3x2.png', 'image9x9.png', 'image7x6.png', 'image5x4.png', 'image5x5.png', 'image7x7.png', 'image9x8.png', 'image1x1.png', 'image3x3.png', 'image3x7.png', 'image1x5.png', 'image7x3.png', 'image5x1.png', 'image7x2.png', 'image1x4.png', 'image3x6.png', 'image3x4.png', 'image1x6.png', 'image5x2.png', 'image5x3.png', 'image7x1.png', 'image1x7.png', 'image3x5.png', 'image4x4.png', 'image8x9.png', 'image6x6.png', 'image2x2.png', 'image2x3.png', 'image6x7.png', 'image8x8.png', 'image4x5.png', 'image4x7.png', 'image6x5.png', 'image2x1.png', 'image6x4.png', 'image4x6.png', 'image4x2.png', 'image2x4.png', 'image2x5.png', 'image6x1.png', 'image4x3.png', 'image4x1.png', 'image6x3.png', 'image2x7.png', 'image2x6.png', 'image6x2.png']; // Manually add filenames
+
+        avatarImages.forEach(function (src) {
+            var img = document.createElement("img");
+            img.src = `./avators/${src}`; // Use the correct image path
+            img.classList.add("avatar-option");
+            img.style.width = "80px";
+            img.style.height = "80px";
+            img.style.margin = "10px";
+            img.style.cursor = "pointer";
+            img.style.borderRadius = "50%";
+
+            img.onclick = function () {
+                document.getElementById("profilePhoto").src = `./avators/${src}`;
+                $('#avatarModal').modal('hide');
+            };
+
+            avatarContainer.appendChild(img);
+        });
     }
+
 
     // Update the file name when the user selects a file
     function updateFileName() {
