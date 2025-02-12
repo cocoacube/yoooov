@@ -92,7 +92,7 @@
             AV.User.logIn(username, password).then(() => {
                 message.className = "text-success";
                 message.textContent = "登录成功！";
-                setTimeout(() => window.location.href = "dashboard.html", 1000);
+                setTimeout(() => window.location.href = "https://yoooov.com", 1000);
             }).catch(error => {
                 message.className = "text-danger";
                 message.textContent = error.message;
