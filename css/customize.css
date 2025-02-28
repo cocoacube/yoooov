@@ -73,7 +73,7 @@ header h1, header h2 {
     justify-content: center;
 }
 
-.gcard {
+.card {
 /*    background-color: #E3F6F5;*/
     background-color: white;
     border: none;
@@ -81,7 +81,7 @@ header h1, header h2 {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     padding: 0px;
     width: 300px;
-    height: 520px;
+    height: 300px;
     text-align: center;
     font-size: 14px;
     transition: transform 0.2s;
@@ -89,28 +89,19 @@ header h1, header h2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+
 }
 
-.gcard img {
+.card img {
     width: 100%;
     height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
 }
 
-.gcard:hover {
+.card:hover {
     transform: scale(1.05);
-}
-
-.gcard h3, .gcard h4, .gcard p {
-    margin: 0 0 10px;
-    font-size: 18px;
-    flex: 1;
-}
-
-.gcard p {
-    color: black;
-    font-size: 16px;
 }
 
 .card-play-btn{
@@ -126,6 +117,21 @@ header h1, header h2 {
 #hearticon {
     width: 10px;
     height: 10px;
+}
+
+
+.card-img-overlay{
+    height: 100%;
+    opacity: 0;
+    color: white;
+    transform: translateY(5%);
+    transition: all 0.3s ease;
+}
+.card-img-overlay:hover{
+    opacity: 0.9;
+    background-color: #000000;
+    border-radius: 10px;
+    transform: translateY(0);
 }
 
 /*#footer p{
