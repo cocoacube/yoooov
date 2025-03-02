@@ -80,7 +80,7 @@ header h1, header h2 {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     padding: 0px;
     width: 310px;
-    min-height: 80px;
+    max-height: 310px;
     text-align: center;
     font-size: 14px;
     transition: transform 0.2s;
