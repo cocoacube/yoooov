@@ -6,12 +6,12 @@ gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects1= [];
 gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects2= [];
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects1= [];
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects2= [];
-gdjs.menuCode.GDNewSpriteObjects1= [];
-gdjs.menuCode.GDNewSpriteObjects2= [];
 gdjs.menuCode.GDNewTextObjects1= [];
 gdjs.menuCode.GDNewTextObjects2= [];
 gdjs.menuCode.GDNewBitmapTextObjects1= [];
 gdjs.menuCode.GDNewBitmapTextObjects2= [];
+gdjs.menuCode.GDNewSprite2Objects1= [];
+gdjs.menuCode.GDNewSprite2Objects2= [];
 
 
 gdjs.menuCode.eventsList0 = function(runtimeScene) {
@@ -90,12 +90,12 @@ gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects1.length = 0;
 gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects2.length = 0;
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects1.length = 0;
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects2.length = 0;
-gdjs.menuCode.GDNewSpriteObjects1.length = 0;
-gdjs.menuCode.GDNewSpriteObjects2.length = 0;
 gdjs.menuCode.GDNewTextObjects1.length = 0;
 gdjs.menuCode.GDNewTextObjects2.length = 0;
 gdjs.menuCode.GDNewBitmapTextObjects1.length = 0;
 gdjs.menuCode.GDNewBitmapTextObjects2.length = 0;
+gdjs.menuCode.GDNewSprite2Objects1.length = 0;
+gdjs.menuCode.GDNewSprite2Objects2.length = 0;
 
 gdjs.menuCode.eventsList0(runtimeScene);
 gdjs.menuCode.GDGreenButtonWithStoneFrameObjects1.length = 0;
@@ -104,12 +104,12 @@ gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects1.length = 0;
 gdjs.menuCode.GDOrangeButtonWithStoneFrameObjects2.length = 0;
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects1.length = 0;
 gdjs.menuCode.GDPurpleButtonWithStoneFrameObjects2.length = 0;
-gdjs.menuCode.GDNewSpriteObjects1.length = 0;
-gdjs.menuCode.GDNewSpriteObjects2.length = 0;
 gdjs.menuCode.GDNewTextObjects1.length = 0;
 gdjs.menuCode.GDNewTextObjects2.length = 0;
 gdjs.menuCode.GDNewBitmapTextObjects1.length = 0;
 gdjs.menuCode.GDNewBitmapTextObjects2.length = 0;
+gdjs.menuCode.GDNewSprite2Objects1.length = 0;
+gdjs.menuCode.GDNewSprite2Objects2.length = 0;
 
 
 return;
