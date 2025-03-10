@@ -297,7 +297,7 @@ for (var i = 0, k = 0, l = gdjs.levelupCode.GDBlueButtonObjects1.length;i<l;++i)
 gdjs.levelupCode.GDBlueButtonObjects1.length = k;
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(26600900);
+{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(26905956);
 }
 }
 if (isConditionTrue_0) {
