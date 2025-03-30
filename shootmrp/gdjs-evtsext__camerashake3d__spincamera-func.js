@@ -8,7 +8,7 @@ if (typeof gdjs.evtsExt__CameraShake3D__SpinCamera !== "undefined") {
 gdjs.evtsExt__CameraShake3D__SpinCamera = {};
 
 
-gdjs.evtsExt__CameraShake3D__SpinCamera.userFunc0x1185420 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__CameraShake3D__SpinCamera.userFunc0x18ae6a0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const angle = eventsFunctionContext.getArgument("Angle");
 const layerName = eventsFunctionContext.getArgument("Layer");
@@ -34,7 +34,7 @@ gdjs.evtsExt__CameraShake3D__SpinCamera.eventsList0 = function(runtimeScene, eve
 
 
 var objects = [];
-gdjs.evtsExt__CameraShake3D__SpinCamera.userFunc0x1185420(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__CameraShake3D__SpinCamera.userFunc0x18ae6a0(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 
