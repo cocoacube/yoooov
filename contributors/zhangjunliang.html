@@ -5,17 +5,29 @@
     <meta http-equiv="content-type" content="application/pdf; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7264754231767067">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/parse.min.js"></script>
+    <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/customize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+
     <title>@yueli</title>
 </head>
 <body>
-    <header>
-        <h1>@yueli</h1>
-    </header>
 
-    <div class="card mb-3">
+    <header style="width: 100%;font-family: Bagel Fat One;">
+
+        <h3><a href="index.html" style="color: white;text-decoration: none;">有物游戏 // Yoooov</a></h3>
+        <h1 class="en">「  Profile  」</h1>
+    </header>
+    
+    <div class="card mb-3" style="width: 500px;">
       <div class="row g-0">
         <div class="col-md-4">
           <img src="images/zhangjunliang.png" class="img-fluid rounded-start" alt="@chenjr">
@@ -30,52 +42,64 @@
       </div>
     </div>
 
-    <section class="game-details">
-        <div class="card-container">
-            <div class="card text-center" style="width:18rem;">
-                <img src="images/fishing.png" alt="游戏图片">
-                <div class="card-body">
-                    <h5 class="card-title">捕鱼达人</h5>
-                    <h5 class="card-title">Fishing</h5>
-                    <p class="card-text">一款放松的捕鱼游戏。</p>
-                    <ul class="game-info">
-                        <li><strong>发布日期：</strong>2024年8月9日</li>
-                        <li><strong>类型：</strong>动作，冒险</li>
-                        <li><strong>平台：</strong>PC，主机，移动端，网页</li>
-                    </ul>
-                    <a class="btn btn-primary" href="https://gd.games/instant-builds/fc67fd8c-b0e8-4050-80b2-b51e5bc57996">立即游玩</a>
-                </div>
-            </div>
 
-            <div class="card text-center" style="width:18rem;">
-                <img src="images/escapeisland.png" alt="游戏图片">
+    <div class="card-container">
+        <div class="card text-center" id='6760f9e89d8d290d25f1e07b'>
+            <img src="images/fishing.png" alt="Fishing">
+            <div class="card-img-overlay">
+                
                 <div class="card-body">
-                    <h5 class="card-title">穿越冒险岛</h5>
-                    <h5 class="card-title">Escape Adventure Island</h5>
-                    <p class="card-text">打败僵尸、外星人、魔法师，逃出冒险岛！</p>
-                    <ul class="game-info">
-                        <li><strong>发布日期：</strong>2024年11月19日</li>
-                        <li><strong>类型：</strong>动作，冒险</li>
-                        <li><strong>平台：</strong>PC，主机，移动端，网页</li>
-                    </ul>
-                    <a class="btn btn-primary" href="https://www.yoooov.com/contributors/escapeadventureisland.html">立即游玩</a>
+                    <h3 class="en">Fishing</h3>
+                    <h3 class="zh">钓鱼达人</h3>
+                    <p><a href="zhangjunliang.html" class="btn btn-outline-info">@yueli</a></p>
+                    <p>捕鱼游戏。可以通过观看广告来获取金币，金币可以购买不同的鱼钩。</p>
+                    <button id='plays6760f9e89d8d290d25f1e07b' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9e89d8d290d25f1e07b'>Played</span>
+                    </button>
+                    <button id='likes6760f9e89d8d290d25f1e07b' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id="lt6760f9e89d8d290d25f1e07b">Liked</span>
+                    </button>
                 </div>
+                <a href="https://gd.games/instant-builds/fc67fd8c-b0e8-4050-80b2-b51e5bc57996" class="btn btn-warning" target="_blank" onclick="test()">开始游戏</a>
             </div>
         </div>
 
-    </section>
+        <div class="card text-center" id='6784d94a28a55b4285a70890'>
+            <img src="images/escapeisland.png" alt="The Last Sip of Blood">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">Escape Adventure Island</h3>
+                    <h3 class="zh">穿越冒险岛</h3>
+                    <p><a href="zhangjunliang.html" class="btn btn-outline-info">@yueli</a></p>
+                    <p class="en">Fight with aliens and animals to escape from adventure island.</p>
+                    <p class="zh">打败僵尸、外星人、魔法师，逃出冒险岛！</p>
+                    <button id='plays6784d94a28a55b4285a70890' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt6784d94a28a55b4285a70890'>Played</span>
+                    </button>
+                    <button id='likes6784d94a28a55b4285a70890' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id='lt6784d94a28a55b4285a70890'>Liked</span>
+                    </button>
+                </div>
+                <a href="https://www.yoooov.com/contributors/escapeadventureisland.html"  class="btn btn-warning" target="_blank">开始游戏</a>
+            </div>
+        </div>
 
-    <div class="card border-danger mb-3" style="width:100%">
-      <div class="card-body">
-        <h7 class="card-title">Yoooov（有物）</h7>
-        <h4 class="card-title">免费在线游戏</h4>
-        <p class="card-text">Yoooov (有物) 拥有丰富的免费在线游戏，致力于为您提供最有趣的游戏体验。打开Yoooov（有物），即可畅玩所有游戏，无需您下载、登录，更无弹窗干扰。我们的游戏支持台式机、平板电脑、移动设备等多种运行环境。无论是在舒适的家中，还是等车的路边，您都可以通过 Yoooov (有物)享受游戏乐趣。</p>
-      </div>
 
-      <div class="card-body">
-        <h4 class="card-title">Yoooov（有物）是什么？</h4>
-        <p class="card-text">Yoooov (有物)总部位于深圳，目前有60名游戏开发者，最小的开发者还在上小学。团队致力于创建一个免费游戏平台，旨在打造一个向所有人开放的在线游乐场。如果您是一位游戏开发者，想要您的游戏在网络上取得成功，欢迎您在了解我司信息后，可以添加我们的微信CubeVon与我们联系，期待与您合作。</p>
-      </div>
+
+
+        <div class="card border-danger mb-3" style="width:100%">
+          <div class="card-body">
+            <h7 class="card-title">Yoooov（有物）</h7>
+            <h4 class="card-title">免费在线游戏</h4>
+            <p class="card-text">Yoooov (有物) 拥有丰富的免费在线游戏，致力于为您提供最有趣的游戏体验。打开Yoooov（有物），即可畅玩所有游戏，无需您下载、登录，更无弹窗干扰。我们的游戏支持台式机、平板电脑、移动设备等多种运行环境。无论是在舒适的家中，还是等车的路边，您都可以通过 Yoooov (有物)享受游戏乐趣。</p>
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title">Yoooov（有物）是什么？</h4>
+            <p class="card-text">Yoooov (有物)总部位于深圳，目前有60名游戏开发者，最小的开发者还在上小学。团队致力于创建一个免费游戏平台，旨在打造一个向所有人开放的在线游乐场。如果您是一位游戏开发者，想要您的游戏在网络上取得成功，欢迎您在了解我司信息后，可以添加我们的微信CubeVon与我们联系，期待与您合作。</p>
+          </div>
+        </div>
     </div>
     <footer>
         <p>&copy; 2024 Yoooov Games. All rights reserved.</p>

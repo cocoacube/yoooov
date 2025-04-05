@@ -5,22 +5,34 @@
     <meta http-equiv="content-type" content="application/pdf; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7264754231767067">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/parse.min.js"></script>
+    <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/customize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
     <title>@chenjr</title>
 </head>
 <body>
-    <header>
-        <h1>@chenjr</h1>
-    </header>
 
-    <div class="card mb-3">
+    <header style="width: 100%;font-family: Bagel Fat One;">
+
+        <h3><a href="index.html" style="color: white;text-decoration: none;">有物游戏 // Yoooov</a></h3>
+        <h1 class="en">「  Profile  」</h1>
+    </header>
+    
+    <div class="card mb-3" style="width: 500px;">
       <div class="row g-0">
-        <div class="col-md-4">
-          <img src="images/chenjiarui.png" class="img-fluid rounded-start" alt="@chenjr">
+        <div class="col-md-4" >
+          <img src="images/chenjiarui.png" alt="@chenjr">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8"> 
           <div class="card-body">
             <h5 class="card-title">@chenjr</h5>
             <p class="card-text">A young game designer and developer!</p>
@@ -29,23 +41,61 @@
         </div>
       </div>
     </div>
-    
-    <section class="game-details">
-        <div class="card text-center" style="width:18rem;">
-            <img src="images/ironbaby.png" alt="游戏图片">
-            <div class="card-body">
-                <h5 class="card-title">铁甲小宝</h5>
-                <h5 class="card-title">Iron Baby</h5>
-                <p class="card-text">一款休闲类寻宝闯关游戏！</p>
-                <ul class="game-info">
-                    <li><strong>发布日期：</strong>2024年8月9日</li>
-                    <li><strong>类型：</strong>动作，冒险</li>
-                    <li><strong>平台：</strong>PC，主机，移动端，网页</li>
-                </ul>
-                <a class="btn btn-primary" href="https://gd.games/instant-builds/ab1e58d7-190b-4de0-b592-def00f82ef99" class="play-button">立即游玩</a>
+
+    <div class="card-container">
+        <div class="card text-center" id='6760f9c103d7a07961e9fee2'>
+            <img src="images/ironbaby.png" alt="Iron Baby">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">Iron Baby</h3>
+                    <h3 class="zh">铁甲小宝</h3>
+                    <p><a href="chenjiarui.html" class="btn btn-outline-info">@chenjr</a></p>
+                    <p>一个解密类游戏，你需要找到隐藏在游戏中的门来通关。</p>
+                    <button id='plays6760f9c103d7a07961e9fee2' type="button" class="btn btn-info"><i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9c103d7a07961e9fee2'>Played</span></button>
+                    <button id='likes6760f9c103d7a07961e9fee2' type="button" class="btn btn-outline-danger"><i class="fa fa-regular fa-heart"></i> <span id="lt6760f9c103d7a07961e9fee2">Liked</span></button>
+                </div>
+                <a href="https://gd.games/instant-builds/ab1e58d7-190b-4de0-b592-def00f82ef99" class="btn btn-warning" target="_blank">开始游戏</a>
             </div>
         </div>
-    </section>
+        <div class="card text-center" id='678a22f228a55b4285a72280'>
+            <img src="images/zombierush.png" alt="Iron Baby">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">Zombie Rush</h3>
+                    <h3 class="zh">暴打僵尸</h3>
+                    <p><a href="chenjiarui.html" class="btn btn-outline-info">@chenjr</a></p>
+                    <p>肉鸽爽游，解压泄愤，你最无敌了！</p>
+                    <button id='plays678a22f228a55b4285a72280' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt678a22f228a55b4285a72280'>Played</span>
+                    </button>
+                    <button id='likes678a22f228a55b4285a72280' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id="lt678a22f228a55b4285a72280">Liked</span>
+                    </button>
+                </div>
+                <a href="https://www.yoooov.com/contributors/zombierush.html" class="btn btn-warning" target="_blank">开始游戏</a>
+            </div>
+        </div>
+        <div class="card text-center" id='67e8ef18287e5660ffb007ba'>
+            <img src="images/shootmrp.png" alt="shoot Mr. p">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">Shoot Mr. P</h3>
+                    <h3 class="zh">杀死痞老板</h3>
+                    <p><a href="chenjiarui.html" class="btn btn-outline-info">chenjr</a></p>
+                    <p>邪恶的痞老板，绑架了所有的人，我们要救出他们。避免打到人质！</p>
+                    <button id='plays67e8ef18287e5660ffb007ba' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt67e8ef18287e5660ffb007ba'>Played</span>
+                    </button>
+                    <button id='likes67e8ef18287e5660ffb007ba' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id='lt67e8ef18287e5660ffb007ba'>Liked</span>
+                    </button>
+                </div>
+                <a href="https://www.yoooov.com/contributors/shootmrp.html"  class="btn btn-warning" target="_blank">开始游戏</a>
+            </div>
+        </div>
 
     <div class="card border-danger mb-3" style="width:100%">
       <div class="card-body">
@@ -60,6 +110,7 @@
       </div>
     </div>
     
+    </div>
     <footer>
         <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
     </footer>
