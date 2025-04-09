@@ -121,7 +121,7 @@ gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopD
 gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.GDObjectObjects2= [];
 
 
-gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.userFunc0xd25050 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.userFunc0xc6afd8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 
 const object = objects[0];
@@ -155,7 +155,7 @@ gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__PixelPe
 
 var objects = [];
 objects.push.apply(objects,gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.GDObjectObjects1);
-gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.userFunc0xd25050(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.onCreatedContext.userFunc0xc6afd8(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 
@@ -239,7 +239,7 @@ gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopD
 gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.userFunc0xd294d0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.userFunc0xc6aeb8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const object = objects[0];
 const behaviorName = eventsFunctionContext.getBehaviorName("Behavior");
@@ -255,7 +255,7 @@ gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__PixelPe
 
 var objects = [];
 objects.push.apply(objects,gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.GDObjectObjects1);
-gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.userFunc0xd294d0(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
+gdjs.evtsExt__PixelPerfectMovement__PixelPerfectTopDownMovement.PixelPerfectTopDownMovement.prototype.doStepPostEventsContext.userFunc0xc6aeb8(runtimeScene, objects, typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined);
 
 }
 

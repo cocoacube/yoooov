@@ -194,7 +194,7 @@ isConditionTrue_0 = isConditionTrue_1;
 }
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(16209988);
+{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(16211372);
 }
 }
 }
@@ -252,7 +252,7 @@ isConditionTrue_0 = isConditionTrue_1;
 }
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(16213068);
+{isConditionTrue_0 = runtimeScene.getOnceTriggers().triggerOnce(16214452);
 }
 }
 }
