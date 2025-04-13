@@ -5,58 +5,85 @@
     <meta http-equiv="content-type" content="application/pdf; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-7264754231767067">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/parse.min.js"></script>
+    <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/customize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
     <title>@alex</title>
 </head>
 <body>
-    <header>
-        <h1>@alex</h1>
+
+    <header style="width: 100%;font-family: Bagel Fat One;">
+
+        <h3><a href="https://yoooov.com" style="color: white;text-decoration: none;">有物游戏 // Yoooov</a></h3>
+        <h1 class="en">「  Profile  」</h1>
     </header>
-
-    <div class="card mb-3">
+    
+    <div class="card mb-3" style="width: 500px;">
       <div class="row g-0">
-        <div class="col-md-8">
-          <div class="card-body">
-            <iframe src="https://www.yoooov.com/WarOfOcean/index.html" style="width:800px; height: 600px;"></iframe>
-            <p class="card-text"><small class="text-body-secondary">War of Ocean</small></p>
-          </div>
+        <div class="col-md-4" >
+          <img src="../images/chenjiarui.png" alt="@alex">
         </div>
-      </div>
-    </div>
-
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="../images/alex.png" class="img-fluid rounded-start" alt="@alex">
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-8"> 
           <div class="card-body">
             <h5 class="card-title">@alex</h5>
-            <p class="card-text">A web3 game designer and developer!</p>
-            <p class="card-text"><small class="text-body-secondary">Computer Science Expert / Full-stack Developer / UI & UX Designer / Product Designer & Manager / Game Developer</small></p>
+            <p class="card-text">A young game designer and developer!</p>
+            <p class="card-text"><small class="text-body-secondary">Primary School</small></p>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="game-details">
-        <div class="card text-center" style="width:18rem;">
-            <img src="../images/towerdefencer.png" alt="游戏图片">
-            <div class="card-body">
-                <h5 class="card-title">保卫高塔</h5>
-                <h5 class="card-title">Tower Defencer</h5>
-                <p class="card-text">西部世界的塔防枪手，要把所有来袭的骷髅军队打败，才可以获得游戏的胜利！Gatlin更好用哦！</p>
-                <ul class="game-info">
-                    <li><strong>发布日期：</strong>2024年12月24日</li>
-                    <li><strong>类型：</strong>动作，冒险</li>
-                    <li><strong>平台：</strong>PC，主机，移动端，网页</li>
-                </ul>
-                <a class="btn btn-primary" href="https://gd.games/cocoacube/towershoot" class="play-button">立即游玩</a>
+    <div class="card-container">
+        <div class="card text-center" id='67b30998d2c78e5c0084bb20'>
+            <img src="../images/warofocean.png" alt="The War of Ocean">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">War of Ocean</h3>
+                    <h3 class="zh">海战</h3>
+                    <p><a href="contributors/ben.html" class="btn btn-outline-info">@alex</a></p>
+                    <p>在这个游戏中，操纵海战武器去与敌人战斗！可以选择潜艇和战列舰！</p>
+                    <button id='plays67b30998d2c78e5c0084bb20' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt67b30998d2c78e5c0084bb20'>Played</span>
+                    </button>
+                    <button id='likes67b30998d2c78e5c0084bb20' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id='lt67b30998d2c78e5c0084bb20'>Liked</span>
+                    </button>
+                </div>
+                <a href="https://www.yoooov.com/contributors/warofocean.html"  class="btn btn-warning" target="_blank">开始游戏</a>
             </div>
         </div>
-    </section>
+
+        <div class="card text-center" id='67f3a00494d4a9142b348bc6'>
+            <img src="../images/airfight.png" alt="airfight">
+            <div class="card-img-overlay">
+                
+                <div class="card-body">
+                    <h3 class="en">Air Fight</h3>
+                    <h3 class="zh">空战</h3>
+                    <p><a href="contributors/alex.html" class="btn btn-outline-info">alex</a></p>
+                    <p>在二战时期，玩家是一名盟军飞行员，驾驶战斗机击落所有德军飞机。</p>
+                    <button id='plays67f3a00494d4a9142b348bc6' type="button" class="btn btn-info">
+                    <i class="fa fa-solid fa-gamepad"></i> <span id='pt67f3a00494d4a9142b348bc6'>Played</span>
+                    </button>
+                    <button id='likes67f3a00494d4a9142b348bc6' type="button" class="btn btn-outline-danger">
+                    <i class="fa fa-regular fa-heart"></i> <span id='lt67f3a00494d4a9142b348bc6'>Liked</span>
+                    </button>
+                </div>
+                <a href="https://www.yoooov.com/contributors/airfight.html"  class="btn btn-warning" target="_blank">开始游戏</a>
+            </div>
+        </div>
+
+
 
     <div class="card border-danger mb-3" style="width:100%">
       <div class="card-body">
@@ -69,6 +96,8 @@
         <h4 class="card-title">Yoooov（有物）是什么？</h4>
         <p class="card-text">Yoooov (有物)总部位于深圳，目前有60名游戏开发者，最小的开发者还在上小学。团队致力于创建一个免费游戏平台，旨在打造一个向所有人开放的在线游乐场。如果您是一位游戏开发者，想要您的游戏在网络上取得成功，欢迎您在了解我司信息后，可以添加我们的微信CubeVon与我们联系，期待与您合作。</p>
       </div>
+    </div>
+    
     </div>
     <footer>
         <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
