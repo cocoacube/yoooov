@@ -6,6 +6,8 @@ gdjs.MenuCode.GDStartObjects1= [];
 gdjs.MenuCode.GDStartObjects2= [];
 gdjs.MenuCode.GDBackgroundObjects1= [];
 gdjs.MenuCode.GDBackgroundObjects2= [];
+gdjs.MenuCode.GDNewSpriteObjects1= [];
+gdjs.MenuCode.GDNewSpriteObjects2= [];
 
 
 gdjs.MenuCode.eventsList0 = function(runtimeScene) {
@@ -51,6 +53,8 @@ gdjs.MenuCode.GDStartObjects1.length = 0;
 gdjs.MenuCode.GDStartObjects2.length = 0;
 gdjs.MenuCode.GDBackgroundObjects1.length = 0;
 gdjs.MenuCode.GDBackgroundObjects2.length = 0;
+gdjs.MenuCode.GDNewSpriteObjects1.length = 0;
+gdjs.MenuCode.GDNewSpriteObjects2.length = 0;
 
 gdjs.MenuCode.eventsList1(runtimeScene);
 gdjs.MenuCode.GDTitleObjects1.length = 0;
@@ -59,6 +63,8 @@ gdjs.MenuCode.GDStartObjects1.length = 0;
 gdjs.MenuCode.GDStartObjects2.length = 0;
 gdjs.MenuCode.GDBackgroundObjects1.length = 0;
 gdjs.MenuCode.GDBackgroundObjects2.length = 0;
+gdjs.MenuCode.GDNewSpriteObjects1.length = 0;
+gdjs.MenuCode.GDNewSpriteObjects2.length = 0;
 
 
 return;
