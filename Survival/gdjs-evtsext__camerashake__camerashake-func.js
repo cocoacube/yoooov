@@ -107,7 +107,8 @@ if (isConditionTrue_0) {
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(eventsFunctionContext.sceneVariablesForExtension.getFromIndex(5)) == 0;
+{isConditionTrue_0 = (eventsFunctionContext.getArgument("Duration") == 0);
+}
 if (isConditionTrue_0) {
 {eventsFunctionContext.sceneVariablesForExtension.getFromIndex(5).setNumber(0.5);
 }}

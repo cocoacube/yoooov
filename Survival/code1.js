@@ -6,6 +6,8 @@ gdjs.AboutCode.GDNewTextObjects1= [];
 gdjs.AboutCode.GDNewTextObjects2= [];
 gdjs.AboutCode.GDRedButtonWithShadowObjects1= [];
 gdjs.AboutCode.GDRedButtonWithShadowObjects2= [];
+gdjs.AboutCode.GDFloatTextObjects1= [];
+gdjs.AboutCode.GDFloatTextObjects2= [];
 
 
 gdjs.AboutCode.eventsList0 = function(runtimeScene) {
@@ -17,7 +19,8 @@ let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
 isConditionTrue_0 = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
 if (isConditionTrue_0) {
-}
+{gdjs.evtTools.sound.playMusic(runtimeScene, "ea01ed45497ade92797df766ef17da4e621e423b97145ce6438b7ebb161ac0b8_25 - i have no joystick and i must press start.aac", true, 100, 1);
+}}
 
 }
 
@@ -55,6 +58,8 @@ gdjs.AboutCode.GDNewTextObjects1.length = 0;
 gdjs.AboutCode.GDNewTextObjects2.length = 0;
 gdjs.AboutCode.GDRedButtonWithShadowObjects1.length = 0;
 gdjs.AboutCode.GDRedButtonWithShadowObjects2.length = 0;
+gdjs.AboutCode.GDFloatTextObjects1.length = 0;
+gdjs.AboutCode.GDFloatTextObjects2.length = 0;
 
 gdjs.AboutCode.eventsList0(runtimeScene);
 gdjs.AboutCode.GDNewSpriteObjects1.length = 0;
@@ -63,6 +68,8 @@ gdjs.AboutCode.GDNewTextObjects1.length = 0;
 gdjs.AboutCode.GDNewTextObjects2.length = 0;
 gdjs.AboutCode.GDRedButtonWithShadowObjects1.length = 0;
 gdjs.AboutCode.GDRedButtonWithShadowObjects2.length = 0;
+gdjs.AboutCode.GDFloatTextObjects1.length = 0;
+gdjs.AboutCode.GDFloatTextObjects2.length = 0;
 
 
 return;

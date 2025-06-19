@@ -47,7 +47,8 @@ isConditionTrue_0 = false;
 isConditionTrue_0 = gdjs.evtTools.variable.getVariableChildCount(eventsFunctionContext.sceneVariablesForExtension.getFromIndex(0)) > 0;
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.variable.getVariableNumber(eventsFunctionContext.sceneVariablesForExtension.getFromIndex(0).getChild(0)) < gdjs.evtTools.runtimeScene.getTime(runtimeScene, "timestamp") - 1000;
+{isConditionTrue_0 = (eventsFunctionContext.sceneVariablesForExtension.getFromIndex(0).getChild(0).getAsNumber() < gdjs.evtTools.runtimeScene.getTime(runtimeScene, "timestamp") - 1000);
+}
 }
 if (isConditionTrue_0) {
 let isConditionTrue_0 = false;
