@@ -1,0 +1,12 @@
+{
+  "name": "等待明天",
+  "short_name": "等待明天",
+  "id": "com.example.gamename",
+  "description": "这个人是一个爱探索的人后面他的船被摧毁了，有一群神秘的怪物，他打了一个信号枪等待300秒。就获救了。",
+  "orientation": "landscape",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": ["games", "entertainment"],
+  "icons": []
+}
