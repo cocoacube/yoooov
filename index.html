@@ -63,7 +63,7 @@
     flex: 0 0 36px;
     overflow: visible;
     border-radius: 14px;
-    background: url('assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
+    background: url('https://curiku.cn/yoooov_new/assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
     box-shadow: none;
   }
   .logo-text { font-size: 20px; font-weight: 800; letter-spacing: 0; }
@@ -816,11 +816,11 @@
           <a class="nav-link active" href="https://curiku.cn/yoooov_new/">Games</a>
           <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_school.html">Yoooov School</a>
           <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_challenge.html">Yoooov Challenge</a>
-          <a class="nav-link" href="yoooov_about.html">About</a>
+          <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_about.html">About</a>
         </div>
       </div>
       <div class="nav-right">
-        <a class="my-games" href="my_games.html" data-auth="user" hidden>My Games</a>
+        <a class="my-games" href="https://curiku.cn/yoooov_new/my_games.html" data-auth="user" hidden>My Games</a>
         <button class="icon-btn" aria-label="Messages" title="消息" data-auth="user" hidden>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 3v-14Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
@@ -922,7 +922,7 @@
 
       <div class="category-head">
         <div class="category-title">
-          <img class="category-pattern-icon" src="assets/game-collection-pattern.svg" alt="">
+          <img class="category-pattern-icon" src="https://curiku.cn/yoooov_new/assets/game-collection-pattern.svg" alt="">
           <div class="games-count">7,021 Games</div>
         </div>
       </div>
@@ -1056,8 +1056,8 @@
 
     </main>
   </div>
-  <script src="adsense_config.js"></script>
-  <script src="adsense_loader.js?v=6"></script>
+  <script src="https://curiku.cn/yoooov_new/adsense_config.js"></script>
+  <script src="https://curiku.cn/yoooov_new/adsense_loader.js?v=6"></script>
   <script>
     const grid = document.getElementById('gameGrid');
     const searchInput = document.querySelector('.search input');
@@ -1081,6 +1081,17 @@
     };
     let allCards = [];
     let currentUser = null;
+    const REMOTE_ORIGIN = 'https://curiku.cn';
+    const REMOTE_APP_BASE = `${REMOTE_ORIGIN}/yoooov_new`;
+    function remoteUrl(path) {
+      const value = text(path).trim();
+      if (!value) return '';
+      if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:') || value.startsWith('blob:')) return value;
+      return `${REMOTE_ORIGIN}${value.startsWith('/') ? value : `/${value}`}`;
+    }
+    function apiUrl(path) {
+      return `${REMOTE_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`;
+    }
     const adRows = [
       createAdRow('gameTop', true),
       createAdRow('sidebar', true),
@@ -1122,7 +1133,7 @@
         .replace(/\s+/g, '_')
         .replace(/\./g, '')
         .slice(0, 80) || 'default';
-      return `/yoooov/images/${safe}.png`;
+      return remoteUrl(`/yoooov/images/${safe}.png`);
     }
 
     function applyCreatorAvatar(miniEl, creatorName) {
@@ -1153,19 +1164,19 @@
       const value = text(path).trim();
       if (!value) return '';
       if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
-      if (value.startsWith('/')) return value;
-      if (/^yoooov\//i.test(value)) return `/${value}`;
-      if (/^images\//i.test(value)) return `/yoooov/${value}`;
-      return `/yoooov/images/${value}`;
+      if (value.startsWith('/')) return remoteUrl(value);
+      if (/^yoooov\//i.test(value)) return remoteUrl(`/${value}`);
+      if (/^images\//i.test(value)) return remoteUrl(`/yoooov/${value}`);
+      return remoteUrl(`/yoooov/images/${value}`);
     }
 
     function normalizeGameLink(link) {
       const value = text(link, '#').trim();
       if (!value || value === '#') return '#';
       if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
-      if (/^\/?yoooov\/games\//i.test(value)) return value.startsWith('/') ? value : `/${value}`;
-      if (/^\/?games\//i.test(value)) return `/yoooov/${value.replace(/^\/+/, '')}`;
-      return value.startsWith('/') ? value : `/${value}`;
+      if (/^\/?yoooov\/games\//i.test(value)) return remoteUrl(value.startsWith('/') ? value : `/${value}`);
+      if (/^\/?games\//i.test(value)) return remoteUrl(`/yoooov/${value.replace(/^\/+/, '')}`);
+      return remoteUrl(value.startsWith('/') ? value : `/${value}`);
     }
 
     function numberValue(value) {
@@ -1237,10 +1248,10 @@
       const cover = normalizePath(game.cover);
       const list = cover ? [cover] : [];
       if (titleSlug) {
-        list.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.png`);
-        list.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.jpg`);
+        list.push(remoteUrl(`/yoooov/images/${encodeURIComponent(titleSlug)}.png`));
+        list.push(remoteUrl(`/yoooov/images/${encodeURIComponent(titleSlug)}.jpg`));
       }
-      list.push('/yoooov/images/default.png');
+      list.push(remoteUrl('/yoooov/images/default.png'));
       return [...new Set(list)];
     }
 
@@ -1267,7 +1278,7 @@
       const isHot = tags.some(tag => /hot|热门/i.test(tag)) || index < 2;
       const isLoved = tags.some(tag => /love|creator|推荐/i.test(tag)) || likes >= 10;
       const gameLink = normalizeGameLink(game.gameLink);
-      const detailUrl = game.id ? `game_detail.html?id=${encodeURIComponent(game.id)}` : '';
+      const detailUrl = game.id ? `${REMOTE_APP_BASE}/game_detail.html?id=${encodeURIComponent(game.id)}` : '';
 
       const card = document.createElement('article');
       card.className = `game-card${index === 0 ? ' featured' : ''}`;
@@ -1489,7 +1500,7 @@
       if (!toFetch.length) return;
       await Promise.all(toFetch.map(async card => {
         try {
-          const resp = await fetch('/api/game-info?id=' + encodeURIComponent(card.dataset.gameid));
+          const resp = await fetch(apiUrl('/api/game-info?id=' + encodeURIComponent(card.dataset.gameid)));
           if (!resp.ok) return;
           const data = await resp.json();
           if (!data.ok || !data.game) return;
@@ -1503,7 +1514,7 @@
     async function loadApiGames() {
       if (!grid) return;
       try {
-        const response = await fetch('/api/list-games?limit=200');
+        const response = await fetch(apiUrl('/api/list-games?limit=200'));
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const payload = await response.json();
         const games = Array.isArray(payload) ? payload : (payload && Array.isArray(payload.games) ? payload.games : []);
@@ -1732,9 +1743,9 @@
       const savedUser = JSON.parse(sessionStorage.getItem('yoooov-user') || 'null');
       if (savedUser && isValidMainlandPhone(String(savedUser.phone || ''))) showRegisteredUser(savedUser);
     } catch (_) {}
-    fetch('/api/session', {
+    fetch(apiUrl('/api/session'), {
       headers: { 'Accept': 'application/json' },
-      credentials: 'same-origin'
+      credentials: 'include'
     }).then(response => response.ok ? response.json() : null)
       .then(payload => {
         const user = payload && payload.authenticated ? payload.user : null;
@@ -1766,10 +1777,10 @@
       try { sessionStorage.removeItem('yoooov-user'); } catch (_) {}
       showLoggedOutUser();
       try {
-        await fetch('/api/logout', {
+        await fetch(apiUrl('/api/logout'), {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
-          credentials: 'same-origin'
+          credentials: 'include'
         });
       } catch (_) {}
     });
@@ -1835,10 +1846,10 @@
       registerSubmit.disabled = true;
       registerSubmit.textContent = '正在注册…';
       try {
-        const response = await fetch('/api/register', {
+        const response = await fetch(apiUrl('/api/register'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          credentials: 'same-origin',
+          credentials: 'include',
           body: JSON.stringify({ username, phone, password: registerPassword.value })
         });
         const payload = await response.json().catch(() => ({}));
@@ -1882,10 +1893,10 @@
       loginSubmit.disabled = true;
       loginSubmit.textContent = '正在登录…';
       try {
-        const response = await fetch('/api/login', {
+        const response = await fetch(apiUrl('/api/login'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          credentials: 'same-origin',
+          credentials: 'include',
           body: JSON.stringify({ phone, password: loginPassword.value })
         });
         const payload = await response.json().catch(() => ({}));
@@ -1909,6 +1920,6 @@
       }
     });
   </script>
-<script src="i18n.js"></script>
+<script src="https://curiku.cn/yoooov_new/i18n.js"></script>
 </body>
 </html>
