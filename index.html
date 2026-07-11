@@ -1081,6 +1081,7 @@
     };
     let allCards = [];
     let currentUser = null;
+    const LOCAL_GAMES_URL = 'data/games.json';
     const REMOTE_ORIGIN = 'https://curiku.cn';
     const REMOTE_APP_BASE = `${REMOTE_ORIGIN}/yoooov_new`;
     function remoteUrl(path) {
@@ -1133,7 +1134,7 @@
         .replace(/\s+/g, '_')
         .replace(/\./g, '')
         .slice(0, 80) || 'default';
-      return remoteUrl(`/yoooov/images/${safe}.png`);
+      return `images/${safe}.png`;
     }
 
     function applyCreatorAvatar(miniEl, creatorName) {
@@ -1164,10 +1165,12 @@
       const value = text(path).trim();
       if (!value) return '';
       if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
+      const filename = value.split('?')[0].split('#')[0].split('/').filter(Boolean).pop() || '';
+      if (/^images\//i.test(value)) return value;
+      if (/^\/?yoooov\/images\//i.test(value) && filename) return `images/${filename}`;
       if (value.startsWith('/')) return remoteUrl(value);
       if (/^yoooov\//i.test(value)) return remoteUrl(`/${value}`);
-      if (/^images\//i.test(value)) return remoteUrl(`/yoooov/${value}`);
-      return remoteUrl(`/yoooov/images/${value}`);
+      return `images/${filename || value}`;
     }
 
     function normalizeGameLink(link) {
@@ -1248,10 +1251,10 @@
       const cover = normalizePath(game.cover);
       const list = cover ? [cover] : [];
       if (titleSlug) {
-        list.push(remoteUrl(`/yoooov/images/${encodeURIComponent(titleSlug)}.png`));
-        list.push(remoteUrl(`/yoooov/images/${encodeURIComponent(titleSlug)}.jpg`));
+        list.push(`images/${encodeURIComponent(titleSlug)}.png`);
+        list.push(`images/${encodeURIComponent(titleSlug)}.jpg`);
       }
-      list.push(remoteUrl('/yoooov/images/default.png'));
+      list.push('images/default.png');
       return [...new Set(list)];
     }
 
@@ -1511,26 +1514,40 @@
       }));
     }
 
+    function renderGames(games) {
+      const fragment = document.createDocumentFragment();
+      allCards = games.map((game, index) => createGameCard(game, index));
+      allCards.forEach(card => fragment.appendChild(card));
+      grid.replaceChildren(fragment);
+      applyControls();
+    }
+
     async function loadApiGames() {
       if (!grid) return;
       try {
-        const response = await fetch(apiUrl('/api/list-games?limit=200'));
+        const localResponse = await fetch(LOCAL_GAMES_URL, { cache: 'no-cache' });
+        if (!localResponse.ok) throw new Error(`Local HTTP ${localResponse.status}`);
+        const localPayload = await localResponse.json();
+        const localGames = Array.isArray(localPayload) ? localPayload : (localPayload && Array.isArray(localPayload.games) ? localPayload.games : []);
+        if (!localGames.length) throw new Error('Local games list is empty');
+        renderGames(localGames);
+      } catch (localErr) {
+        console.warn('Failed to load local games, falling back to remote API:', localErr);
+        try {
+          const response = await fetch(apiUrl('/api/list-games?limit=200'));
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const payload = await response.json();
         const games = Array.isArray(payload) ? payload : (payload && Array.isArray(payload.games) ? payload.games : []);
         if (!games.length) return;
 
-        const fragment = document.createDocumentFragment();
-        allCards = games.map((game, index) => createGameCard(game, index));
-        allCards.forEach(card => fragment.appendChild(card));
-        grid.replaceChildren(fragment);
-        applyControls();
-        fetchAndApplyRatings(allCards);
-      } catch (err) {
-        console.error('Failed to load games from API:', err);
-        grid.replaceChildren(...staticCards);
-        hydrateStaticCards();
-        applyControls();
+          renderGames(games);
+          fetchAndApplyRatings(allCards);
+        } catch (err) {
+          console.error('Failed to load games from API:', err);
+          grid.replaceChildren(...staticCards);
+          hydrateStaticCards();
+          applyControls();
+        }
       } finally {
         grid.classList.remove('is-loading');
       }
