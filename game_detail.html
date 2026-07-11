@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoooov · Game</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --shell: #0d0e14;
+    --surface: #171920;
+    --surface-2: #20232c;
+    --surface-3: #292d38;
+    --line: rgba(255,255,255,.09);
+    --line-strong: rgba(255,255,255,.16);
+    --text: #f4f6fb;
+    --soft: #c9cfdb;
+    --muted: #8c93a3;
+    --green: #05c77e;
+    --yellow: #ffc94d;
+    --red: #ff5968;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: var(--shell);
+    color: var(--text);
+    font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  }
+  button { font: inherit; cursor: pointer; }
+
+  nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-left, .logo, .nav-links, .nav-actions { display: flex; align-items: center; }
+  .nav-left { gap: 42px; }
+  .logo { gap: 10px; color: #fff; text-decoration: none; }
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    background: url('assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
+  }
+  .logo-text { font-size: 20px; font-weight: 800; }
+  .logo-text span { color: #ff7a28; }
+  .nav-links { gap: 26px; }
+  .nav-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; }
+  .nav-link:hover, .nav-link.active { color: #fff; }
+  .nav-actions { gap: 10px; }
+  .nav-btn {
+    height: 36px;
+    padding: 0 15px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--soft);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  main {
+    width: min(1280px, calc(100vw - 64px));
+    margin: 0 auto;
+    padding: 22px 0 60px;
+  }
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .breadcrumbs a { color: var(--soft); text-decoration: none; }
+  .back-games {
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255,255,255,.025);
+    color: var(--soft);
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .back-games:hover { border-color: rgba(5,199,126,.45); color: #fff; background: rgba(5,199,126,.07); }
+  .back-games span { color: var(--green); font-size: 16px; line-height: 1; }
+  .breadcrumb-divider { color: #555c6b; }
+
+  .game-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 18px;
+    align-items: start;
+  }
+  .game-column, .info-column {
+    min-width: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .player {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: #08090d;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .player-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .78;
+  }
+  .player-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8,9,13,.08), rgba(8,9,13,.78));
+  }
+  .play-launch {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 84px;
+    height: 84px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--green);
+    color: #06140e;
+    font-size: 30px;
+    padding-left: 5px;
+    box-shadow: 0 14px 40px rgba(5,199,126,.34);
+  }
+  .play-launch:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .player-caption {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+  }
+  .player-caption strong { display: block; font-size: 20px; margin-bottom: 5px; }
+  .player-caption span { color: var(--soft); font-size: 12px; }
+  .game-frame { width: 100%; height: 100%; border: 0; background: #000; }
+  .player-tools {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    display: flex;
+    gap: 7px;
+    z-index: 3;
+  }
+  .tool-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 8px;
+    background: rgba(13,14,20,.78);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .game-panel {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 20px;
+  }
+  .game-icon {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    object-fit: cover;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: var(--surface-2);
+  }
+  h1 { font-size: 25px; line-height: 1.15; margin-bottom: 8px; }
+  .creator { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 18px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .tag {
+    padding: 5px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--soft);
+    background: var(--surface-2);
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 14px 0;
+    margin-bottom: 16px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat { min-width: 0; }
+  .stat span { display: block; color: var(--muted); font-size: 9px; font-weight: 800; margin-bottom: 4px; }
+  .stat strong { display: block; font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+  .panel-actions { display: grid; gap: 8px; margin-top: auto; }
+  .action-btn {
+    height: 42px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .action-btn.primary { border: 0; background: var(--green); color: #06140e; }
+  .action-btn.active { border-color: rgba(255,89,104,.55); color: var(--red); }
+
+  .content-grid {
+    display: block;
+    margin-top: 18px;
+  }
+  .content-section {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .content-section:first-child { border-top: 0; }
+  .section-title { font-size: 18px; margin-bottom: 12px; }
+  .description { color: var(--soft); font-size: 13px; line-height: 1.8; white-space: pre-wrap; }
+  .howto {
+    display: grid;
+    gap: 8px;
+    color: var(--soft);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .howto div {
+    padding: 11px 13px;
+    border-left: 2px solid var(--green);
+    background: rgba(255,255,255,.025);
+  }
+  .rating-box {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 18px;
+  }
+  .game-panel .rating-box {
+    margin-bottom: 16px;
+    padding: 0 0 16px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .game-panel .rating-box h2 { font-size: 12px; }
+  .game-panel .rating-box p { margin-bottom: 8px; }
+  .game-panel .star-btn { font-size: 19px; }
+  .rating-box h2 { font-size: 15px; margin-bottom: 5px; }
+  .rating-box p { color: var(--muted); font-size: 11px; margin-bottom: 14px; }
+  .stars { display: flex; gap: 5px; }
+  .star-btn {
+    border: 0;
+    background: transparent;
+    color: #555c6b;
+    font-size: 27px;
+  }
+  .star-btn.active, .star-btn:hover { color: var(--yellow); }
+  .rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .rating-actions { display: flex; gap: 6px; }
+  .rating-action {
+    height: 30px;
+    padding: 0 9px;
+    border: 1px solid var(--line-strong);
+    border-radius: 7px;
+    background: var(--surface-2);
+    color: var(--soft);
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .rating-action:hover { color: #fff; }
+  .rating-action.active { border-color: rgba(255,89,104,.55); color: var(--red); }
+
+  .ad-shell {
+    width: 100%;
+    min-height: 112px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255,255,255,.018);
+  }
+  .game-column > .ad-shell,
+  .info-column > .ad-shell {
+    height: 112px;
+    min-height: 112px;
+    max-height: 112px;
+  }
+  .ad-label {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #5f6675;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .ad-unit { width: 100%; min-height: 90px; display: block; }
+  .ad-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #555c6b;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .ad-shell.ad-loaded .ad-placeholder { display: none; }
+  .ad-inner { width: 100%; height: 100%; overflow: hidden; }
+  .wide-ad { margin-top: 18px; }
+
+  .similar-section { margin-top: 26px; }
+  .similar-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .similar-head h2 { font-size: 19px; }
+  .creator-game-count { color: var(--muted); font-size: 11px; font-weight: 800; }
+  .similar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .similar-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    cursor: pointer;
+    transition: transform .16s ease, border-color .16s ease;
+  }
+  .similar-card:hover { transform: translateY(-3px); border-color: rgba(5,199,126,.55); }
+  .similar-card img { width: 100%; aspect-ratio: 16 / 9; display: block; object-fit: cover; background: var(--surface-2); }
+  .similar-copy { padding: 11px; }
+  .similar-copy strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; margin-bottom: 4px; }
+  .similar-copy span { color: var(--muted); font-size: 10px; }
+
+  .loading, .error-state {
+    min-height: 560px;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .error-state { color: var(--red); }
+  [hidden] { display: none !important; }
+
+  @media (max-width: 900px) {
+    nav { height: auto; padding: 15px 18px; }
+    .nav-links { display: none; }
+    main { width: min(100% - 28px, 720px); }
+    .game-layout { grid-template-columns: 1fr; }
+    .info-column { order: 2; }
+    .game-panel { min-height: 360px; }
+    .similar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"></span>
+        <span class="logo-text">Yoooov<span>.</span></span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link active" href="index.html">Games</a>
+        <a class="nav-link" href="yoooov_school.html">Yoooov School</a>
+        <a class="nav-link" href="yoooov_challenge.html">Yoooov Challenge</a>
+        <a class="nav-link" href="yoooov_about.html">About</a>
+      </div>
+    </div>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main>
+    <div class="breadcrumbs">
+      <button class="back-games" type="button" id="backButton"><span aria-hidden="true">←</span>返回 Games</button>
+      <span class="breadcrumb-divider">/</span>
+      <span id="crumbTitle">Loading...</span>
+    </div>
+    <div class="loading" id="loading">正在加载游戏...</div>
+    <div class="error-state" id="errorState" hidden></div>
+
+    <div id="gameContent" hidden>
+      <section class="game-layout">
+        <div class="game-column">
+          <div class="player" id="player">
+            <img class="player-cover" id="playerCover" alt="">
+            <div class="player-shade"></div>
+            <div class="player-tools">
+              <button class="tool-btn" type="button" id="fullscreenButton" title="全屏">⛶</button>
+            </div>
+            <button class="play-launch" type="button" id="playLaunch" aria-label="开始游戏">▶</button>
+            <div class="player-caption" id="playerCaption">
+              <strong id="captionTitle"></strong>
+              <span>点击开始，在当前页面直接游玩</span>
+            </div>
+          </div>
+
+          <aside class="ad-shell" aria-label="Advertisement">
+            <span class="ad-label">Advertisement</span>
+            <span class="ad-placeholder">Google Ads</span>
+            <ins class="ad-unit" data-slot-key="gameTop"></ins>
+          </aside>
+        </div>
+
+        <div class="info-column">
+          <aside class="ad-shell" aria-label="Advertisement">
+            <span class="ad-label">Advertisement</span>
+            <span class="ad-placeholder">Google Ads</span>
+            <ins class="ad-unit" data-slot-key="sidebar"></ins>
+          </aside>
+
+          <aside class="game-panel">
+            <img class="game-icon" id="gameIcon" alt="">
+            <h1 id="gameTitle"></h1>
+            <div class="creator" id="gameCreator"></div>
+            <div class="tags" id="gameTags"></div>
+            <div class="stats">
+              <div class="stat"><span>PLAYS</span><strong id="gamePlays">0</strong></div>
+              <div class="stat"><span>LIKES</span><strong id="gameLikes">0</strong></div>
+              <div class="stat"><span>RATING</span><strong id="gameRating">—</strong></div>
+            </div>
+            <div class="rating-box">
+              <h2>Rate this game</h2>
+              <p id="ratingSummary">选择 1 到 5 星</p>
+              <div class="rating-row">
+                <div class="stars" id="stars">
+                  <button class="star-btn" type="button" data-score="1">★</button>
+                  <button class="star-btn" type="button" data-score="2">★</button>
+                  <button class="star-btn" type="button" data-score="3">★</button>
+                  <button class="star-btn" type="button" data-score="4">★</button>
+                  <button class="star-btn" type="button" data-score="5">★</button>
+                </div>
+                <div class="rating-actions">
+                  <button class="rating-action" type="button" id="likeButton">♡ Like</button>
+                  <button class="rating-action" type="button" id="shareButton">Share</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="action-btn primary" type="button" id="panelPlay">Restart Game</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div>
+          <div class="content-section">
+            <h2 class="section-title">About this game</h2>
+            <div class="description" id="gameDescription"></div>
+          </div>
+          <div class="content-section" id="howtoSection">
+            <h2 class="section-title">How to play</h2>
+            <div class="howto" id="gameHowto"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="similar-section" id="creatorGamesSection" hidden>
+        <div class="similar-head">
+          <h2 id="creatorGamesTitle">该创作者的全部游戏</h2>
+          <span class="creator-game-count" id="creatorGameCount"></span>
+        </div>
+        <div class="similar-grid" id="creatorGamesGrid"></div>
+      </section>
+
+      <section class="similar-section" id="similarSection" hidden>
+        <div class="similar-head"><h2>Recommended games</h2></div>
+        <div class="similar-grid" id="similarGrid"></div>
+      </section>
+
+      <aside class="ad-shell wide-ad" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <span class="ad-placeholder">Google Ads</span>
+        <ins class="ad-unit" data-slot-key="recommendations"></ins>
+      </aside>
+    </div>
+  </main>
+
+<script src="adsense_config.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const gameId = params.get('id') || '';
+  const adsenseConfig = window.YOOOOV_ADSENSE || {
+    client: '',
+    slots: {
+      gameTop: '',
+      sidebar: '',
+      recommendations: ''
+    }
+  };
+  let currentGame = null;
+
+  function lockCompactAdHeight(element) {
+    if (!element || element.dataset.heightLocked === 'true') return;
+    element.dataset.heightLocked = 'true';
+    const enforce = () => {
+      if (element.style.getPropertyValue('height') !== '112px') {
+        element.style.setProperty('height', '112px', 'important');
+      }
+      if (element.style.getPropertyValue('min-height') !== '112px') {
+        element.style.setProperty('min-height', '112px', 'important');
+      }
+      if (element.style.getPropertyValue('max-height') !== '112px') {
+        element.style.setProperty('max-height', '112px', 'important');
+      }
+      element.style.setProperty('overflow', 'hidden', 'important');
+    };
+    enforce();
+    new MutationObserver(enforce).observe(element, {
+      attributes: true,
+      attributeFilter: ['style']
+    });
+  }
+
+  function initAds() {
+    const client = String(adsenseConfig.client || '').trim();
+    if (!/^ca-pub-\d{16}$/i.test(client)) return;
+    const units = Array.from(document.querySelectorAll('.ad-unit')).filter(unit => {
+      const slot = String(adsenseConfig.slots?.[unit.dataset.slotKey] || '').trim();
+      if (!/^\d+$/.test(slot)) return false;
+      if (!unit.parentElement?.classList.contains('ad-inner')) {
+        const inner = document.createElement('div');
+        inner.className = 'ad-inner';
+        unit.parentNode.insertBefore(inner, unit);
+        inner.appendChild(unit);
+      }
+      unit.classList.add('adsbygoogle');
+      unit.style.display = 'block';
+      unit.dataset.adClient = client;
+      unit.dataset.adSlot = slot;
+      const format = String(adsenseConfig.formats?.[unit.dataset.slotKey] || 'auto');
+      unit.dataset.adFormat = format;
+      if (format !== 'autorelaxed') unit.dataset.fullWidthResponsive = 'true';
+      unit.closest('.ad-shell')?.classList.add('ad-loaded');
+      lockCompactAdHeight(unit.closest('.game-column > .ad-shell, .info-column > .ad-shell'));
+      return true;
+    });
+    if (!units.length) return;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(client)}`;
+    script.onload = () => {
+      units.forEach(() => {
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  function compactNumber(value) {
+    const n = Number(value || 0);
+    if (!Number.isFinite(n) || n <= 0) return '0';
+    if (n >= 1000000000) return `${(n / 1000000000).toFixed(1).replace('.0', '')}B`;
+    if (n >= 1000000) return `${(n / 1000000).toFixed(1).replace('.0', '')}M`;
+    if (n >= 1000) return `${(n / 1000).toFixed(1).replace('.0', '')}K`;
+    return String(n);
+  }
+
+  function normalizeGameLink(link) {
+    const value = String(link || '').trim();
+    if (!value || value === '#') return '';
+    if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
+    if (/^\/?yoooov\/games\//i.test(value)) return value.startsWith('/') ? value : `/${value}`;
+    if (/^\/?games\//i.test(value)) return `/yoooov/${value.replace(/^\/+/, '')}`;
+    return value.startsWith('/') ? value : `/${value}`;
+  }
+
+  function normalizeCover(path) {
+    const value = String(path || '').trim();
+    if (!value) return '/yoooov/images/default.png';
+    if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:') || value.startsWith('/')) return value;
+    if (/^yoooov\//i.test(value)) return `/${value}`;
+    if (/^images\//i.test(value)) return `/yoooov/${value}`;
+    return `/yoooov/images/${value}`;
+  }
+
+  function setCover(img, game) {
+    const titleSlug = String(game.GameName || '')
+      .toLowerCase()
+      .replace(/[\s-]+/g, '')
+      .replace(/[^a-z0-9._]/g, '')
+      .replace(/\./g, '');
+    const configuredCover = normalizeCover(game.cover);
+    const isDefaultCover = /\/default\.(png|jpe?g|webp)$/i.test(configuredCover);
+    const candidates = [];
+    if (configuredCover && !isDefaultCover) candidates.push(configuredCover);
+    if (titleSlug) {
+      candidates.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.png`);
+      candidates.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.jpg`);
+      candidates.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.webp`);
+    }
+    candidates.push(configuredCover, '/yoooov/images/default.png');
+    const uniqueCandidates = [...new Set(candidates.filter(Boolean))];
+    let index = 0;
+    img.onerror = () => {
+      index += 1;
+      if (index < uniqueCandidates.length) img.src = uniqueCandidates[index];
+    };
+    img.src = uniqueCandidates[0];
+    img.alt = game.GameName || 'Game cover';
+  }
+
+  function parseLines(value) {
+    if (Array.isArray(value)) return value.map(String).filter(Boolean);
+    return String(value || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  }
+
+  function setRatingUI(score) {
+    document.querySelectorAll('.star-btn').forEach(button => {
+      button.classList.toggle('active', Number(button.dataset.score) <= Number(score || 0));
+    });
+  }
+
+  function launchGame(showError = true) {
+    const link = normalizeGameLink(currentGame && currentGame.gameLink);
+    if (!link) {
+      if (showError) alert('这个游戏暂时无法启动。');
+      return;
+    }
+    const frame = document.createElement('iframe');
+    frame.className = 'game-frame';
+    frame.title = currentGame.GameName || 'Yoooov Game';
+    frame.allow = 'fullscreen; gamepad; pointer-lock; orientation-lock; autoplay';
+    frame.allowFullscreen = true;
+    frame.src = /\.html($|\?)/i.test(link) || /\/$/i.test(link) ? link : `${link.replace(/\/+$/, '')}/index.html`;
+    const player = document.getElementById('player');
+    Array.from(player.children).forEach(child => {
+      if (!child.classList.contains('player-tools')) child.remove();
+    });
+    player.prepend(frame);
+  }
+
+  function enterFullscreen() {
+    const player = document.getElementById('player');
+    if (!player.querySelector('iframe')) launchGame();
+    if (document.fullscreenElement) {
+      document.exitFullscreen?.();
+    } else {
+      player.requestFullscreen?.();
+    }
+  }
+
+  async function likeGame() {
+    if (!currentGame || !currentGame.id) return;
+    const button = document.getElementById('likeButton');
+    button.disabled = true;
+    try {
+      const response = await fetch(`/api/games/${encodeURIComponent(currentGame.id)}/like`, { method: 'POST' });
+      const data = await response.json();
+      if (!response.ok || !Number.isFinite(Number(data.Likes))) throw new Error(data.error || 'Like failed');
+      currentGame.Likes = Number(data.Likes ?? data.likes ?? currentGame.Likes + 1);
+      document.getElementById('gameLikes').textContent = compactNumber(currentGame.Likes);
+      button.classList.add('active');
+      button.textContent = '♥ Liked';
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  async function rateGame(score) {
+    try {
+      const response = await fetch(`/api/games/${encodeURIComponent(gameId)}/rate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ score })
+      });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error(data.errorMsg || data.error || 'Rating failed');
+      setRatingUI(score);
+      const avg = Number(data.rating_avg || 0);
+      const count = Number(data.rating_count || 0);
+      document.getElementById('gameRating').textContent = avg ? `${avg.toFixed(1)}/5` : '—';
+      document.getElementById('ratingSummary').textContent = `${avg.toFixed(1)} 分 · ${count} 次评分`;
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  async function shareGame() {
+    const data = { title: currentGame.GameName, text: `来玩 ${currentGame.GameName}`, url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(data); } catch (_) {}
+      return;
+    }
+    await navigator.clipboard.writeText(window.location.href);
+    const button = document.getElementById('shareButton');
+    button.textContent = 'Link Copied';
+    setTimeout(() => { button.textContent = 'Share'; }, 1500);
+  }
+
+  function similarCard(game) {
+    const card = document.createElement('article');
+    card.className = 'similar-card';
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    setCover(img, game);
+    const copy = document.createElement('div');
+    copy.className = 'similar-copy';
+    const title = document.createElement('strong');
+    title.textContent = game.GameName || 'Untitled';
+    const meta = document.createElement('span');
+    meta.textContent = `${compactNumber(game.Plays)} plays`;
+    copy.append(title, meta);
+    card.append(img, copy);
+    card.addEventListener('click', () => {
+      window.location.href = `game_detail.html?id=${encodeURIComponent(game.id)}`;
+    });
+    return card;
+  }
+
+  function recommendationScore(game, currentTags) {
+    const tags = Array.isArray(game.tags) ? game.tags.map(tag => String(tag).toLowerCase()) : [];
+    const overlap = tags.filter(tag => currentTags.includes(tag)).length;
+    return overlap * 1000000000
+      + Number(game.Plays || 0)
+      + Number(game.Views || 0)
+      + Number(game.Likes || 0) * 10;
+  }
+
+  function creatorName(game) {
+    return String(game?.GameCreator || game?.creator || game?.author || '').trim();
+  }
+
+  async function loadCreatorGames(creator) {
+    const normalizedCreator = String(creator || '').trim().toLocaleLowerCase();
+    if (!normalizedCreator) return;
+
+    try {
+      const response = await fetch('/api/list-games?limit=1000');
+      const data = await response.json();
+      const allGames = Array.isArray(data) ? data : (data && Array.isArray(data.games) ? data.games : []);
+      const creatorGames = allGames
+        .filter(game => creatorName(game).toLocaleLowerCase() === normalizedCreator)
+        .sort((a, b) => Number(b.Plays || 0) - Number(a.Plays || 0));
+
+      if (!creatorGames.length) return;
+
+      const grid = document.getElementById('creatorGamesGrid');
+      creatorGames.forEach(game => grid.appendChild(similarCard(game)));
+      document.getElementById('creatorGamesTitle').textContent = `${creator} 的全部游戏`;
+      document.getElementById('creatorGameCount').textContent = `${creatorGames.length} 款作品`;
+      document.getElementById('creatorGamesSection').hidden = false;
+    } catch (_) {}
+  }
+
+  async function loadRecommendations(ids) {
+    const selected = [];
+    const seen = new Set([String(gameId)]);
+
+    try {
+      if (Array.isArray(ids) && ids.length) {
+        const response = await fetch(`/api/games-batch?ids=${encodeURIComponent(ids.slice(0, 8).join(','))}`);
+        const data = await response.json();
+        const manual = data && Array.isArray(data.games) ? data.games : [];
+        manual.forEach(game => {
+          if (!seen.has(String(game.id))) {
+            selected.push(game);
+            seen.add(String(game.id));
+          }
+        });
+      }
+
+      if (selected.length < 8) {
+        const response = await fetch('/api/list-games?limit=100');
+        const data = await response.json();
+        const allGames = Array.isArray(data) ? data : (data && Array.isArray(data.games) ? data.games : []);
+        const currentTags = Array.isArray(currentGame?.tags)
+          ? currentGame.tags.map(tag => String(tag).toLowerCase())
+          : [];
+        allGames
+          .filter(game => !seen.has(String(game.id)))
+          .sort((a, b) => recommendationScore(b, currentTags) - recommendationScore(a, currentTags))
+          .slice(0, 8 - selected.length)
+          .forEach(game => {
+            selected.push(game);
+            seen.add(String(game.id));
+          });
+      }
+    } catch (_) {}
+
+    if (!selected.length) return;
+    const grid = document.getElementById('similarGrid');
+    selected.slice(0, 8).forEach(game => grid.appendChild(similarCard(game)));
+    document.getElementById('similarSection').hidden = false;
+  }
+
+  function renderGame(game) {
+    currentGame = game;
+    document.title = `${game.GameName || 'Game'} · Yoooov`;
+    document.getElementById('crumbTitle').textContent = game.GameName || 'Game';
+    document.getElementById('gameTitle').textContent = game.GameName || 'Untitled';
+    document.getElementById('captionTitle').textContent = game.GameName || 'Untitled';
+    document.getElementById('gameCreator').textContent = game.GameCreator ? `by ${game.GameCreator}` : 'Yoooov Creator';
+    document.getElementById('gameDescription').textContent = game.GameDescription || '这是一款来自 Yoooov 创作者社区的网页游戏。';
+    document.getElementById('gamePlays').textContent = compactNumber(game.Plays);
+    document.getElementById('gameLikes').textContent = compactNumber(game.Likes);
+    const rating = Number(game.rating_avg || 0);
+    const ratingCount = Number(game.rating_count || 0);
+    document.getElementById('gameRating').textContent = rating ? `${rating.toFixed(1)}/5` : '—';
+    document.getElementById('ratingSummary').textContent = ratingCount ? `${rating.toFixed(1)} 分 · ${ratingCount} 次评分` : '选择 1 到 5 星';
+    setRatingUI(game.my_rating);
+    setCover(document.getElementById('playerCover'), game);
+    setCover(document.getElementById('gameIcon'), game);
+
+    const tags = Array.isArray(game.tags) ? game.tags : [];
+    const tagBox = document.getElementById('gameTags');
+    (tags.length ? tags : ['Web Game']).slice(0, 6).forEach(value => {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = value;
+      tagBox.appendChild(tag);
+    });
+
+    const howto = parseLines(game.howto);
+    if (!howto.length) {
+      document.getElementById('howtoSection').hidden = true;
+    } else {
+      const box = document.getElementById('gameHowto');
+      howto.forEach(line => {
+        const item = document.createElement('div');
+        item.textContent = line;
+        box.appendChild(item);
+      });
+    }
+
+    document.getElementById('loading').hidden = true;
+    document.getElementById('gameContent').hidden = false;
+    launchGame(false);
+    loadCreatorGames(creatorName(game));
+    loadRecommendations(game.similar_ids);
+  }
+
+  async function loadGame() {
+    if (!gameId) {
+      document.getElementById('loading').hidden = true;
+      const error = document.getElementById('errorState');
+      error.textContent = '缺少游戏 ID';
+      error.hidden = false;
+      return;
+    }
+    try {
+      const response = await fetch(`/api/game-info?id=${encodeURIComponent(gameId)}`);
+      const data = await response.json();
+      if (!response.ok || !data.ok || !data.game) throw new Error(data.errorMsg || '无法加载游戏');
+      renderGame(data.game);
+    } catch (error) {
+      document.getElementById('loading').hidden = true;
+      const box = document.getElementById('errorState');
+      box.textContent = error.message;
+      box.hidden = false;
+    }
+  }
+
+  document.getElementById('playLaunch').addEventListener('click', launchGame);
+  document.getElementById('panelPlay').addEventListener('click', launchGame);
+  document.getElementById('likeButton').addEventListener('click', likeGame);
+  document.getElementById('shareButton').addEventListener('click', shareGame);
+  document.getElementById('fullscreenButton').addEventListener('click', enterFullscreen);
+  document.getElementById('backButton').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  document.querySelectorAll('.star-btn').forEach(button => {
+    button.addEventListener('click', () => rateGame(Number(button.dataset.score)));
+  });
+
+  initAds();
+  loadGame();
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

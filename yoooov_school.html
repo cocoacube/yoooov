@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoooov · 学习中心</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
+
+  :root {
+    --shell: #0d0e14;
+    --surface: #171920;
+    --surface-2: #20232c;
+    --surface-3: #292d38;
+    --line: rgba(255,255,255,.08);
+    --line-strong: rgba(255,255,255,.14);
+    --text: #f4f6fb;
+    --muted: #8c93a3;
+    --soft: #c8ceda;
+    --green: #05c77e;
+    --red: #ff4e61;
+    --yellow: #ffc94d;
+    --cyan: #25d5ff;
+    --violet: #8c59ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-width: 1180px;
+    min-height: 100vh;
+    background: var(--shell);
+    color: var(--text);
+    font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  }
+
+  nav {
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+  }
+  .nav-left, .nav-right, .nav-links, .balance, .icon-btn, .logo { display: flex; align-items: center; }
+  .nav-left { gap: 42px; }
+  .logo { gap: 10px; }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    display: block;
+    flex: 0 0 36px;
+    overflow: visible;
+    border-radius: 14px;
+    background: url('assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
+    box-shadow: none;
+  }
+  .logo-text { font-size: 20px; font-weight: 800; letter-spacing: 0; }
+  .logo-text span { color: #ff7a28; }
+  .nav-links { gap: 28px; }
+  .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .nav-link:hover, .nav-link.active { color: #fff; }
+  .nav-right { gap: 12px; }
+  .my-games {
+    height: 36px;
+    padding: 0 18px;
+    border: 1px solid rgba(5,199,126,.75);
+    color: #fff;
+    background: rgba(5,199,126,.05);
+    border-radius: 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .icon-btn {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--soft);
+    cursor: pointer;
+  }
+  .icon-btn svg { width: 17px; height: 17px; display: block; }
+  .icon-btn.has-unread::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .balance { gap: 10px; padding-left: 8px; color: var(--muted); font-size: 11px; line-height: 1.25; font-weight: 700; }
+  .balance strong { display: block; color: #fff; font-size: 13px; }
+  .avatar {
+    --geo-a: #25d5ff;
+    --geo-b: #8c59ff;
+    position: relative;
+    overflow: hidden;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--geo-a) 25%, #07101c), #080a11);
+    border: 1px solid color-mix(in srgb, var(--geo-a) 55%, transparent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--geo-a) 18%, transparent);
+    cursor: pointer;
+  }
+  .avatar::before, .avatar::after { content: ""; position: absolute; transition: transform .25s ease; }
+  .avatar::before {
+    width: 22px;
+    height: 22px;
+    left: 4px;
+    top: 7px;
+    border: 4px solid var(--geo-a);
+    transform: rotate(var(--geo-angle, 18deg));
+  }
+  .avatar::after {
+    width: 18px;
+    height: 18px;
+    right: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: var(--geo-b);
+    mix-blend-mode: screen;
+  }
+  .avatar[data-geometry="1"]::before { border-radius: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: var(--geo-a); border: 0; }
+  .avatar[data-geometry="1"]::after { border-radius: 2px; transform: rotate(35deg); }
+  .avatar[data-geometry="2"]::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--geo-a); border: 0; }
+  .avatar[data-geometry="2"]::after { width: 21px; height: 7px; border-radius: 8px; transform: rotate(-42deg); }
+  .avatar:hover::before { transform: rotate(calc(var(--geo-angle, 18deg) + 18deg)) scale(1.08); }
+
+  main {
+    width: min(1180px, calc(100vw - 96px));
+    margin: 0 auto;
+    padding: 16px 0 52px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 22px;
+    min-height: 246px;
+    margin-bottom: 28px;
+  }
+  .hero-main, .progress-panel, .side-panel, .course-card, .path-card, .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 14px 28px rgba(0,0,0,.18);
+  }
+  .hero-main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    padding: 30px;
+    background:
+      radial-gradient(circle at 78% 40%, rgba(37,213,255,.28), transparent 21%),
+      radial-gradient(circle at 88% 78%, rgba(5,199,126,.22), transparent 20%),
+      linear-gradient(112deg, rgba(112,48,230,.8), rgba(23,25,32,.96) 44%, #101118 100%);
+  }
+  .hero-main::after {
+    content: "";
+    position: absolute;
+    right: 56px;
+    top: 28px;
+    width: 150px;
+    height: 150px;
+    border-radius: 34px;
+    background: linear-gradient(145deg, #25d5ff, #6d46ff);
+    transform: rotate(15deg);
+    box-shadow: -62px 68px 0 -18px #ffc94d, 74px 44px 0 -26px #05c77e;
+    opacity: .9;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: rgba(5,199,126,.14);
+    border: 1px solid rgba(5,199,126,.3);
+    color: #bfffe3;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+  h1 { position: relative; z-index: 1; font-size: 42px; line-height: 1.08; letter-spacing: 0; margin-bottom: 14px; }
+  .hero-main p {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    color: #d8ddee;
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero-actions { position: relative; z-index: 1; display: flex; gap: 12px; }
+  .btn-primary, .btn-secondary {
+    height: 38px;
+    border-radius: 10px;
+    padding: 0 18px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .btn-primary { border: 0; background: linear-gradient(180deg, #07c97d, #079e69); color: #fff; }
+  .btn-secondary { border: 1px solid var(--line-strong); background: rgba(255,255,255,.04); color: #fff; }
+
+  .progress-panel {
+    border-radius: 18px;
+    padding: 22px;
+  }
+  .panel-label { color: var(--muted); font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+  .progress-title { font-size: 20px; font-weight: 800; line-height: 1.25; margin-bottom: 18px; }
+  .progress-bar {
+    height: 8px;
+    border-radius: 99px;
+    background: var(--surface-3);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .progress-bar span { display: block; width: 62%; height: 100%; background: linear-gradient(90deg, #05c77e, #25d5ff); border-radius: inherit; }
+  .progress-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 18px; }
+  .lesson-next {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .lesson-next strong { display: block; font-size: 14px; margin-bottom: 8px; }
+  .lesson-next span { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .brand-ecosystem {
+    margin-top: 32px;
+    margin-bottom: 28px;
+    padding: 18px 0;
+  }
+  .brand-ecosystem-head { display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .brand-ecosystem-head span { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .brand-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .brand-item { min-width: 0; height: 58px; display: flex; align-items: center; justify-content: center; gap: 11px; padding: 0 13px; border: 1px solid var(--line); border-radius: 12px; background: rgba(13,14,20,.72); }
+  .brand-item img { width: 28px; height: 28px; object-fit: contain; filter: invert(1); opacity: .9; }
+  .brand-item.gdevelop img { width: 42px; filter: none; }
+  .brand-item.dcn img, .brand-item.awakening img, .brand-item.cityu img { width: 36px; filter: none; }
+  .brand-item.original img { filter: none; }
+  .brand-item.poki img { width: 42px; padding: 3px; border-radius: 5px; background: #fff; }
+  .brand-item strong { display: block; overflow: hidden; color: #e9edf5; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+  .stat-card {
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .stat-label { color: var(--muted); font-size: 12px; font-weight: 800; margin-bottom: 7px; }
+  .stat-value { font-size: 28px; font-weight: 800; line-height: 1; }
+  .stat-sub { color: var(--muted); font-size: 12px; margin-top: 8px; font-weight: 700; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 22px;
+  }
+  .side-panel {
+    border-radius: 16px;
+    padding: 16px;
+    align-self: start;
+    position: sticky;
+    top: 18px;
+  }
+  .side-label { color: #687083; font-size: 11px; font-weight: 800; text-transform: uppercase; margin: 10px 8px; }
+  .side-item {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #c5cad6;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .side-item.active { background: rgba(5,199,126,.13); color: #fff; border: 1px solid rgba(5,199,126,.38); }
+  .side-item > span:last-child { color: #687083; font-size: 11px; }
+  .side-toggle { width: 100%; border: 0; background: transparent; font: inherit; cursor: pointer; }
+  .side-toggle-copy { display: flex; align-items: center; gap: 7px; }
+  .side-arrow { width: 18px; height: 18px; position: relative; display: inline-grid; place-items: center; flex: 0 0 18px; border-radius: 6px; transition: background .18s ease; }
+  .side-arrow::before { content: ""; width: 6px; height: 6px; border-right: 1.5px solid #737b8d; border-bottom: 1.5px solid #737b8d; transform: rotate(-45deg); transition: transform .18s ease, border-color .18s ease; }
+  .side-toggle:hover .side-arrow { background: rgba(255,255,255,.055); }
+  .side-toggle:hover .side-arrow::before, .side-toggle.active .side-arrow::before { border-color: #c9d0dc; }
+  .side-group.open .side-arrow::before { transform: rotate(45deg); }
+  .side-children { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .2s ease; }
+  .side-group.open .side-children { grid-template-rows: 1fr; }
+  .side-children-inner { min-height: 0; overflow: hidden; }
+  .side-child { min-height: 30px; display: flex; align-items: center; justify-content: space-between; margin: 0 0 4px 20px; padding: 6px 9px 6px 12px; border-left: 1px solid var(--line-strong); color: #8f97a8; font-size: 10px; font-weight: 700; cursor: pointer; }
+  .side-child:hover, .side-child.active { color: #fff; border-left-color: var(--green); background: rgba(5,199,126,.055); }
+  .side-child span { color: #5f6675; }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .section-head h2 { font-size: 22px; }
+  .section-head p { color: var(--muted); font-size: 13px; font-weight: 700; margin-top: 4px; }
+  .search {
+    width: 246px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 13px;
+    color: #5f6574;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .search input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; font-size: 12px; font-weight: 700; }
+  .search input::placeholder { color: #555b69; }
+
+  .paths {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .path-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 18px;
+    min-height: 158px;
+  }
+  .path-card.active { border-color: rgba(5,199,126,.45); background: linear-gradient(145deg, rgba(5,199,126,.17), rgba(23,25,32,1)); }
+  .tag {
+    display: inline-flex;
+    height: 24px;
+    align-items: center;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: var(--surface-3);
+    color: #cbd1df;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .path-card h3 { font-size: 17px; margin-bottom: 9px; }
+  .path-card p { color: var(--muted); font-size: 13px; line-height: 1.55; font-weight: 700; margin-bottom: 14px; }
+  .path-meta { display: flex; gap: 12px; color: #c5cad6; font-size: 12px; font-weight: 800; }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .course-card {
+    border-radius: 16px;
+    padding: 10px;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+  .course-card:hover { transform: translateY(-4px); border-color: rgba(5,199,126,.56); }
+  .thumb {
+    height: 128px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+    font-size: 42px;
+    background: var(--art);
+  }
+  .thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 32%, rgba(255,255,255,.24), transparent 22%);
+  }
+  .a1 { --art: linear-gradient(135deg, #123b8f, #6d46ff); }
+  .a2 { --art: linear-gradient(135deg, #064d3b, #05c77e); }
+  .a3 { --art: linear-gradient(135deg, #8f271d, #ff8c55); }
+  .a4 { --art: linear-gradient(135deg, #624100, #ffc94d); }
+  .a5 { --art: linear-gradient(135deg, #103757, #25d5ff); }
+  .a6 { --art: linear-gradient(135deg, #3b176f, #8c59ff); }
+  .tool {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 1;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: rgba(0,0,0,.52);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .course-body { padding: 13px 2px 0; }
+  .course-tags { display: flex; gap: 6px; margin-bottom: 9px; }
+  .course-tags span {
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 7px;
+    background: var(--surface-3);
+    color: #cbd1df;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .course-title { font-size: 15px; line-height: 1.35; font-weight: 800; margin-bottom: 7px; }
+  .course-teacher { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+  .course-footer { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 12px; font-weight: 800; }
+  .price { color: var(--green); }
+
+  .hackathon-banner {
+    margin-top: 32px;
+    border-radius: 16px;
+    padding: 18px 22px;
+    border: 1px solid rgba(255,78,97,.28);
+    background: linear-gradient(100deg, rgba(255,78,97,.16), rgba(23,25,32,1));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .hackathon-banner strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .hackathon-banner span { color: var(--muted); font-size: 12px; font-weight: 800; }
+
+  @media (max-width: 900px) {
+    body { min-width: 0; }
+    nav { height: auto; padding: 18px; gap: 18px; align-items: flex-start; }
+    .nav-left { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .nav-links { gap: 14px; flex-wrap: wrap; }
+    .nav-right { margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+    main { width: 100%; padding: 8px 18px 32px; }
+    .hero, .layout { grid-template-columns: 1fr; }
+    .stats-row, .paths, .course-grid { grid-template-columns: repeat(2, 1fr); }
+    .brand-list { grid-template-columns: repeat(2, 1fr); }
+    .side-panel { position: static; }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <div class="logo">
+        <div class="logo-mark" aria-label="Yoooov logo"></div>
+        <div class="logo-text">Yoooov<span>.</span></div>
+      </div>
+      <div class="nav-links">
+        <a class="nav-link" href="https://curiku.cn/yoooov_new/">Games</a>
+        <a class="nav-link active" href="https://curiku.cn/yoooov_new/yoooov_school.html">Yoooov School</a>
+        <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_challenge.html">Yoooov Challenge</a>
+        <a class="nav-link" href="yoooov_about.html">About</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <button class="my-games">My Games</button>
+      <button class="icon-btn" aria-label="Messages" title="消息">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 3v-14Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn has-unread" aria-label="Notifications" title="通知">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.8 9.7a5.2 5.2 0 0 1 10.4 0c0 5.8 2.3 6.1 2.3 6.1h-15s2.3-.3 2.3-6.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 19h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="balance">Balance<strong>$ 2,021.56</strong></div>
+      <div class="avatar" aria-label="User avatar"></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">Learning Center</div>
+        <h1>让游戏创造<br>从这里开始。</h1>
+        <p>覆盖游戏创作教程、创作工具、游戏商业化全流程，让孩子可以像完成任务一样学习。</p>
+        <div class="hero-actions">
+          <button class="btn-primary">Continue Learning</button>
+          <button class="btn-secondary">Explore Paths</button>
+        </div>
+      </div>
+      <aside class="progress-panel">
+        <div class="panel-label">CURRENT QUEST</div>
+        <div class="progress-title">Roblox 创作者入门</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-meta"><span>8 / 13 lessons</span><span>62%</span></div>
+        <div class="lesson-next">
+          <strong>下一课：制作可收集金币</strong>
+          <span>预计 18 分钟 · Studio 实操</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stats-row">
+      <div class="stat-card"><div class="stat-label">Learning streak</div><div class="stat-value" style="color:var(--green)">12</div><div class="stat-sub">连续学习天数</div></div>
+      <div class="stat-card"><div class="stat-label">Courses finished</div><div class="stat-value">18</div><div class="stat-sub">已完成课程</div></div>
+      <div class="stat-card"><div class="stat-label">Works shipped</div><div class="stat-value" style="color:var(--yellow)">6</div><div class="stat-sub">发布作品</div></div>
+      <div class="stat-card"><div class="stat-label">Creator score</div><div class="stat-value" style="color:var(--cyan)">4.8</div><div class="stat-sub">综合评分</div></div>
+    </section>
+
+    <div class="layout">
+      <aside class="side-panel">
+        <div class="side-label">Tracks</div>
+        <div class="side-item active">All courses <span>42</span></div>
+        <div class="side-group open">
+          <button class="side-item side-toggle" aria-expanded="true"><span class="side-toggle-copy"><span class="side-arrow" aria-hidden="true"></span>GDevelop</span><span>8</span></button>
+          <div class="side-children"><div class="side-children-inner"><div class="side-child active">Getting Started <span>3</span></div><div class="side-child">Game Mechanics <span>3</span></div><div class="side-child">Publish Project <span>2</span></div></div></div>
+        </div>
+        <div class="side-group">
+          <button class="side-item side-toggle" aria-expanded="false"><span class="side-toggle-copy"><span class="side-arrow" aria-hidden="true"></span>Vibe Coding</span><span>10</span></button>
+          <div class="side-children"><div class="side-children-inner"><div class="side-child">Prompt &amp; Prototype <span>4</span></div><div class="side-child">AI Game Logic <span>3</span></div><div class="side-child">Ship with AI <span>3</span></div></div></div>
+        </div>
+        <div class="side-group">
+          <button class="side-item side-toggle" aria-expanded="false"><span class="side-toggle-copy"><span class="side-arrow" aria-hidden="true"></span>Unity &amp; Godot</span><span>16</span></button>
+          <div class="side-children"><div class="side-children-inner"><div class="side-child">Unity Development <span>8</span></div><div class="side-child">Godot Development <span>8</span></div></div></div>
+        </div>
+        <div class="side-group">
+          <button class="side-item side-toggle" aria-expanded="false"><span class="side-toggle-copy"><span class="side-arrow" aria-hidden="true"></span>Earning Money</span><span>8</span></button>
+          <div class="side-children"><div class="side-children-inner"><div class="side-child">Launch &amp; Pricing <span>3</span></div><div class="side-child">Ads &amp; In-app <span>3</span></div><div class="side-child">Growth <span>2</span></div></div></div>
+        </div>
+        <div class="side-label">Level</div>
+        <div class="side-item">Beginner <span>18</span></div>
+        <div class="side-item">Intermediate <span>16</span></div>
+        <div class="side-item">Advanced <span>8</span></div>
+      </aside>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>Recommended Paths</h2>
+            <p>根据当前进度推荐的学习路线</p>
+          </div>
+          <label class="search"><span>⌕</span><input type="search" placeholder="Search lesson or tool"></label>
+        </div>
+
+        <div class="paths">
+          <article class="path-card active">
+            <div class="tag">Stage 1 · 入门</div>
+            <h3>GDevelop</h3>
+            <p>从可视化事件和场景搭建开始，不写代码也能快速做出并发布第一款游戏。</p>
+            <div class="path-meta"><span>8 lessons</span><span>零基础</span></div>
+          </article>
+          <article class="path-card">
+            <div class="tag">Stage 2 · 进阶</div>
+            <h3>Vibe Coding</h3>
+            <p>学会用自然语言与 AI 协作，把游戏想法快速变成可运行、可迭代的作品。</p>
+            <div class="path-meta"><span>10 lessons</span><span>AI powered</span></div>
+          </article>
+          <article class="path-card">
+            <div class="tag">Stage 3 · 专业</div>
+            <h3>Unity &amp; Godot</h3>
+            <p>进入专业游戏引擎，掌握脚本、物理、动画与完整项目开发流程。</p>
+            <div class="path-meta"><span>16 lessons</span><span>项目实战</span></div>
+          </article>
+          <article class="path-card">
+            <div class="tag">Stage 4 · 商业化</div>
+            <h3>Earning Money</h3>
+            <p>学习定价、广告、内购与发行策略，让完成的游戏找到玩家并持续创造收入。</p>
+            <div class="path-meta"><span>8 lessons</span><span>商业实战</span></div>
+          </article>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <h2>All Courses</h2>
+            <p>课程卡片延续游戏广场的暗色卡片体系</p>
+          </div>
+        </div>
+
+        <div class="course-grid">
+          <article class="course-card" data-course="obby"><div class="thumb a1">▦<span class="tool">Roblox</span></div><div class="course-body"><div class="course-tags"><span>Beginner</span><span>8+</span></div><div class="course-title">制作你的第一张 Obby 地图</div><div class="course-teacher">Mia 老师 · 42 分钟</div><div class="course-footer"><span>★ 4.9 · 2.1k</span><span class="price">Free</span></div></div></article>
+          <article class="course-card" data-course="adventure"><div class="thumb a2">◆<span class="tool">Scratch</span></div><div class="course-body"><div class="course-tags"><span>Easy</span><span>7+</span></div><div class="course-title">点击冒险：角色与事件</div><div class="course-teacher">小鹿老师 · 35 分钟</div><div class="course-footer"><span>★ 4.8 · 1.8k</span><span class="price">Free</span></div></div></article>
+          <article class="course-card" data-course="game-art"><div class="thumb a3">●<span class="tool">Game Art</span></div><div class="course-body"><div class="course-tags"><span>Design</span><span>10+</span></div><div class="course-title">给游戏做一套图标和按钮</div><div class="course-teacher">Neo 老师 · 28 分钟</div><div class="course-footer"><span>★ 4.7 · 986</span><span class="price">Member</span></div></div></article>
+          <article class="course-card" data-course="battle"><div class="thumb a4">#<span class="tool">Python</span></div><div class="course-body"><div class="course-tags"><span>Logic</span><span>12+</span></div><div class="course-title">做一个回合制战斗系统</div><div class="course-teacher">阿程老师 · 54 分钟</div><div class="course-footer"><span>★ 4.9 · 1.2k</span><span class="price">Free</span></div></div></article>
+          <article class="course-card" data-course="first-person"><div class="thumb a5">◎<span class="tool">Unity</span></div><div class="course-body"><div class="course-tags"><span>3D</span><span>13+</span></div><div class="course-title">镜头、角色和第一人称移动</div><div class="course-teacher">Ray 老师 · 61 分钟</div><div class="course-footer"><span>★ 4.8 · 743</span><span class="price">Member</span></div></div></article>
+          <article class="course-card" data-course="publish"><div class="thumb a6">%</div><div class="course-body"><div class="course-tags"><span>Business</span><span>All</span></div><div class="course-title">如何包装并发布你的游戏</div><div class="course-teacher">Yoooov Team · 22 分钟</div><div class="course-footer"><span>★ 4.6 · 612</span><span class="price">Free</span></div></div></article>
+        </div>
+
+      </section>
+    </div>
+
+    <section class="hackathon-banner">
+      <div><strong>第 7 届黑客松正在进行</strong><span>完成课程后可以直接提交你的 3 按钮游戏作品</span></div>
+      <a class="btn-primary" href="yoooov_challenge.html" style="display:inline-flex;align-items:center;text-decoration:none">View Quest</a>
+    </section>
+
+    <section class="brand-ecosystem" aria-label="专业创作工具与服务">
+      <div class="brand-ecosystem-head"><span>Work with</span></div>
+      <div class="brand-list">
+        <div class="brand-item gdevelop"><img src="assets/brand-logos/gdevelop.svg" alt="GDevelop"><strong>GDevelop</strong></div>
+        <div class="brand-item"><img src="assets/brand-logos/godot.svg" alt="Godot"><strong>Godot</strong></div>
+        <div class="brand-item"><img src="assets/brand-logos/unity.svg" alt="Unity"><strong>Unity</strong></div>
+        <div class="brand-item"><img src="assets/brand-logos/roblox.svg" alt="Roblox Studio"><strong>Roblox Studio</strong></div>
+        <div class="brand-item"><img src="assets/brand-logos/google-adsense.svg" alt="Google AdSense"><strong>Google AdSense</strong></div>
+        <div class="brand-item dcn"><img src="assets/brand-logos/d-cn.png" alt="d.cn"><strong>d.cn</strong></div>
+        <div class="brand-item awakening"><img src="assets/brand-logos/awakening-venture.svg" alt="Awakening Venture"><strong>Awakening Venture</strong></div>
+        <div class="brand-item cityu"><img src="assets/brand-logos/cityu-hk.svg" alt="City University of Hong Kong"><strong>City University of Hong Kong</strong></div>
+        <div class="brand-item"><img src="assets/brand-logos/crazygames.svg" alt="CrazyGames"><strong>CrazyGames</strong></div>
+        <div class="brand-item original poki"><img src="assets/brand-logos/poki.svg" alt="Poki"><strong>Poki</strong></div>
+        <div class="brand-item original"><img src="assets/brand-logos/steam.svg" alt="Steam"><strong>Steam</strong></div>
+        <div class="brand-item original"><img src="assets/brand-logos/app-store.svg" alt="App Store"><strong>App Store</strong></div>
+        <div class="brand-item original"><img src="assets/brand-logos/google-play.svg" alt="Google Play"><strong>Google Play</strong></div>
+      </div>
+    </section>
+  </main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function applyGeometryAvatar(seed) {
+      const avatar = document.querySelector('.avatar');
+      if (!avatar) return;
+      let hash = 0;
+      Array.from(seed || 'Yoooov School').forEach(char => {
+        hash = ((hash << 5) - hash + char.codePointAt(0)) | 0;
+      });
+      const value = Math.abs(hash);
+      const hue = value % 360;
+      avatar.style.setProperty('--geo-a', `hsl(${hue} 88% 58%)`);
+      avatar.style.setProperty('--geo-b', `hsl(${(hue + 92) % 360} 82% 60%)`);
+      avatar.style.setProperty('--geo-angle', `${(value % 42) - 12}deg`);
+      avatar.dataset.geometry = String(value % 3);
+    }
+
+    function getAvatarSeed() {
+      try {
+        const user = JSON.parse(sessionStorage.getItem('yoooov-user') || '{}');
+        return user.username || user.phone || 'Yoooov School';
+      } catch (_) {
+        return 'Yoooov School';
+      }
+    }
+
+    applyGeometryAvatar(getAvatarSeed());
+
+    // Nav: My Games
+    document.querySelectorAll('.my-games').forEach(button => {
+      button.addEventListener('click', () => { window.location.href = 'my_games.html'; });
+    });
+
+    // Nav: Messages / Notifications
+    document.querySelector('[aria-label="Messages"]')?.addEventListener('click', () => alert('Messages are coming soon.'));
+    document.querySelector('[aria-label="Notifications"]')?.addEventListener('click', () => alert('No new notifications.'));
+
+    // Hero buttons
+    document.querySelector('.btn-primary')?.addEventListener('click', () => {
+      document.querySelector('.path-card.active')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    document.querySelector('.btn-secondary')?.addEventListener('click', () => {
+      document.querySelector('.paths')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Side panel track / level filters
+    const sideItems = document.querySelectorAll('.side-item:not(.side-toggle)');
+    sideItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const group = item.closest('aside');
+        const allInGroup = group ? Array.from(group.querySelectorAll('.side-item, .side-child')) : [];
+        allInGroup.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+    document.querySelectorAll('.side-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const group = toggle.closest('.side-group');
+        group?.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(group?.classList.contains('open')));
+      });
+    });
+    document.querySelectorAll('.side-child').forEach(child => {
+      child.addEventListener('click', () => {
+        document.querySelectorAll('.side-item, .side-child').forEach(item => item.classList.remove('active'));
+        child.classList.add('active');
+        child.closest('.side-group')?.querySelector('.side-toggle')?.classList.add('active');
+      });
+    });
+
+    // Path cards — click to select / highlight
+    document.querySelectorAll('.path-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.path-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    // Course cards — open the corresponding learning page
+    document.querySelectorAll('.course-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        window.location.href = `course_learning.html?course=${encodeURIComponent(card.dataset.course || 'obby')}`;
+      });
+    });
+
+    // Search input — filter course cards by title or teacher
+    const searchInput = document.querySelector('input[type="search"]');
+    searchInput?.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase();
+      document.querySelectorAll('.course-card').forEach(card => {
+        const text = (card.querySelector('.course-title')?.textContent || '') +
+                     (card.querySelector('.course-teacher')?.textContent || '') +
+                     (card.querySelector('.tool')?.textContent || '');
+        card.style.display = text.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  });
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

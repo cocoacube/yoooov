@@ -1,0 +1,15 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="s" x="-8" y="-8" width="136" height="136" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".22"/></filter>
+    <linearGradient id="cream" x1="36" y1="14" x2="70" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE9B5"/><stop offset="1" stop-color="#FFC76F"/></linearGradient>
+    <linearGradient id="teal" x1="70" y1="38" x2="104" y2="72" gradientUnits="userSpaceOnUse"><stop stop-color="#238175"/><stop offset="1" stop-color="#104F49"/></linearGradient>
+    <linearGradient id="orange" x1="36" y1="72" x2="70" y2="106" gradientUnits="userSpaceOnUse"><stop stop-color="#FFA94F"/><stop offset="1" stop-color="#FF6D24"/></linearGradient>
+    <linearGradient id="red" x1="14" y1="38" x2="48" y2="72" gradientUnits="userSpaceOnUse"><stop stop-color="#FF765F"/><stop offset="1" stop-color="#FF3526"/></linearGradient>
+  </defs>
+  <g filter="url(#s)">
+    <rect x="38" y="14" width="34" height="34" rx="15" stroke="url(#cream)" stroke-width="8"/>
+    <rect x="72" y="43" width="34" height="34" rx="15" fill="url(#teal)"/>
+    <rect x="38" y="72" width="34" height="34" rx="15" fill="url(#orange)"/>
+    <rect x="14" y="43" width="34" height="34" rx="15" stroke="url(#red)" stroke-width="8"/>
+  </g>
+</svg>

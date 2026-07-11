@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提交作品 · Yoooov Challenge 07</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
+:root{--bg:#0d0e14;--panel:#171920;--panel2:#20232c;--line:rgba(255,255,255,.09);--text:#f4f6fb;--muted:#8c93a3;--green:#05c77e;--red:#ff6676;--violet:#8c59ff}
+*{box-sizing:border-box;margin:0;padding:0} body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Space Grotesk','Noto Sans SC',sans-serif} input,textarea,select,button{font:inherit}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:20px;font-weight:800}.logo{width:36px;height:36px;background:url('assets/yoooov-logo-v1-compact.svg') center/contain no-repeat}.back{color:#fff;text-decoration:none;font-size:12px;font-weight:700}
+main{width:min(980px,calc(100% - 40px));margin:0 auto;padding:38px 0 70px}.hero{padding:30px;border:1px solid rgba(140,89,255,.3);border-radius:20px;background:linear-gradient(125deg,rgba(140,89,255,.2),rgba(5,199,126,.08));margin-bottom:22px}.kicker{color:#a98bff;font-size:11px;font-weight:800;text-transform:uppercase}.hero h1{font-size:32px;margin:8px 0}.hero p{color:#c2c7d2;font-size:13px;line-height:1.7}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:22px 0}.step{height:5px;border-radius:9px;background:var(--panel2)}.step.active{background:var(--green)}
+.form-section{padding:26px;margin-bottom:14px;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.section-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}.num{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(5,199,126,.13);color:var(--green);font-size:12px;font-weight:800}.section-head h2{font-size:17px}.section-head p{color:var(--muted);font-size:11px;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.full{grid-column:1/-1}label{display:block;color:#c8ced9;font-size:12px;font-weight:700}label small{color:var(--muted);font-weight:500}input,textarea,select{width:100%;margin-top:7px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;outline:none;background:var(--panel2);color:#fff}input:focus,textarea:focus,select:focus{border-color:var(--green)}textarea{min-height:105px;resize:vertical}.counter{display:block;margin-top:5px;color:var(--muted);font-size:10px;text-align:right}
+.input-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.file{padding:15px;border:1px dashed rgba(255,255,255,.2);background:rgba(255,255,255,.02)}.hint{margin-top:6px;color:var(--muted);font-size:10px;line-height:1.5}
+.check{display:flex;gap:10px;align-items:flex-start;margin:11px 0;color:#cbd0da;font-size:12px;line-height:1.55}.check input{width:auto;margin:3px 0 0;accent-color:var(--green)}
+.share-result{padding:22px;margin:16px 0;border:1px solid rgba(5,199,126,.35);border-radius:16px;background:rgba(5,199,126,.08)}.share-result[hidden]{display:none}.share-result h2{font-size:18px;margin-bottom:7px}.share-result p{color:var(--muted);font-size:12px;margin-bottom:14px}.share-actions{display:flex;gap:9px;flex-wrap:wrap}.share-link{height:38px;padding:0 13px;display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;background:var(--panel)}
+.submit-bar{position:sticky;bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 18px;border:1px solid var(--line);border-radius:15px;background:rgba(23,25,32,.95);backdrop-filter:blur(12px);box-shadow:0 18px 45px rgba(0,0,0,.35)}.submit-note{color:var(--muted);font-size:11px}.submit{height:43px;padding:0 24px;border:0;border-radius:11px;background:var(--green);color:#06140e;font-weight:800;cursor:pointer}.submit:disabled{opacity:.55}.status{min-height:18px;margin-top:12px;color:var(--red);font-size:12px;text-align:center}.status.success{color:var(--green)}
+@media(max-width:700px){nav{padding:0 18px}.grid,.input-row{grid-template-columns:1fr}.full{grid-column:auto}.hero,.form-section{padding:20px}.submit-bar{align-items:stretch;flex-direction:column}.submit{width:100%}}
+</style>
+</head>
+<body>
+<nav><a class="brand" href="index.html"><span class="logo"></span>Yoooov.</a><a class="back" href="yoooov_challenge.html">← 返回挑战页</a></nav>
+<main>
+  <section class="hero"><div class="kicker">Challenge 07 · 0 / 1</div><h1>提交你的参赛作品</h1><p>本届题目是“0 / 1”。请提交可在浏览器中直接运行的 HTML / JS 页面项目，并说明作品如何把两个状态、两个选择或两种力量设计成核心玩法。项目 ZIP 根目录必须包含 index.html；封面建议 16:9，玩法视频时长 30–60 秒。</p></section>
+  <div class="progress"><span class="step active"></span><span class="step active"></span><span class="step active"></span><span class="step active"></span></div>
+  <form id="submissionForm">
+    <section class="form-section">
+      <div class="section-head"><span class="num">01</span><div><h2>创作者信息</h2><p>用于参赛资格审核和获奖联系，不会公开手机号和邮箱。</p></div></div>
+      <div class="grid">
+        <label>参赛方式<select name="teamType" required><option value="solo">个人参赛</option><option value="team">团队参赛（2–4 人）</option></select></label>
+        <label>公开创作者 / 团队名称<input name="creatorName" maxlength="30" required></label>
+        <label>负责人真实姓名<input name="contactName" maxlength="30" required></label>
+        <label>负责人年龄<input name="age" type="number" min="6" max="99" required></label>
+        <label>联系手机号<input name="phone" type="tel" inputmode="numeric" maxlength="11" required></label>
+        <label>联系邮箱<input name="email" type="email" maxlength="120" required></label>
+        <label class="full">团队成员 <small>个人参赛可留空；每行填写姓名、年龄和分工</small><textarea name="members" maxlength="500"></textarea></label>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-head"><span class="num">02</span><div><h2>作品信息</h2><p>这些内容将在参赛作品页面公开展示。</p></div></div>
+      <div class="grid">
+        <label>游戏名称<input name="title" maxlength="60" required></label>
+        <label>作品类型<select name="category" required><option value="">请选择</option><option>Action</option><option>Puzzle</option><option>Story</option><option>Rhythm</option><option>Arcade</option><option>Simulation</option><option>Other</option></select></label>
+        <label>开发方式<select name="engine" required><option value="">请选择</option><option>HTML / CSS / JavaScript</option><option>HTML Canvas</option><option>WebGL</option><option>Three.js</option><option>p5.js</option><option>Other JS Framework</option></select></label>
+        <label>支持平台<input name="platform" value="Web Browser" placeholder="Web Browser" maxlength="80" required></label>
+        <label class="full">作品简介 <small>不超过 100 个中文字符</small><textarea name="summary" id="summary" maxlength="100" required></textarea><span class="counter"><b id="summaryCount">0</b>/100</span></label>
+        <label class="full">玩法与创意说明<textarea name="description" maxlength="1500" required></textarea></label>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-head"><span class="num">03</span><div><h2>“0 / 1”主题机制</h2><p>说明 0 和 1 在你的游戏里分别代表什么，以及玩家如何在两者之间做出选择或触发变化。</p></div></div>
+      <div class="input-row">
+        <label>“0”代表什么<input name="input1" placeholder="例如：关闭、黑暗、潜伏、空白、失败" maxlength="80" required></label>
+        <label>“1”代表什么<input name="input2" placeholder="例如：开启、光、行动、存在、成功" maxlength="80" required></label>
+        <label>0 / 1 如何变化<input name="input3" placeholder="例如：玩家切换世界状态，影响机关和敌人" maxlength="120" required></label>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-head"><span class="num">04</span><div><h2>构建与展示材料</h2><p>链接必须允许评审访问；上传文件请勿设置密码。</p></div></div>
+      <div class="grid">
+        <label class="full">在线试玩链接<input name="playUrl" type="url" placeholder="https://" required></label>
+        <label>项目 / 源码链接 <small>可选</small><input name="sourceUrl" type="url" placeholder="GitHub、CodePen、在线源码地址…"></label>
+        <label>演示视频链接 <small>上传视频时可选</small><input name="videoUrl" type="url" placeholder="Bilibili / YouTube…"></label>
+        <label class="file">16:9 游戏封面<input name="cover" type="file" accept="image/png,image/jpeg,image/webp" required><span class="hint">PNG/JPG/WebP，建议 1920×1080，最大 10 MB</span></label>
+        <label class="file">30–60 秒玩法视频<input name="video" type="file" accept="video/mp4,video/webm" required><span class="hint">MP4/WebM，清楚展示“0 / 1”核心机制和关键体验</span></label>
+        <label class="file full">HTML / JS 项目 ZIP 包<input name="gameZip" type="file" accept=".zip,application/zip" required><span class="hint">必须上传。根目录包含 index.html，可包含 JS、CSS、图片、音频等资源，建议不超过 300 MB</span></label>
+      </div>
+    </section>
+    <section class="form-section">
+      <div class="section-head"><span class="num">05</span><div><h2>原创与授权声明</h2><p>提交前请确认以下内容。</p></div></div>
+      <label class="full">AI 与第三方素材说明 <small>说明使用的 AI 工具、素材来源和授权情况；未使用请填写“无”</small><textarea name="assetDisclosure" maxlength="1000" required></textarea></label>
+      <label class="check"><input name="originality" type="checkbox" required><span>我确认作品由本人 / 团队创作，拥有代码、美术、音乐和其他素材的合法使用权。</span></label>
+      <label class="check"><input name="rules" type="checkbox" required><span>我确认作品围绕“0 / 1”主题创作，并同意赛事规则、评审和社区展示安排。</span></label>
+      <label class="check"><input name="guardianConsent" type="checkbox"><span>参赛者未满 18 岁时，已取得监护人同意。</span></label>
+    </section>
+    <div class="submit-bar"><div class="submit-note">提交后仍可在截止日期前联系主办方更新材料。</div><button class="submit" id="submitButton" type="submit">提交参赛作品</button></div>
+    <div class="status" id="status" role="status"></div>
+  </form>
+  <section class="share-result" id="shareResult" hidden><h2>作品提交成功</h2><p>你的专属作品页面已经生成，可以立即分享给朋友。</p><div class="share-actions"><a class="share-link" id="entryLink" target="_blank">打开作品页面</a><button class="share-link" id="copyLink" type="button">复制链接</button><button class="share-link" id="downloadPoster" type="button">下载分享海报</button></div></section>
+  <canvas id="posterCanvas" width="1080" height="1440" hidden></canvas>
+</main>
+<script>
+const form=document.getElementById('submissionForm'),statusEl=document.getElementById('status'),submitButton=document.getElementById('submitButton'),summary=document.getElementById('summary');
+summary.addEventListener('input',()=>document.getElementById('summaryCount').textContent=Array.from(summary.value).length);
+form.addEventListener('submit',async event=>{
+  event.preventDefault();statusEl.textContent='';statusEl.className='status';
+  const data=new FormData(form),age=Number(data.get('age'));
+  if(age<18&&!data.get('guardianConsent')){statusEl.textContent='未满 18 岁的参赛者需要确认已取得监护人同意。';return}
+  if(!/^1[3-9]\d{9}$/.test(String(data.get('phone')||''))){statusEl.textContent='请输入有效的中国大陆手机号。';return}
+  const cover=data.get('cover'),video=data.get('video'),zip=data.get('gameZip');
+  if(cover?.size>10*1024*1024){statusEl.textContent='封面文件不能超过 10 MB。';return}
+  if(video?.size>200*1024*1024){statusEl.textContent='玩法视频不能超过 200 MB。';return}
+  if(zip?.size>300*1024*1024){statusEl.textContent='游戏 ZIP 不能超过 300 MB。';return}
+  submitButton.disabled=true;submitButton.textContent='正在提交…';
+  try{
+    const response=await fetch('/api/challenge-submissions',{method:'POST',credentials:'same-origin',body:data});
+    const payload=await response.json().catch(()=>({}));
+    if(!response.ok||payload.ok===false)throw new Error(payload.message||'提交失败，请稍后重试。');
+    const id=payload.submission?.id||'',link=new URL(`challenge_entry.html?submission=${encodeURIComponent(id)}`,location.href).href;
+    statusEl.textContent=`提交成功！作品编号：${id}`;statusEl.className='status success';
+    document.getElementById('entryLink').href=link;document.getElementById('shareResult').hidden=false;
+    document.getElementById('shareResult').dataset.title=String(data.get('title')||'Yoooov Challenge Entry');
+    form.reset();document.getElementById('summaryCount').textContent='0';document.getElementById('shareResult').scrollIntoView({behavior:'smooth'});
+  }catch(error){statusEl.textContent=error.message==='Failed to fetch'?'提交服务暂时不可用，请稍后重试。':error.message}
+  finally{submitButton.disabled=false;submitButton.textContent='提交参赛作品'}
+});
+document.getElementById('copyLink').addEventListener('click',async()=>{await navigator.clipboard.writeText(document.getElementById('entryLink').href);document.getElementById('copyLink').textContent='已复制'});
+document.getElementById('downloadPoster').addEventListener('click',()=>{
+  const canvas=document.getElementById('posterCanvas'),ctx=canvas.getContext('2d'),title=document.getElementById('shareResult').dataset.title||'Yoooov Challenge Entry';
+  const gradient=ctx.createLinearGradient(0,0,1080,1440);gradient.addColorStop(0,'#55209d');gradient.addColorStop(.55,'#171920');gradient.addColorStop(1,'#073a2b');ctx.fillStyle=gradient;ctx.fillRect(0,0,1080,1440);
+  ctx.fillStyle='#05c77e';ctx.fillRect(72,92,150,12);ctx.fillStyle='#fff';ctx.font='800 60px sans-serif';ctx.fillText('Yoooov Challenge 07',72,190);
+  ctx.font='800 86px sans-serif';Array.from(title).reduce((lines,ch)=>{const last=lines[lines.length-1];if(ctx.measureText(last+ch).width>900)lines.push(ch);else lines[lines.length-1]=last+ch;return lines},['']).slice(0,3).forEach((line,i)=>ctx.fillText(line,72,430+i*110));
+  ctx.fillStyle='#b9c0ce';ctx.font='500 34px sans-serif';ctx.fillText('0 和 1，创造一个游戏世界',72,840);ctx.fillText('扫码或打开专属作品链接，为创作者加油',72,900);
+  ctx.fillStyle='#05c77e';ctx.fillRect(72,1120,936,150);ctx.fillStyle='#06140e';ctx.font='800 44px sans-serif';ctx.fillText('PLAY · VOTE · SHARE',120,1215);
+  const a=document.createElement('a');a.download='yoooov-challenge-poster.png';a.href=canvas.toDataURL('image/png');a.click();
+});
+</script>
+</body>
+</html>

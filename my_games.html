@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Games · Yoooov</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
+    :root { --bg:#0d0e14; --panel:#171920; --panel2:#20232c; --line:rgba(255,255,255,.09); --text:#f4f6fb; --muted:#8c93a3; --green:#05c77e; --red:#ff5b6b; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:var(--bg); color:var(--text); font-family:'Space Grotesk','Noto Sans SC',sans-serif; }
+    button,input,textarea { font:inherit; }
+    nav { height:76px; display:flex; align-items:center; justify-content:space-between; padding:0 38px; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:11px; color:#fff; text-decoration:none; font-size:20px; font-weight:800; }
+    .logo { width:36px; height:36px; background:url('assets/yoooov-logo-v1-compact.svg') center/contain no-repeat; }
+    .nav-actions { display:flex; align-items:center; gap:10px; }
+    .nav-user { color:#cdd2dd; font-size:13px; font-weight:700; }
+    .btn { height:38px; padding:0 16px; border:1px solid var(--line); border-radius:11px; background:var(--panel); color:#fff; font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; }
+    .btn:hover { border-color:rgba(255,255,255,.25); }
+    .btn.primary { border-color:var(--green); background:var(--green); color:#07150f; }
+    main { width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:42px 0 70px; }
+    .hero { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:26px; }
+    h1 { font-size:32px; margin-bottom:8px; }
+    .subtitle { color:var(--muted); font-size:14px; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:22px; }
+    .stat { padding:18px 20px; border:1px solid var(--line); border-radius:15px; background:var(--panel); }
+    .stat span { color:var(--muted); font-size:11px; font-weight:700; }
+    .stat strong { display:block; margin-top:5px; font-size:24px; }
+    .toolbar { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:16px; }
+    .search { width:min(360px,100%); height:40px; padding:0 14px; border:1px solid var(--line); border-radius:11px; outline:none; background:var(--panel2); color:#fff; }
+    .search:focus { border-color:var(--green); }
+    .count { color:var(--muted); font-size:12px; }
+    .list { display:grid; gap:12px; }
+    .game-row { display:grid; grid-template-columns:96px minmax(220px,1fr) 240px auto; gap:18px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:15px; background:var(--panel); }
+    .cover { width:96px; height:64px; border-radius:10px; object-fit:cover; background:var(--panel2); }
+    .game-name { font-size:16px; margin-bottom:6px; }
+    .game-desc { max-width:520px; color:var(--muted); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .metrics { display:flex; gap:20px; }
+    .metric { color:#fff; font-size:13px; font-weight:700; }
+    .metric span { display:block; margin-bottom:3px; color:var(--muted); font-size:10px; }
+    .actions { display:flex; gap:7px; }
+    .icon-action { height:34px; padding:0 11px; border:1px solid var(--line); border-radius:9px; background:var(--panel2); color:#fff; cursor:pointer; }
+    .icon-action.danger { color:#ff8590; }
+    .empty { padding:64px 24px; border:1px dashed var(--line); border-radius:16px; color:var(--muted); text-align:center; }
+    .empty strong { display:block; margin-bottom:8px; color:#fff; font-size:18px; }
+    .loading { padding:60px; color:var(--muted); text-align:center; }
+    .modal[hidden] { display:none; }
+    .modal { position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:20px; background:rgba(3,4,8,.8); backdrop-filter:blur(8px); }
+    .modal-card { width:min(500px,100%); padding:26px; border:1px solid var(--line); border-radius:18px; background:var(--panel); }
+    .modal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+    .close { border:0; background:transparent; color:var(--muted); font-size:25px; cursor:pointer; }
+    label { display:block; margin-bottom:15px; color:#cbd0dc; font-size:12px; font-weight:700; }
+    label input,label textarea { width:100%; margin-top:7px; padding:11px 12px; border:1px solid var(--line); border-radius:10px; outline:none; background:var(--panel2); color:#fff; }
+    label textarea { min-height:100px; resize:vertical; }
+    .modal-actions { display:flex; justify-content:flex-end; gap:9px; }
+    .status { min-height:18px; margin-top:12px; color:var(--red); font-size:12px; text-align:center; }
+    @media(max-width:800px) {
+      nav { padding:0 18px; } main { width:calc(100% - 28px); padding-top:28px; }
+      .game-row { grid-template-columns:78px 1fr; } .cover { width:78px; height:58px; }
+      .metrics,.actions { grid-column:2; } .hero { align-items:flex-start; flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="index.html"><span class="logo"></span>Yoooov.</a>
+    <div class="nav-actions"><span class="nav-user" id="navUser"></span><a class="btn" href="index.html">返回广场</a></div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div><h1>My Games</h1><p class="subtitle">管理你发布的游戏与展示信息。</p></div>
+      <a class="btn primary" href="/yoooov/upload.html">＋ 创建游戏</a>
+    </div>
+    <section class="stats">
+      <div class="stat"><span>游戏数量</span><strong id="totalGames">—</strong></div>
+      <div class="stat"><span>总浏览量</span><strong id="totalViews">—</strong></div>
+      <div class="stat"><span>总点赞数</span><strong id="totalLikes">—</strong></div>
+    </section>
+    <div class="toolbar"><input class="search" id="search" type="search" placeholder="搜索游戏名称"><span class="count" id="resultCount"></span></div>
+    <section class="list" id="gameList"><div class="loading">正在加载你的游戏…</div></section>
+  </main>
+  <div class="modal" id="editModal" hidden>
+    <form class="modal-card" id="editForm">
+      <div class="modal-head"><h2>编辑游戏信息</h2><button class="close" type="button" id="closeEdit">×</button></div>
+      <label>游戏名称<input id="editName" maxlength="100" required></label>
+      <label>游戏简介<textarea id="editDescription" maxlength="1000"></textarea></label>
+      <label>标签<input id="editTags" placeholder="使用逗号分隔"></label>
+      <div class="modal-actions"><button class="btn" type="button" id="cancelEdit">取消</button><button class="btn primary" type="submit" id="saveEdit">保存修改</button></div>
+      <div class="status" id="editStatus"></div>
+    </form>
+  </div>
+  <script>
+    const list = document.getElementById('gameList');
+    const search = document.getElementById('search');
+    const editModal = document.getElementById('editModal');
+    const editForm = document.getElementById('editForm');
+    let games = [];
+    let editingId = '';
+
+    const compact = value => Number(value || 0).toLocaleString();
+    function safeCover(value) {
+      const cover = String(value || '').trim();
+      if (!cover) return '';
+      if (/^(https?:)?\/\//i.test(cover) || /^(data|blob):/i.test(cover)) return cover;
+      if (cover.startsWith('/')) return cover;
+      if (/^yoooov\//i.test(cover)) return `/${cover}`;
+      if (/^images\//i.test(cover)) return `/yoooov/${cover}`;
+      return `/yoooov/images/${cover}`;
+    }
+    function compactSlug(value) {
+      return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    }
+    function gameLinkSlug(value) {
+      const link = String(value || '').trim();
+      const match = link.match(/\/games\/([^/?#]+)/i);
+      return match ? compactSlug(decodeURIComponent(match[1])) : '';
+    }
+    function coverCandidates(game) {
+      const nameKey = compactSlug(game.GameName);
+      const keys = [
+        safeCover(game.cover),
+        compactSlug(game.slug),
+        gameLinkSlug(game.gameLink),
+        nameKey,
+        nameKey.replace(/defender/g, 'defencer'),
+      ].filter(Boolean);
+      const candidates = [];
+      const push = value => {
+        if (value && !candidates.includes(value)) candidates.push(value);
+      };
+      keys.forEach(key => {
+        if (key.startsWith('/') || /^(https?:)?\/\//i.test(key) || /^(data|blob):/i.test(key)) {
+          push(key);
+          return;
+        }
+        ['png', 'webp', 'jpg', 'jpeg'].forEach(ext => push(`/yoooov/images/${key}.${ext}`));
+      });
+      push('assets/yoooov-logo-v2-soft.svg');
+      return candidates;
+    }
+    function coverSrc(game) {
+      return coverCandidates(game)[0];
+    }
+    function coverData(game) {
+      return escapeHtml(JSON.stringify(coverCandidates(game)));
+    }
+    const gameDescriptionFallbacks = {
+      wanderingplanet: '在星际旅途中操控小行星穿越危险轨道，收集能量并挑战更高分数。',
+      wanderplanet: '在星际旅途中操控小行星穿越危险轨道，收集能量并挑战更高分数。',
+      towerdefencer: '布置防御塔、升级火力并阻挡一波波敌人进攻，守住你的基地。',
+      towerdefender: '布置防御塔、升级火力并阻挡一波波敌人进攻，守住你的基地。',
+      sungoku: 'Super Hero SunGoKu'
+    };
+    function descriptionKey(value) {
+      return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    }
+    function descriptionFor(game) {
+      const existing = String(game.GameDescription || '').trim();
+      if (existing) return existing;
+      const candidates = [
+        game.slug,
+        game.GameName,
+        gameLinkSlug(game.gameLink),
+        descriptionKey(game.gameLink).replace(/^yoooovgames/, '').replace(/indexhtml$/, '')
+      ].map(descriptionKey).filter(Boolean);
+      for (const key of candidates) {
+        if (gameDescriptionFallbacks[key]) return gameDescriptionFallbacks[key];
+      }
+      return '暂无简介';
+    }
+    window.nextCover = function nextCover(img) {
+      let candidates = [];
+      try { candidates = JSON.parse(img.dataset.covers || '[]'); } catch (_) { candidates = []; }
+      const current = Number(img.dataset.coverIndex || 0) + 1;
+      if (current < candidates.length) {
+        img.dataset.coverIndex = String(current);
+        img.src = candidates[current];
+      }
+    };
+    const gameUrl = game => game.id ? `game_detail.html?id=${encodeURIComponent(game.id)}` : (game.gameLink || '#');
+
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const visible = games.filter(game => !query || String(game.GameName || '').toLowerCase().includes(query));
+      document.getElementById('resultCount').textContent = `${visible.length} 个游戏`;
+      if (!visible.length) {
+        list.innerHTML = `<div class="empty"><strong>${games.length ? '没有匹配的游戏' : '你还没有发布游戏'}</strong>${games.length ? '尝试搜索其他名称。' : '创建第一个游戏，让玩家发现你的作品。'}</div>`;
+        return;
+      }
+      list.innerHTML = visible.map(game => `
+        <article class="game-row" data-id="${game.id}">
+          <img class="cover" src="${escapeHtml(coverSrc(game))}" data-covers="${coverData(game)}" data-cover-index="0" alt="" onerror="nextCover(this)">
+          <div><h3 class="game-name">${escapeHtml(game.GameName || 'Untitled')}</h3><p class="game-desc">${escapeHtml(descriptionFor(game))}</p></div>
+          <div class="metrics"><div class="metric"><span>浏览</span>${compact(game.Views)}</div><div class="metric"><span>游玩</span>${compact(game.Plays)}</div><div class="metric"><span>点赞</span>${compact(game.Likes)}</div></div>
+          <div class="actions"><button class="icon-action" data-action="view">查看</button><button class="icon-action" data-action="edit">编辑</button><button class="icon-action danger" data-action="delete">删除</button></div>
+        </article>`).join('');
+    }
+    function escapeHtml(value) {
+      const el = document.createElement('span');
+      el.textContent = String(value || '');
+      return el.innerHTML;
+    }
+    async function loadGames() {
+      try {
+        const sessionResponse = await fetch('/api/session', { credentials:'same-origin', headers:{Accept:'application/json'} });
+        const session = await sessionResponse.json();
+        if (!session.authenticated) {
+          location.href = 'index.html';
+          return;
+        }
+        document.getElementById('navUser').textContent = session.user.username || '';
+        const response = await fetch('/api/my-games', { credentials:'same-origin', headers:{Accept:'application/json'} });
+        const payload = await response.json();
+        if (!response.ok || payload.ok === false) throw new Error(payload.message || '加载失败');
+        games = Array.isArray(payload.games) ? payload.games : [];
+        document.getElementById('totalGames').textContent = compact(games.length);
+        document.getElementById('totalViews').textContent = compact(games.reduce((sum,g) => sum + Number(g.Views || 0), 0));
+        document.getElementById('totalLikes').textContent = compact(games.reduce((sum,g) => sum + Number(g.Likes || 0), 0));
+        render();
+      } catch (error) {
+        list.innerHTML = `<div class="empty"><strong>无法加载游戏</strong>${escapeHtml(error.message)}</div>`;
+      }
+    }
+    function openEdit(game) {
+      editingId = game.id;
+      document.getElementById('editName').value = game.GameName || '';
+      document.getElementById('editDescription').value = game.GameDescription || '';
+      document.getElementById('editTags').value = Array.isArray(game.tags) ? game.tags.join(', ') : '';
+      document.getElementById('editStatus').textContent = '';
+      editModal.hidden = false;
+    }
+    function closeEdit() { editModal.hidden = true; editingId = ''; }
+    list.addEventListener('click', async event => {
+      const button = event.target.closest('[data-action]');
+      if (!button) return;
+      const row = button.closest('[data-id]');
+      const game = games.find(item => String(item.id) === row.dataset.id);
+      if (!game) return;
+      if (button.dataset.action === 'view') location.href = gameUrl(game);
+      if (button.dataset.action === 'edit') openEdit(game);
+      if (button.dataset.action === 'delete') {
+        if (!confirm(`确定删除“${game.GameName}”吗？此操作不会删除服务器中的游戏文件。`)) return;
+        button.disabled = true;
+        const response = await fetch(`/api/my-games/${encodeURIComponent(game.id)}`, { method:'DELETE', credentials:'same-origin', headers:{Accept:'application/json'} });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload.ok === false) { alert(payload.message || '删除失败'); button.disabled = false; return; }
+        games = games.filter(item => item.id !== game.id);
+        render();
+      }
+    });
+    editForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const save = document.getElementById('saveEdit');
+      const status = document.getElementById('editStatus');
+      save.disabled = true; status.textContent = '';
+      const body = {
+        GameName: document.getElementById('editName').value.trim(),
+        GameDescription: document.getElementById('editDescription').value.trim(),
+        tags: document.getElementById('editTags').value.split(',').map(x => x.trim()).filter(Boolean)
+      };
+      try {
+        const response = await fetch(`/api/my-games/${encodeURIComponent(editingId)}`, { method:'PATCH', credentials:'same-origin', headers:{'Content-Type':'application/json',Accept:'application/json'}, body:JSON.stringify(body) });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload.ok === false) throw new Error(payload.message || '保存失败');
+        games = games.map(game => game.id === editingId ? payload.game : game);
+        render(); closeEdit();
+      } catch (error) { status.textContent = error.message; }
+      finally { save.disabled = false; }
+    });
+    search.addEventListener('input', render);
+    document.getElementById('closeEdit').addEventListener('click', closeEdit);
+    document.getElementById('cancelEdit').addEventListener('click', closeEdit);
+    editModal.addEventListener('click', event => { if (event.target === editModal) closeEdit(); });
+    loadGames();
+  </script>
+</body>
+</html>

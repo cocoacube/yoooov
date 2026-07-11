@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoooov · 课程学习</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
+  :root {
+    --shell:#0d0e14; --surface:#171920; --surface-2:#20232c; --surface-3:#292d38;
+    --line:rgba(255,255,255,.08); --strong:rgba(255,255,255,.15); --text:#f4f6fb;
+    --muted:#8c93a3; --green:#05c77e; --cyan:#25d5ff; --yellow:#ffc94d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { min-width:1180px; min-height:100vh; background:var(--shell); color:var(--text); font-family:'Space Grotesk','Noto Sans SC',sans-serif; }
+  nav { height:78px; display:flex; align-items:center; justify-content:space-between; padding:0 36px; border-bottom:1px solid var(--line); }
+  .nav-left,.logo,.nav-links,.nav-right { display:flex; align-items:center; }
+  .nav-left { gap:42px; }
+  .logo { gap:10px; color:#fff; text-decoration:none; }
+  .logo-mark { width:36px; height:36px; background:url('assets/yoooov-logo-v1-compact.svg') center/contain no-repeat; }
+  .logo-text { font-size:20px; font-weight:800; }
+  .logo-text span { color:#ff7a28; }
+  .nav-links { gap:28px; }
+  .nav-link { color:var(--muted); text-decoration:none; font-size:13px; font-weight:700; }
+  .nav-link.active,.nav-link:hover { color:#fff; }
+  .nav-right { gap:12px; }
+  .nav-button { height:36px; padding:0 16px; display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:10px; color:#fff; background:var(--surface); text-decoration:none; font-size:12px; font-weight:800; }
+  main { width:min(1320px,calc(100vw - 72px)); margin:0 auto; padding:26px 0 48px; }
+  .breadcrumb { display:flex; align-items:center; gap:9px; margin-bottom:20px; color:var(--muted); font-size:12px; font-weight:700; }
+  .breadcrumb a { color:var(--muted); text-decoration:none; }
+  .breadcrumb a:hover { color:#fff; }
+  .course-head { display:flex; justify-content:space-between; gap:32px; align-items:flex-end; margin-bottom:22px; }
+  .course-tag { display:inline-flex; padding:6px 10px; border-radius:8px; background:rgba(5,199,126,.13); color:#9ff4cd; font-size:11px; font-weight:800; margin-bottom:12px; }
+  h1 { font-size:34px; line-height:1.16; margin-bottom:10px; }
+  .subtitle { color:var(--muted); font-size:13px; font-weight:700; }
+  .progress-copy { min-width:220px; text-align:right; color:var(--muted); font-size:12px; font-weight:700; }
+  .progress-copy strong { color:#fff; font-size:22px; margin-left:8px; }
+  .progress-bar { width:220px; height:7px; margin-top:9px; overflow:hidden; border-radius:999px; background:var(--surface-3); }
+  .progress-fill { width:25%; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--green),#36e7a7); transition:width .25s ease; }
+  .learning-layout { display:grid; grid-template-columns:minmax(0,1fr) 350px; gap:20px; }
+  .player,.lesson-panel,.notes { border:1px solid var(--line); background:var(--surface); box-shadow:0 18px 38px rgba(0,0,0,.2); }
+  .player { overflow:hidden; border-radius:18px; }
+  .stage { min-height:480px; display:grid; place-items:center; position:relative; overflow:hidden; background:
+    radial-gradient(circle at 72% 24%,rgba(37,213,255,.3),transparent 23%),
+    radial-gradient(circle at 28% 78%,rgba(5,199,126,.25),transparent 24%),
+    linear-gradient(135deg,#1b2260,#151820 58%,#102b27); }
+  .stage::after { content:""; width:240px; height:240px; position:absolute; border:1px solid rgba(255,255,255,.1); border-radius:54px; transform:rotate(18deg); }
+  .play-button { position:relative; z-index:1; width:76px; height:76px; border:0; border-radius:50%; display:grid; place-items:center; background:#fff; color:#101118; font-size:25px; cursor:pointer; box-shadow:0 12px 36px rgba(0,0,0,.3); }
+  .stage-message { position:absolute; z-index:1; bottom:24px; left:28px; right:28px; display:flex; justify-content:space-between; align-items:center; }
+  .stage-message strong { display:block; font-size:16px; margin-bottom:4px; }
+  .stage-message span { color:#c0c7d4; font-size:12px; font-weight:700; }
+  .player-tools { min-height:88px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 22px; }
+  .player-tools h2 { font-size:17px; margin-bottom:6px; }
+  .player-tools p { color:var(--muted); font-size:12px; font-weight:700; }
+  .complete-btn { height:38px; padding:0 17px; border:0; border-radius:10px; color:#fff; background:linear-gradient(180deg,#07c97d,#079e69); font:inherit; font-size:12px; font-weight:800; cursor:pointer; white-space:nowrap; }
+  .complete-btn.done { background:var(--surface-3); color:#8de6bd; }
+  .lesson-panel { border-radius:18px; overflow:hidden; align-self:start; }
+  .panel-head { padding:20px; border-bottom:1px solid var(--line); }
+  .panel-head h2 { font-size:17px; margin-bottom:5px; }
+  .panel-head p { color:var(--muted); font-size:11px; font-weight:700; }
+  .lessons { padding:8px; }
+  .lesson { width:100%; display:grid; grid-template-columns:30px 1fr auto; align-items:center; gap:10px; padding:12px; border:0; border-radius:11px; color:#c8ceda; background:transparent; text-align:left; font:inherit; cursor:pointer; }
+  .lesson:hover { background:rgba(255,255,255,.035); }
+  .lesson.active { color:#fff; background:rgba(5,199,126,.1); }
+  .lesson-index { width:28px; height:28px; display:grid; place-items:center; border-radius:8px; background:var(--surface-3); font-size:11px; font-weight:800; }
+  .lesson.active .lesson-index { background:var(--green); color:#071a12; }
+  .lesson-title { display:block; font-size:12px; font-weight:800; margin-bottom:3px; }
+  .lesson-type,.lesson-time { color:var(--muted); font-size:10px; font-weight:700; }
+  .lesson.done .lesson-index::after { content:"✓"; }
+  .lesson.done .lesson-index { font-size:0; color:#9ff4cd; background:rgba(5,199,126,.13); }
+  .lesson.done .lesson-index::after { font-size:12px; }
+  .notes { margin-top:20px; border-radius:16px; padding:22px; }
+  .notes h2 { font-size:17px; margin-bottom:8px; }
+  .notes p { color:var(--muted); font-size:13px; line-height:1.7; font-weight:600; }
+  .outcomes { display:flex; gap:10px; flex-wrap:wrap; margin-top:15px; }
+  .outcomes span { padding:7px 10px; border-radius:8px; background:var(--surface-2); color:#cbd1dd; font-size:11px; font-weight:800; }
+  @media (max-width:900px) {
+    body { min-width:0; }
+    nav { height:auto; padding:16px 18px; gap:14px; flex-wrap:wrap; }
+    .nav-links { display:none; }
+    main { width:100%; padding:20px 18px 36px; }
+    .course-head { align-items:flex-start; flex-direction:column; }
+    .progress-copy { text-align:left; }
+    .learning-layout { grid-template-columns:1fr; }
+    .stage { min-height:300px; }
+    .lesson-panel { order:2; }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a class="logo" href="index.html"><span class="logo-mark"></span><span class="logo-text">Yoooov<span>.</span></span></a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Games</a>
+        <a class="nav-link active" href="yoooov_school.html">Yoooov School</a>
+        <a class="nav-link" href="yoooov_challenge.html">Yoooov Challenge</a>
+        <a class="nav-link" href="yoooov_about.html">About</a>
+      </div>
+    </div>
+    <div class="nav-right"><a class="nav-button" href="yoooov_school.html">← 返回课程</a></div>
+  </nav>
+
+  <main>
+    <div class="breadcrumb"><a href="yoooov_school.html">Yoooov School</a><span>›</span><span id="crumb">课程学习</span></div>
+    <header class="course-head">
+      <div>
+        <div class="course-tag" id="toolTag">GDevelop · Beginner</div>
+        <h1 id="courseTitle">制作你的第一张 Obby 地图</h1>
+        <p class="subtitle"><span id="teacher">Mia 老师</span> · <span id="duration">42 分钟</span> · 项目制学习</p>
+      </div>
+      <div class="progress-copy">课程进度 <strong id="progressText">25%</strong><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div></div>
+    </header>
+
+    <div class="learning-layout">
+      <div>
+        <section class="player">
+          <div class="stage">
+            <button class="play-button" id="playButton" aria-label="播放课程">▶</button>
+            <div class="stage-message"><div><strong id="stageTitle">认识编辑器与项目目标</strong><span id="stageHint">视频课程 · 跟着老师完成本节任务</span></div></div>
+          </div>
+          <div class="player-tools">
+            <div><h2 id="lessonHeading">第 1 课 · 开始创作</h2><p>完成课程后，记得标记本节进度。</p></div>
+            <button class="complete-btn" id="completeButton">标记为已完成</button>
+          </div>
+        </section>
+        <section class="notes">
+          <h2>本课你将学会</h2>
+          <p id="description">熟悉创作工具、搭建第一个可玩场景，并掌握从测试到迭代的基本工作流。</p>
+          <div class="outcomes"><span>项目搭建</span><span>核心交互</span><span>测试迭代</span><span>作品发布</span></div>
+        </section>
+      </div>
+
+      <aside class="lesson-panel">
+        <div class="panel-head"><h2>课程目录</h2><p id="lessonCount">4 个章节 · 42 分钟</p></div>
+        <div class="lessons" id="lessons"></div>
+      </aside>
+    </div>
+  </main>
+
+<script>
+  const courses = {
+    obby: { title:'制作你的第一张 Obby 地图', tool:'Roblox · Beginner', teacher:'Mia 老师', duration:'42 分钟', description:'从地图结构、障碍机关到胜利条件，完成一张可以反复挑战的 Obby 地图。', lessons:['认识编辑器与项目目标','搭建地图与出生点','制作障碍和检查点','测试、优化并发布'] },
+    adventure: { title:'点击冒险：角色与事件', tool:'Scratch · Easy', teacher:'小鹿老师', duration:'35 分钟', description:'用角色、事件和变量建立交互逻辑，完成一段有选择、有反馈的点击冒险。', lessons:['创建角色与场景','添加点击事件','使用变量记录选择','完成并分享冒险'] },
+    'game-art': { title:'给游戏做一套图标和按钮', tool:'Game Art · Design', teacher:'Neo 老师', duration:'28 分钟', description:'建立统一的视觉语言，为游戏制作清晰、好看且易于使用的图标与按钮。', lessons:['认识游戏 UI 风格','设计基础图标','制作按钮状态','导出并放入项目'] },
+    'zero-one': { title:'30 分钟做出 0/1 游戏原型', tool:'Challenge 07 · 0 / 1', teacher:'Yoooov Team', duration:'30 分钟', description:'用一个开关状态做出可玩的 0/1 原型：定义两个状态、加入切换反馈、设计胜负条件并导出提交。', lessons:['定义 0 和 1 的含义','制作状态切换与反馈','加入关卡目标和失败条件','测试、导出并准备提交'] },
+    battle: { title:'做一个回合制战斗系统', tool:'Python · Logic', teacher:'阿程老师', duration:'54 分钟', description:'借助 AI 完成角色属性、技能与战斗循环，理解回合制系统的核心逻辑。', lessons:['设计角色数据','建立回合循环','加入技能与伤害','平衡、测试与修复'] },
+    'first-person': { title:'镜头、角色和第一人称移动', tool:'Unity · 3D', teacher:'Ray 老师', duration:'61 分钟', description:'在专业引擎中搭建 3D 场景，完成顺滑的镜头控制和第一人称角色移动。', lessons:['创建 3D 项目','角色控制器','镜头与鼠标输入','碰撞、重力和调试'] },
+    publish: { title:'如何包装并发布你的游戏', tool:'Earning Money · Business', teacher:'Yoooov Team', duration:'22 分钟', description:'为游戏确定定位、制作商店素材，并制定发布与早期商业化计划。', lessons:['找到作品卖点','制作商店素材','选择定价与收入模式','发布和获取第一批玩家'] }
+  };
+  const params = new URLSearchParams(location.search);
+  const courseKey = params.get('course') || 'obby';
+  const course = courses[courseKey] || courses.obby;
+  let activeLesson = 0;
+  const completed = new Set();
+  const lessonsEl = document.getElementById('lessons');
+
+  document.title = `${course.title} · Yoooov`;
+  document.getElementById('crumb').textContent = course.title;
+  document.getElementById('courseTitle').textContent = course.title;
+  document.getElementById('toolTag').textContent = course.tool;
+  document.getElementById('teacher').textContent = course.teacher;
+  document.getElementById('duration').textContent = course.duration;
+  document.getElementById('description').textContent = course.description;
+  document.getElementById('lessonCount').textContent = `${course.lessons.length} 个章节 · ${course.duration}`;
+
+  function renderLessons() {
+    lessonsEl.innerHTML = '';
+    course.lessons.forEach((title,index) => {
+      const button = document.createElement('button');
+      button.className = `lesson${index === activeLesson ? ' active' : ''}${completed.has(index) ? ' done' : ''}`;
+      button.innerHTML = `<span class="lesson-index">${index + 1}</span><span><span class="lesson-title">${title}</span><span class="lesson-type">${index === course.lessons.length - 1 ? '项目任务' : '视频课程'}</span></span><span class="lesson-time">${8 + index * 2} min</span>`;
+      button.addEventListener('click', () => { activeLesson = index; updateCurrent(); });
+      lessonsEl.appendChild(button);
+    });
+  }
+
+  function updateProgress() {
+    const progress = Math.round(completed.size / course.lessons.length * 100);
+    document.getElementById('progressText').textContent = `${progress}%`;
+    document.getElementById('progressFill').style.width = `${progress}%`;
+  }
+
+  function updateCurrent() {
+    document.getElementById('stageTitle').textContent = course.lessons[activeLesson];
+    document.getElementById('lessonHeading').textContent = `第 ${activeLesson + 1} 课 · ${course.lessons[activeLesson]}`;
+    const completeButton = document.getElementById('completeButton');
+    completeButton.textContent = completed.has(activeLesson) ? '✓ 已完成' : '标记为已完成';
+    completeButton.classList.toggle('done', completed.has(activeLesson));
+    renderLessons();
+    updateProgress();
+  }
+
+  document.getElementById('completeButton').addEventListener('click', () => {
+    if (completed.has(activeLesson)) completed.delete(activeLesson);
+    else completed.add(activeLesson);
+    updateCurrent();
+  });
+  document.getElementById('playButton').addEventListener('click', event => {
+    event.currentTarget.textContent = event.currentTarget.textContent === '▶' ? 'Ⅱ' : '▶';
+    document.getElementById('stageHint').textContent = event.currentTarget.textContent === 'Ⅱ' ? '正在播放课程预览' : '视频课程 · 跟着老师完成本节任务';
+  });
+  updateCurrent();
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

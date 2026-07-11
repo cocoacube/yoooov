@@ -1,0 +1,30 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-8" y="-8" width="136" height="136" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity=".22"/>
+    </filter>
+    <linearGradient id="creamStroke" x1="18" y1="18" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE5A8"/>
+      <stop offset="1" stop-color="#FFC66F"/>
+    </linearGradient>
+    <linearGradient id="tealFill" x1="62" y1="16" x2="106" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1C7A70"/>
+      <stop offset="1" stop-color="#104F49"/>
+    </linearGradient>
+    <linearGradient id="orangeFill" x1="16" y1="62" x2="60" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFA64B"/>
+      <stop offset="1" stop-color="#FF6F24"/>
+    </linearGradient>
+    <linearGradient id="redStroke" x1="62" y1="62" x2="106" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF6D58"/>
+      <stop offset="1" stop-color="#FF3526"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <rect x="15" y="15" width="42" height="42" rx="18" stroke="url(#creamStroke)" stroke-width="9"/>
+    <rect x="63" y="15" width="42" height="42" rx="18" fill="url(#tealFill)"/>
+    <rect x="15" y="63" width="42" height="42" rx="18" fill="url(#orangeFill)"/>
+    <rect x="63" y="63" width="42" height="42" rx="18" stroke="url(#redStroke)" stroke-width="9"/>
+  </g>
+</svg>

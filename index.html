@@ -1,878 +1,1914 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="content-type" content="application/pdf; charset=UTF-8">
+<html lang="zh">
+<head>
 
-        <title>有物游戏 | Yoooov</title>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="javascript/parse.min.js"></script>
-        <script type="text/javascript" src="javascript/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/customize.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
-    </head>
-    <body onload="switchLanguage('zh')">
-        
-        <header style="width: 100%;font-family: Bagel Fat One;">
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="./index.html" style="font-family: Bagel Fat One; color: white;">
-                        YOOOOV
-                    </a>
-                    <div class="justify-content-center" style="font-color:white; width: 50%;">
-                        <div class="input-group" role="search">
-                            
-                            <input type="search" class="form-control" id="searchText" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" onkeyup="searchGame()">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-solid fa-magnifying-glass"></i></span>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 5px; margin-bottom: 5px;">
-                        <div class="btn-group btn-group" role="group">
-                            <button type="button" id="language-button" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            中文
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li onclick="switchLanguage('zh')"><a class="dropdown-item btn btn-sm btn-outline-light">中文</a></li>
-                                <li onclick="switchLanguage('en')"><a class="dropdown-item btn btn-sm btn-outline-light">English</a></li>
-                            </ul>
-                        </div>
-                        <a href="./login.html" class="btn btn-sm btn-outline-light" target="_blank">Log in</a>
-                    </div>
-                </div>
-            </nav>
-            <h3>有物游戏 // Yoooov</h3>
-            <h1 class="en">「  Yoooov, 有点东西  」</h1>
-            <span id="counter">210293</span>
-            <div class="justify-content-center">
-                <ul class="nav nav-underline justify-content-center">
-                    <li class="nav-item">
-                        <a class="btn btn-sm btn-light" aria-current="page" href="index.html">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-sm btn-light" href="tools.html">Tools</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-sm btn-light" aria-current="page" href="3dmodels.html">3D Models</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- <h1 class="zh">制造快乐游戏的独立开发者！</h1> -->
-        </header>
-        
-        <div class="card border-info mb-3 text-center" style="height: 80px;">
-            <div class="card-body">
-                <h5 class="card-title">Yoooov (有物) 精选</h5>
-                <p class="card-text">We pick the greatest games for you!</p>
-            </div>
-        </div>
-        <div class="section">
-            <div class="card-container">
-                <div class="card text-center" id='6773feba66c3c1484f1a9b43'>
-                    
-                    <img class="card-img-top" src="images/wanderingplanet.png" alt="Wandering Planet">
-                    <div class="card-img-overlay">
-                        <div class="card-body" style="margin-top:30px;">
-                            <h5 class="card-title">流浪星球</h5>
-                            <p>@cube</p>
-                            <p>飘浮在太空的宇航员，颠沛流离在星球之间，尽自己最大的努力，尝试拿到最高分！</p>
-                            <a href="https://www.yoooov.com/contributors/wanderingplanet.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="card-container">
-                <div class="card text-center" id='6760f8d19d8d290d25f1e076'>
-                    <img src="images/damnbike.png" alt="Damn Bike Challenge Game">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Damn Bike Challenge</h3>
-                            
-                            <h3 class="zh">电单车挑战</h3>
-                            <p><a href="contributors/tsyc.html" class="btn btn-outline-info">@tyc</a></p>
-                            <p>一款自行车挑战游戏。这是一款难度较高的游戏，很难通过所有挑战。</p>
-                            
-                            <button id='plays6760f8d19d8d290d25f1e076' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f8d19d8d290d25f1e076'>Played</span>
-                            </button>
-                            <button id='likes6760f8d19d8d290d25f1e076' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6760f8d19d8d290d25f1e076'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://gd.games/instant-builds/418427e3-c389-4379-8ffb-54fbd1e9deb5" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6760f9c103d7a07961e9fee2'>
-                    <img src="images/ironbaby.png" alt="Iron Baby">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Iron Baby</h3>
-                            <h3 class="zh">铁甲小宝</h3>
-                            <p><a href="contributors/chenjiarui.html" class="btn btn-outline-info">@chenjr</a></p>
-                            <p>一个解密类游戏，你需要找到隐藏在游戏中的门来通关。</p>
-                            <button id='plays6760f9c103d7a07961e9fee2' type="button" class="btn btn-info"><i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9c103d7a07961e9fee2'>Played</span></button>
-                            <button id='likes6760f9c103d7a07961e9fee2' type="button" class="btn btn-outline-danger"><i class="fa fa-regular fa-heart"></i> <span id="lt6760f9c103d7a07961e9fee2">Liked</span></button>
-                        </div>
-                        <a href="https://gd.games/instant-builds/ab1e58d7-190b-4de0-b592-def00f82ef99" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='678a22f228a55b4285a72280'>
-                    <img src="images/zombierush.png" alt="Iron Baby">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Zombie Rush</h3>
-                            <h3 class="zh">暴打僵尸</h3>
-                            <p><a href="contributors/chenjiarui.html" class="btn btn-outline-info">@chenjr</a></p>
-                            <p>肉鸽爽游，解压泄愤，你最无敌了！</p>
-                            <button id='plays678a22f228a55b4285a72280' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt678a22f228a55b4285a72280'>Played</span>
-                            </button>
-                            <button id='likes678a22f228a55b4285a72280' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id="lt678a22f228a55b4285a72280">Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/zombierush.html" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div style="max-height:310px; width: 310px;">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
-                    crossorigin="anonymous"></script>
-                    <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-format="fluid"
-                    data-ad-layout-key="-bg-2b-45-hc+1ou"
-                    data-ad-client="ca-pub-7264754231767067"
-                    data-ad-slot="8682027144"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                
-                <div class="card text-center" id='6760f9e89d8d290d25f1e07b'>
-                    <img src="images/fishing.png" alt="Fishing">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Fishing</h3>
-                            <h3 class="zh">钓鱼达人</h3>
-                            <p><a href="contributors/zhangjunliang.html" class="btn btn-outline-info">@yueli</a></p>
-                            <p>捕鱼游戏。可以通过观看广告来获取金币，金币可以购买不同的鱼钩。</p>
-                            <button id='plays6760f9e89d8d290d25f1e07b' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9e89d8d290d25f1e07b'>Played</span>
-                            </button>
-                            <button id='likes6760f9e89d8d290d25f1e07b' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id="lt6760f9e89d8d290d25f1e07b">Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://gd.games/instant-builds/fc67fd8c-b0e8-4050-80b2-b51e5bc57996" class="btn btn-warning" target="_blank" onclick="test()">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6760f9f903d7a07961e9fee3'>
-                    <img src="images/survival.png" alt="Damn Bike Challenge Game">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Survival</h3>
-                            <h3 class="zh">生存</h3>
-                            <p><a href="contributors/haohaoran.html" class="btn btn-outline-info">@Tim</a></p>
-                            <p>一款射击生存类肉鸽游戏！需要坚持120秒来通关。</p>
-                            <button id='plays6760f9f903d7a07961e9fee3' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760f9f903d7a07961e9fee3'>Played</span>
-                            </button>
-                            <button id='likes6760f9f903d7a07961e9fee3' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6760f9f903d7a07961e9fee3'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/survival.html" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6760fa0f9d8d290d25f1e07c'>
-                    <img src="images/octopus.png" alt="Damn Bike Challenge Game">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Octopus Fight!</h3>
-                            <h3 class="zh">大战丑章鱼</h3>
-                            <p><a href="contributors/chenzhengyu.html" class="btn btn-outline-info">@czy</a></p>
-                            <p>汉堡好吃，但是吃多了就跳不高了哦！所以不要太贪吃。</p>
-                            <button id='plays6760fa0f9d8d290d25f1e07c' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6760fa0f9d8d290d25f1e07c'>Played</span>
-                            </button>
-                            <button id='likes6760fa0f9d8d290d25f1e07c' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6760fa0f9d8d290d25f1e07c'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://gd.games/instant-builds/062ed01e-ae92-4be5-8089-194399bed906"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='676a21799d8d290d25f9f7bc'>
-                    <img src="images/towerdefencer.png" alt="Fight with the Octopus">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Tower Fight!</h3>
-                            <h3 class="zh">保卫高塔</h3>
-                            <p><a href="contributors/cube.html" class="btn btn-outline-info">@cube</a></p>
-                            <p>把所有来袭的骷髅军队打败，才可以获得游戏的胜利！Gatlin更好用哦！</p>
-                            <button id='plays676a21799d8d290d25f9f7bc' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt676a21799d8d290d25f9f7bc'>Played</span>
-                            </button>
-                            <button id='likes676a21799d8d290d25f9f7bc' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt676a21799d8d290d25f9f7bc'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/towerdefencer.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6773feba66c3c1484f1a9b43'>
-                    <img src="images/wanderingplanet.png" alt="Wandering Planet">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Wandering Planet</h3>
-                            <h3 class="zh">流浪星球</h3>
-                            <p><a href="contributors/cube.html" class="btn btn-outline-info">@cube</a></p>
-                            <p>飘浮在太空的宇航员，颠沛流离在星球之间，尝试拿到最高分！</p>
-                            <button id='plays6773feba66c3c1484f1a9b43' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6773feba66c3c1484f1a9b43'>Played</span>
-                            </button>
-                            <button id='likes6773feba66c3c1484f1a9b43' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6773feba66c3c1484f1a9b43'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/wanderingplanet.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67778ecf98c76a3fbd19a334'>
-                    <img src="images/lsob.png" alt="The Last Sip of Blood">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">The Last Sip of Blood</h3>
-                            <h3 class="zh">最后一滴血</h3>
-                            <p><a href="contributors/william.html" class="btn btn-outline-info">@william</a></p>
-                            <p>写实派枪手，在废墟中，大战黑帮团体，在险恶的环境中努力寻找升级。</p>
-                            <button id='plays67778ecf98c76a3fbd19a334' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67778ecf98c76a3fbd19a334'>Played</span>
-                            </button>
-                            <button id='likes67778ecf98c76a3fbd19a334' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67778ecf98c76a3fbd19a334'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/lastsipofblood.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6784d879d2c78e5c0080b83b'>
-                    <img src="images/peapoper.png" alt="Pea Poper">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Pea Poper</h3>
-                            <h3 class="zh">豌豆炮手</h3>
-                            <p><a href="contributors/william.html" class="btn btn-outline-info">@tyuan</a></p>
-                            <p>豌豆射手，闯关奇遇！</p>
-                            <button id='plays6784d879d2c78e5c0080b83b' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6784d879d2c78e5c0080b83b'>Played</span>
-                            </button>
-                            <button id='likes6784d879d2c78e5c0080b83b' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6784d879d2c78e5c0080b83b'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/peapoper.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6789ceead2c78e5c0080d150'>
-                    <img src="images/eggrush.png" alt="The Last Sip of Blood">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Egg Rush</h3>
-                            <h3 class="zh">Egg Rush</h3>
-                            <p><a href="contributors/william.html" class="btn btn-outline-info">@lison</a></p>
-                            <p>消灭僵尸，找到传送门，通关。</p>
-                            <button id='plays6789ceead2c78e5c0080d150' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6789ceead2c78e5c0080d150'>Played</span>
-                            </button>
-                            <button id='likes6789ceead2c78e5c0080d150' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6789ceead2c78e5c0080d150'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/eggrush.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='678a22cfd2c78e5c0080d19d'>
-                    <img src="images/rushrush.png" alt="The Last Sip of Blood">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Rush Rush</h3>
-                            <h3 class="zh">Rush Rush</h3>
-                            <p><a href="contributors/guoguo.html" class="btn btn-outline-info">@guoguo</a></p>
-                            <p>目标：僵尸！完成任务，冲！冲！冲！</p>
-                            <button id='plays678a22cfd2c78e5c0080d19d' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt678a22cfd2c78e5c0080d19d'>Played</span>
-                            </button>
-                            <button id='likes678a22cfd2c78e5c0080d19d' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt678a22cfd2c78e5c0080d19d'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/rushrush.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6784d94a28a55b4285a70890'>
-                    <img src="images/escapeisland.png" alt="The Last Sip of Blood">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Escape Adventure Island</h3>
-                            <h3 class="zh">穿越冒险岛</h3>
-                            <p><a href="contributors/zhangjunliang.html" class="btn btn-outline-info">@yueli</a></p>
-                            <p class="en">Fight with aliens and animals to escape from adventure island.</p>
-                            <p class="zh">打败僵尸、外星人、魔法师，逃出冒险岛！</p>
-                            <button id='plays6784d94a28a55b4285a70890' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6784d94a28a55b4285a70890'>Played</span>
-                            </button>
-                            <button id='likes6784d94a28a55b4285a70890' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6784d94a28a55b4285a70890'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/escapeadventureisland.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='678ba578d2c78e5c0080d584'>
-                    <img src="images/beatskeleton.png" alt="punch skull">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Punch Skull</h3>
-                            <h3 class="zh">暴打骷髅</h3>
-                            <p><a href="contributors/wzn.html" class="btn btn-outline-info">@wzn</a></p>
-                            <p class="en">Fight with skulls and break box to upgrade weapons.</p>
-                            <p class="zh">暴打骷髅，打开宝箱升级武器装备。</p>
-                            <button id='plays678ba578d2c78e5c0080d584' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt678ba578d2c78e5c0080d584'>Played</span>
-                            </button>
-                            <button id='likes678ba578d2c78e5c0080d584' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt678ba578d2c78e5c0080d584'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/punchskull.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='678ba5a528a55b4285aaa10e'>
-                    <img src="images/beatbadboy.png" alt="punch playboy">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Punch Playboy</h3>
-                            <h3 class="zh">暴打渣男</h3>
-                            <p><a href="contributors/lhb.html" class="btn btn-outline-info">@lhb</a></p>
-                            <p>暴打渣男，获得更多的金币。破坏宝箱升级武器。</p>
-                            <button id='plays678ba5a528a55b4285aaa10e' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt678ba5a528a55b4285aaa10e'>Played</span>
-                            </button>
-                            <button id='likes678ba5a528a55b4285aaa10e' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt678ba5a528a55b4285aaa10e'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/punchplayboy.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6791a9cad2c78e5c0081de6b'>
-                    <img src="images/spaceship.png" alt="space ship">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Space Ship</h3>
-                            <h3 class="zh">星际战舰</h3>
-                            <p><a href="contributors/huashengdou.html" class="btn btn-outline-info">@huashengdou</a></p>
-                            <p>驾驶星际战舰大战外星人UFO，躲避陨石以防造成伤害！</p>
-                            <button id='plays6791a9cad2c78e5c0081de6b' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6791a9cad2c78e5c0081de6b'>Played</span>
-                            </button>
-                            <button id='likes6791a9cad2c78e5c0081de6b' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6791a9cad2c78e5c0081de6b'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/spaceship.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6792ecf6d2c78e5c0081dfe4'>
-                    <img src="images/forrestadventure.png" alt="Forrest Adventure">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Forrest Adventure</h3>
-                            <h3 class="zh">森林大冒险</h3>
-                            <p><a href="contributors/lulu.html" class="btn btn-outline-info">@lulu</a></p>
-                            <p>在黑暗的森林中探索，找到线索，穿越森林</p>
-                            <button id='plays6792ecf6d2c78e5c0081dfe4' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt6792ecf6d2c78e5c0081dfe4'>Played</span>
-                            </button>
-                            <button id='likes6792ecf6d2c78e5c0081dfe4' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt6792ecf6d2c78e5c0081dfe4'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/forrestadventure.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div style="max-height:310px; width: 310px;">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
-                    crossorigin="anonymous"></script>
-                    <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-format="fluid"
-                    data-ad-layout-key="-bg-2b-45-hc+1ou"
-                    data-ad-client="ca-pub-7264754231767067"
-                    data-ad-slot="8682027144"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-                <div class="card text-center" id='67a74c0bd2c78e5c0083b368'>
-                    <img src="images/beatzombies.png" alt="Beat Zombies">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Beat Zombies</h3>
-                            <h3 class="zh">暴打僵尸2</h3>
-                            <p><a href="contributors/huangsibo.html" class="btn btn-outline-info">@huangsibo</a></p>
-                            <p>站在塔顶射击所有的僵尸。被僵尸碰到太多次会死掉。</p>
-                            <button id='plays67a74c0bd2c78e5c0083b368' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67a74c0bd2c78e5c0083b368'>Played</span>
-                            </button>
-                            <button id='likes67a74c0bd2c78e5c0083b368' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67a74c0bd2c78e5c0083b368'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/beatzombies.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67ad670328a55b4285ac37f0'>
-                    <img src="images/thelegendofben.png" alt="the legend of ben">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">The Legend of Ben</h3>
-                            <h3 class="zh">本: 传奇人生</h3>
-                            <p><a href="contributors/ben.html" class="btn btn-outline-info">@ben</a></p>
-                            <p>角色需要拿到三个物品去建造船只，驾船去遥远的冰岛与大BOSS决斗！</p>
-                            <button id='plays67ad670328a55b4285ac37f0' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67ad670328a55b4285ac37f0'>Played</span>
-                            </button>
-                            <button id='likes67ad670328a55b4285ac37f0' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67ad670328a55b4285ac37f0'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/thelegendofben.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67b30998d2c78e5c0084bb20'>
-                    <img src="images/warofocean.png" alt="The War of Ocean">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">War of Ocean</h3>
-                            <h3 class="zh">海战</h3>
-                            <p><a href="contributors/ben.html" class="btn btn-outline-info">@alex</a></p>
-                            <p>在这个游戏中，操纵海战武器去与敌人战斗！可以选择潜艇和战列舰！</p>
-                            <button id='plays67b30998d2c78e5c0084bb20' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67b30998d2c78e5c0084bb20'>Played</span>
-                            </button>
-                            <button id='likes67b30998d2c78e5c0084bb20' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67b30998d2c78e5c0084bb20'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/warofocean.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67bbc08cd2c78e5c0084cff4'>
-                    <img src="images/famer.png" alt="Famer">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Famer</h3>
-                            <h3 class="zh">农夫</h3>
-                            <p><a href="contributors/tongluochen.html" class="btn btn-outline-info">童洛宸</a></p>
-                            <p>角色将使用不同的技能去与敌人战斗！不断升级装备和技能！</p>
-                            <button id='plays67bbc08cd2c78e5c0084cff4' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67bbc08cd2c78e5c0084cff4'>Played</span>
-                            </button>
-                            <button id='likes67bbc08cd2c78e5c0084cff4' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67bbc08cd2c78e5c0084cff4'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/famer.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67e3b19c94d4a9142b327e21'>
-                    <img src="images/dogrush.png" alt="Dogrush">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Dog Rush</h3>
-                            <h3 class="zh">狗狗突围</h3>
-                            <p><a href="contributors/tongluochen.html" class="btn btn-outline-info">kaka</a></p>
-                            <p>狗狗排除万难，解密通关！</p>
-                            <button id='plays67e3b19c94d4a9142b327e21' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67e3b19c94d4a9142b327e21'>Played</span>
-                            </button>
-                            <button id='likes67e3b19c94d4a9142b327e21' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67e3b19c94d4a9142b327e21'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/dogrush.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoooov · 游戏广场</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
 
-                <div class="card text-center" id='67e5164294d4a9142b3280f9'>
-                    <img src="images/abandonedfarm.png" alt="Dogrush">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Abandoned Farm</h3>
-                            <h3 class="zh">荒废农场</h3>
-                            <p><a href="contributors/jason.html" class="btn btn-outline-info">jason</a></p>
-                            <p>在遥远的欧洲有一座已经荒废的农场，至今无人探索。今天你将探索这座农场。</p>
-                            <button id='plays67e5164294d4a9142b3280f9' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67e5164294d4a9142b3280f9'>Played</span>
-                            </button>
-                            <button id='likes67e5164294d4a9142b3280f9' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67e5164294d4a9142b3280f9'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/abandonedfarm.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67e8ef18287e5660ffb007ba'>
-                    <img src="images/shootmrp.png" alt="shoot Mr. p">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Shoot Mr. P</h3>
-                            <h3 class="zh">杀死痞老板</h3>
-                            <p><a href="contributors/chenjiarui.html" class="btn btn-outline-info">chenjr</a></p>
-                            <p>邪恶的痞老板，绑架了所有的人，我们要救出他们。避免打到人质！</p>
-                            <button id='plays67e8ef18287e5660ffb007ba' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67e8ef18287e5660ffb007ba'>Played</span>
-                            </button>
-                            <button id='likes67e8ef18287e5660ffb007ba' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67e8ef18287e5660ffb007ba'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/shootmrp.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67ed1729287e5660ffb073c1'>
-                    <img src="images/tankwar.png" alt="tank war">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Tank War</h3>
-                            <h3 class="zh">坦克战争</h3>
-                            <p><a href="contributors/eason.html" class="btn btn-outline-info">eason</a></p>
-                            <p>坦克对战坦克，收集零件，购买和改造法拉利战车！</p>
-                            <button id='plays67ed1729287e5660ffb073c1' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67ed1729287e5660ffb073c1'>Played</span>
-                            </button>
-                            <button id='likes67ed1729287e5660ffb073c1' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67ed1729287e5660ffb073c1'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/tankwar.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67ee55f394d4a9142b33cdf6'>
-                    <img src="images/pokego.png" alt="poke go">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Poke Go</h3>
-                            <h3 class="zh">精灵Go</h3>
-                            <p><a href="contributors/eason.html" class="btn btn-outline-info">mayingjie</a></p>
-                            <p>准备好了吗？收集小精灵，去战斗吧！</p>
-                            <button id='plays67ee55f394d4a9142b33cdf6' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67ee55f394d4a9142b33cdf6'>Played</span>
-                            </button>
-                            <button id='likes67ee55f394d4a9142b33cdf6' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67ee55f394d4a9142b33cdf6'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/pokego.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67f1f54594d4a9142b346ba8'>
-                    <img src="images/berlin1945.png" alt="berlin1945">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Berlin 1945</h3>
-                            <h3 class="zh">柏林1945保卫</h3>
-                            <p><a href="contributors/hans.html" class="btn btn-outline-info">hans</a></p>
-                            <p>1945 柏林，抵御来势汹汹的战机轰炸和坦克进攻。</p>
-                            <button id='plays67f1f54594d4a9142b346ba8' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67f1f54594d4a9142b346ba8'>Played</span>
-                            </button>
-                            <button id='likes67f1f54594d4a9142b346ba8' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67f1f54594d4a9142b346ba8'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/berlin1945.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='68294ec42b2fd8404bc04cbb'>
-                    <img src="images/flyball.png" alt="fly ball">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Fly Ball</h3>
-                            <h3 class="zh">飞球</h3>
-                            <p><a href="contributors/hans.html" class="btn btn-outline-info">hans</a></p>
-                            <p>用篮球砸爆所有的白球获得积分通关，站上排行榜！</p>
-                            <button id='plays68294ec42b2fd8404bc04cbb' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt68294ec42b2fd8404bc04cbb'>Played</span>
-                            </button>
-                            <button id='likes68294ec42b2fd8404bc04cbb' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt68294ec42b2fd8404bc04cbb'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/flyball.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67f21d3794d4a9142b34776a'>
-                    <img src="images/zombiedefence.png" alt="zombie defence">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Zombie Defence</h3>
-                            <h3 class="zh">僵尸塔防</h3>
-                            <p><a href="contributors/tsyc.html" class="btn btn-outline-info">tsyc</a></p>
-                            <p>这是一款僵尸塔防游戏，要防范多种僵尸来袭击。</p>
-                            <button id='plays67f21d3794d4a9142b34776a' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67f21d3794d4a9142b34776a'>Played</span>
-                            </button>
-                            <button id='likes67f21d3794d4a9142b34776a' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67f21d3794d4a9142b34776a'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/zombiedefence.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67f320ea287e5660ffb0b569'>
-                    <img src="images/o3.png" alt="o3">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">o3</h3>
-                            <h3 class="zh">o3</h3>
-                            <p><a href="contributors/kk.html" class="btn btn-outline-info">kk</a></p>
-                            <p>弓箭射手大战骷髅怪，挑战Zombie赢得游戏。</p>
-                            <button id='plays67f320ea287e5660ffb0b569' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67f320ea287e5660ffb0b569'>Played</span>
-                            </button>
-                            <button id='likes67f320ea287e5660ffb0b569' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67f320ea287e5660ffb0b569'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/o3.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67f3a00494d4a9142b348bc6'>
-                    <img src="images/airfight.png" alt="airfight">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Air Fight</h3>
-                            <h3 class="zh">空战</h3>
-                            <p><a href="contributors/alex.html" class="btn btn-outline-info">alex</a></p>
-                            <p>在二战时期，玩家是一名盟军飞行员，驾驶战斗机击落所有德军飞机。</p>
-                            <button id='plays67f3a00494d4a9142b348bc6' type="button" class="btn btn-info">
-                            <i class="fa fa-solid fa-gamepad"></i> <span id='pt67f3a00494d4a9142b348bc6'>Played</span>
-                            </button>
-                            <button id='likes67f3a00494d4a9142b348bc6' type="button" class="btn btn-outline-danger">
-                            <i class="fa fa-regular fa-heart"></i> <span id='lt67f3a00494d4a9142b348bc6'>Liked</span>
-                            </button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/airfight.html"  class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='67fb6206287e5660ffb0d8e9'>
-                    <img src="images/saveeggs.png" alt="Save Dino Eggs">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Save Dino Eggs</h3>
-                            <h3 class="zh">保护恐龙蛋</h3>
-                            <p><a href="contributors/chenjiarui.html" class="btn btn-outline-info">@chenjr</a></p>
-                            <p>保护恐龙蛋不要被偷走，特殊关卡有高达！</p>
-                            <button id='plays67fb6206287e5660ffb0d8e9' type="button" class="btn btn-info"><i class="fa fa-solid fa-gamepad"></i> <span id='pt67fb6206287e5660ffb0d8e9'>Played</span></button>
-                            <button id='likes67fb6206287e5660ffb0d8e9' type="button" class="btn btn-outline-danger"><i class="fa fa-regular fa-heart"></i> <span id="lt67fb6206287e5660ffb0d8e9">Liked</span></button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/saveeggs.html" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='6815cf14287e5660ffb28d38'>
-                    <img src="images/desertshooter.png" alt="Desert Shooter">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Desert Shooter</h3>
-                            <h3 class="zh">沙漠枪手</h3>
-                            <p><a href="contributors/chenhongfei.html" class="btn btn-outline-info">@chf</a></p>
-                            <p>消灭沙漠中的所有敌人，升级技能，获得更强的攻击力！</p>
-                            <button id='plays6815cf14287e5660ffb28d38' type="button" class="btn btn-info"><i class="fa fa-solid fa-gamepad"></i> <span id='pt6815cf14287e5660ffb28d38'>Played</span></button>
-                            <button id='likes6815cf14287e5660ffb28d38' type="button" class="btn btn-outline-danger"><i class="fa fa-regular fa-heart"></i> <span id="lt6815cf14287e5660ffb28d38">Liked</span></button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/desertshooter.html" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-                <div class="card text-center" id='685513992b2fd8404bddcf9c'>
-                    <img src="images/waitfortomorrow.png" alt="Wait for Tomorrow">
-                    <div class="card-img-overlay">
-                        
-                        <div class="card-body">
-                            <h3 class="en">Wait for Tomorrow</h3>
-                            <h3 class="zh">等待明天</h3>
-                            <p><a href="contributors/duxinze.html" class="btn btn-outline-info">@dxz</a></p>
-                            <p>消灭恐龙，可以释放炸弹陷阱建立防御工事！</p>
-                            <button id='plays685513992b2fd8404bddcf9c' type="button" class="btn btn-info"><i class="fa fa-solid fa-gamepad"></i> <span id='pt685513992b2fd8404bddcf9c'>Played</span></button>
-                            <button id='likes685513992b2fd8404bddcf9c' type="button" class="btn btn-outline-danger"><i class="fa fa-regular fa-heart"></i> <span id="lt685513992b2fd8404bddcf9c">Liked</span></button>
-                        </div>
-                        <a href="https://www.yoooov.com/contributors/waitfortomorrow.html" class="btn btn-warning" target="_blank">开始游戏</a>
-                    </div>
-                </div>
-            </div>
+  :root {
+    --shell: #0d0e14;
+    --surface: #171920;
+    --surface-2: #20232c;
+    --surface-3: #292d38;
+    --line: rgba(255,255,255,.08);
+    --line-strong: rgba(255,255,255,.14);
+    --text: #f4f6fb;
+    --muted: #8c93a3;
+    --soft: #c8ceda;
+    --green: #05c77e;
+    --green-2: #0fb972;
+    --red: #ff4e61;
+    --yellow: #ffc94d;
+    --cyan: #25d5ff;
+    --violet: #8c59ff;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-width: 1180px;
+    min-height: 100vh;
+    background: var(--shell);
+    color: var(--text);
+    font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  }
+
+  .app-shell {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--shell);
+    overflow: hidden;
+  }
+
+  nav {
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+  }
+
+  .nav-left, .nav-right, .nav-links, .balance, .icon-btn, .logo { display: flex; align-items: center; }
+  .nav-left { gap: 42px; }
+  .logo { gap: 10px; }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    display: block;
+    flex: 0 0 36px;
+    overflow: visible;
+    border-radius: 14px;
+    background: url('assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
+    box-shadow: none;
+  }
+  .logo-text { font-size: 20px; font-weight: 800; letter-spacing: 0; }
+  .logo-text span { color: #ff7a28; }
+  .nav-links { gap: 28px; }
+  .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .nav-link:hover, .nav-link.active { color: #fff; }
+  .nav-right { position: relative; gap: 12px; }
+  .nav-right [hidden] { display: none !important; }
+  .my-games {
+    height: 36px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(5,199,126,.75);
+    color: #fff;
+    background: rgba(5,199,126,.05);
+    border-radius: 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .icon-btn {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--soft);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .icon-btn svg { width: 17px; height: 17px; display: block; }
+  .icon-btn.has-unread::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .my-games:hover, .icon-btn:hover, .chip:hover, .filter-btn:hover, .sort-btn:hover, .arrow:hover, .dot:hover {
+    border-color: rgba(255,255,255,.24);
+    color: #fff;
+  }
+  .my-games.active {
+    border-color: var(--green);
+    background: rgba(5,199,126,.16);
+    box-shadow: 0 0 0 1px rgba(5,199,126,.12) inset;
+  }
+  .balance {
+    gap: 10px;
+    padding-left: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  .balance strong { display: block; color: #fff; font-size: 13px; }
+  .avatar {
+    --geo-a: #25d5ff;
+    --geo-b: #8c59ff;
+    position: relative;
+    overflow: hidden;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--geo-a) 25%, #07101c), #080a11);
+    border: 1px solid color-mix(in srgb, var(--geo-a) 55%, transparent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--geo-a) 18%, transparent);
+    cursor: pointer;
+  }
+  .avatar::before, .avatar::after { content: ""; position: absolute; transition: transform .25s ease; }
+  .avatar::before {
+    width: 22px;
+    height: 22px;
+    left: 4px;
+    top: 7px;
+    border: 4px solid var(--geo-a);
+    transform: rotate(var(--geo-angle, 18deg));
+  }
+  .avatar::after {
+    width: 18px;
+    height: 18px;
+    right: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: var(--geo-b);
+    mix-blend-mode: screen;
+  }
+  .avatar[data-geometry="1"]::before { border-radius: 50%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: var(--geo-a); border: 0; }
+  .avatar[data-geometry="1"]::after { border-radius: 2px; transform: rotate(35deg); }
+  .avatar[data-geometry="2"]::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--geo-a); border: 0; }
+  .avatar[data-geometry="2"]::after { width: 21px; height: 7px; border-radius: 8px; transform: rotate(-42deg); }
+  .avatar:hover::before { transform: rotate(calc(var(--geo-angle, 18deg) + 18deg)) scale(1.08); }
+  .account-menu {
+    position: absolute;
+    z-index: 20;
+    top: 48px;
+    right: 0;
+    width: 190px;
+    padding: 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background: #1b1d25;
+    box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  }
+  .account-menu[hidden] { display: none; }
+  .account-summary { padding: 8px 9px 11px; border-bottom: 1px solid var(--line); }
+  .account-summary small { display: block; margin-bottom: 4px; color: var(--muted); font-size: 10px; }
+  .account-summary strong { color: #fff; font-size: 13px; }
+  .logout-btn {
+    width: 100%;
+    margin-top: 7px;
+    padding: 9px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #ff7180;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+  }
+  .logout-btn:hover { background: rgba(255,78,97,.1); }
+  .register-btn {
+    height: 36px;
+    padding: 0 17px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--green);
+    color: #07140f;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .register-btn:hover { background: #18db92; }
+  .login-btn {
+    height: 36px;
+    padding: 0 17px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .login-btn:hover { border-color: rgba(5,199,126,.65); color: var(--green); }
+  .user-phone {
+    max-width: 130px;
+    color: var(--soft);
+    font-size: 13px;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .auth-modal[hidden] { display: none; }
+  .auth-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(4, 5, 9, .78);
+    backdrop-filter: blur(10px);
+  }
+  .auth-card {
+    position: relative;
+    width: min(430px, calc(100vw - 40px));
+    padding: 34px;
+    border: 1px solid var(--line-strong);
+    border-radius: 22px;
+    background: #171920;
+    box-shadow: 0 30px 90px rgba(0,0,0,.55);
+  }
+  .auth-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .auth-card h2 { margin: 6px 0 8px; font-size: 25px; }
+  .auth-lead { margin-bottom: 24px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+  .auth-field { display: block; margin-bottom: 16px; }
+  .auth-field > span { display: block; margin-bottom: 8px; color: var(--soft); font-size: 12px; font-weight: 700; }
+  .auth-input-wrap {
+    display: flex;
+    align-items: center;
+    height: 46px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .phone-prefix { padding: 0 12px; border-right: 1px solid var(--line); color: var(--soft); font-size: 13px; }
+  .auth-input-wrap input {
+    min-width: 0;
+    flex: 1;
+    height: 100%;
+    padding: 0 13px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+  }
+  .auth-input-wrap:focus-within { border-color: rgba(5,199,126,.8); box-shadow: 0 0 0 3px rgba(5,199,126,.1); }
+  .toggle-password { padding: 0 13px; border: 0; background: transparent; color: var(--green); font: inherit; font-size: 12px; cursor: pointer; }
+  .field-hint { min-height: 18px; margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+  .field-hint.error { color: #ff7180; }
+  .field-hint.success { color: var(--green); }
+  .password-meter { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 8px; }
+  .password-meter i { height: 3px; border-radius: 9px; background: var(--surface-3); }
+  .password-meter[data-strength="1"] i:nth-child(1) { background: var(--red); }
+  .password-meter[data-strength="2"] i:nth-child(-n+2) { background: var(--yellow); }
+  .password-meter[data-strength="3"] i { background: var(--green); }
+  .auth-submit {
+    width: 100%;
+    height: 46px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--green);
+    color: #06140e;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .auth-submit:disabled { cursor: not-allowed; opacity: .55; }
+  .auth-status { min-height: 20px; margin-top: 12px; color: #ff7180; font-size: 12px; text-align: center; }
+  .auth-status.success { color: var(--green); }
+  .auth-switch { margin-top: 15px; color: var(--muted); font-size: 12px; text-align: center; }
+  .auth-switch button { border: 0; background: transparent; color: var(--green); font: inherit; font-weight: 700; cursor: pointer; }
+
+  main {
+    width: min(1180px, calc(100vw - 96px));
+    margin: 0 auto;
+    padding: 16px 0 48px;
+  }
+
+  .promo-wrap {
+    display: grid;
+    grid-template-columns: 28px 1fr 28px;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .arrow {
+    width: 28px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    color: #656b7b;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+  }
+  .promo {
+    height: 86px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.13);
+    background:
+      radial-gradient(circle at 56% 68%, rgba(255,184,65,.9) 0 8%, transparent 8.5%),
+      radial-gradient(circle at 62% 53%, rgba(37,213,255,.92) 0 3%, transparent 3.5%),
+      linear-gradient(100deg, rgba(112,48,230,.86), rgba(21,18,43,.92) 44%, #0b0c12 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 32px rgba(0,0,0,.18);
+  }
+  .promo::before {
+    content: "";
+    position: absolute;
+    right: 166px;
+    top: -34px;
+    width: 128px;
+    height: 128px;
+    border-radius: 34px;
+    background: linear-gradient(145deg, #23d9ef, #1860b6);
+    transform: rotate(16deg);
+    box-shadow: 22px 20px 0 rgba(255,112,63,.9), -44px 50px 0 rgba(255,203,71,.9);
+  }
+  .promo::after {
+    content: "%";
+    position: absolute;
+    right: 112px;
+    top: 15px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #8f5dff, #6033d9);
+    display: grid;
+    place-items: center;
+    color: #20e2ce;
+    font-size: 35px;
+    font-weight: 700;
+  }
+  .promo-copy {
+    position: relative;
+    z-index: 1;
+    padding: 23px 24px;
+  }
+  .promo h1 {
+    font-size: 21px;
+    line-height: 1;
+    letter-spacing: 0;
+    margin-bottom: 9px;
+  }
+  .promo p {
+    color: #d8dbee;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .dots { display: flex; justify-content: center; gap: 18px; margin: 2px 0 18px; }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #30333f;
+    cursor: pointer;
+  }
+  .dot.active { background: #fff; }
+
+  .category-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .category-title { display: flex; align-items: center; gap: 14px; }
+  .category-pattern-icon {
+    width: 34px;
+    height: 34px;
+    display: block;
+    object-fit: contain;
+  }
+  .roblox-mark {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background: #ff333f;
+    transform: rotate(14deg);
+    position: relative;
+  }
+  .roblox-mark::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    background: var(--shell);
+    border-radius: 1px;
+  }
+  h2 { font-size: 26px; letter-spacing: 0; }
+  .games-count { color: #dbe0ea; font-weight: 800; font-size: 15px; }
+
+  .chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .chip {
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 14px;
+    color: #c5cad6;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .chip.active {
+    color: #fff;
+    border-color: rgba(5,199,126,.42);
+    background: rgba(5,199,126,.13);
+  }
+  .hash { color: #737b8f; font-size: 15px; line-height: 0; }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .toolbar-left { display: flex; align-items: center; gap: 18px; }
+  .toolbar h3 { font-size: 16px; letter-spacing: 0; }
+  .search {
+    width: 212px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 13px;
+    color: #5f6574;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .search input::placeholder { color: #555b69; }
+  .sort {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    color: #656c7c;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .sort span { color: #fff; }
+  .sort-label { color: #666d7c !important; }
+  .sort-btn {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .sort-btn.active { color: var(--green); }
+  .filter-btn {
+    height: 34px;
+    width: 84px;
+    border-radius: 10px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    border-color: rgba(5,199,126,.54);
+    background: rgba(5,199,126,.12);
+  }
+
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .game-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .game-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(5,199,126,.56);
+    box-shadow: 0 18px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(5,199,126,.18);
+  }
+  .game-card[role="link"] { cursor: pointer; }
+  .game-card[role="link"]:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+  }
+  .thumb {
+    height: 113px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #252936;
+  }
+  .thumb-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #252936;
+  }
+  .thumb-art {
+    position: absolute;
+    inset: 0;
+    background: var(--art);
+  }
+  .thumb-art::before, .thumb-art::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .art-daycare { --art: linear-gradient(135deg, #ffb557 0%, #fb5d63 42%, #35a8ff 100%); }
+  .art-daycare::before { width: 90px; height: 90px; left: 38px; top: 20px; background: #ffd990; box-shadow: 72px 2px 0 #f77a86, 136px 20px 0 #60cff9; }
+  .art-daycare::after { width: 38px; height: 38px; left: 74px; top: 42px; background: #11131a; box-shadow: 17px 0 0 #11131a, 68px 9px 0 #9b5cff; opacity: .82; }
+  .art-racer { --art: linear-gradient(135deg, #112035 0%, #2ad4e9 48%, #f7fbff 100%); }
+  .art-racer::before { width: 150px; height: 42px; left: 46px; top: 47px; border-radius: 48px 14px 22px 20px; background: linear-gradient(135deg, #222b38, #f6f8ff); box-shadow: -25px 33px 0 -12px #111; }
+  .art-racer::after { width: 38px; height: 38px; left: 60px; top: 72px; background: #12151d; box-shadow: 94px 0 0 #12151d; }
+  .art-football { --art: linear-gradient(135deg, #f5f7ff 0%, #ff3242 35%, #182433 100%); }
+  .art-football::before { width: 80px; height: 80px; left: 78px; top: 18px; background: #cc7a4c; box-shadow: -58px 20px 0 #b96542, 58px 19px 0 #da8d52; }
+  .art-football::after { width: 70px; height: 30px; left: 83px; top: 12px; border-radius: 8px; background: #f8f8fa; box-shadow: -57px 23px 0 #f5f5f7, 59px 23px 0 #f5f5f7; }
+  .art-sky { --art: linear-gradient(135deg, #8ee9ff 0%, #b9fcff 28%, #76e980 70%, #cbf5ff 100%); }
+  .art-sky::before { width: 130px; height: 24px; left: 88px; top: 50px; border-radius: 999px; background: rgba(255,255,255,.85); box-shadow: -100px -22px 0 rgba(255,255,255,.9); }
+  .art-sky::after { width: 78px; height: 15px; left: 74px; top: 65px; border-radius: 99px; background: #7e46ff; box-shadow: 34px -28px 0 -1px #ff565f, 90px -9px 0 -3px #208bff; transform: rotate(-18deg); }
+  .art-blocks { --art: linear-gradient(180deg, #6bd1ff 0 46%, #63cc55 47% 100%); }
+  .art-blocks::before { width: 38px; height: 74px; left: 52px; top: 24px; border-radius: 6px; background: #e7a04a; box-shadow: 62px 16px 0 #f1ba55, 119px 8px 0 #d98945; }
+  .art-blocks::after { width: 26px; height: 26px; left: 58px; top: 13px; border-radius: 7px; background: #f2c14e; box-shadow: 63px 18px 0 #ffcf68, 122px 10px 0 #ffd16b; }
+  .art-runner { --art: linear-gradient(135deg, #ffc46b 0%, #ff8c55 48%, #547dff 100%); }
+  .art-runner::before { width: 58px; height: 58px; left: 96px; top: 28px; background: #f4b160; box-shadow: -32px 20px 0 -10px #2774ff, 42px 27px 0 -6px #f7ca7b; }
+  .art-runner::after { width: 30px; height: 16px; left: 108px; top: 55px; border-radius: 4px; background: #263145; transform: rotate(12deg); }
+
+  .badge-row {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    display: flex;
+    gap: 5px;
+  }
+  .badge {
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    box-shadow: 0 8px 14px rgba(0,0,0,.18);
+  }
+  .hot { background: var(--red); }
+  .love { background: var(--green); }
+
+  .card-body { padding: 12px 2px 0; }
+  .game-title {
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-weight: 800;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .creator-line, .vote-line, .metric {
+    display: flex;
+    align-items: center;
+  }
+  .creator-line {
+    gap: 7px;
+    color: #a5abba;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 17px;
+  }
+  .mini {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #21e2ff, #495fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .mini img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .vote-heart { color: #ff4e61; }
+  .vote-line {
+    gap: 5px;
+    margin-left: auto;
+    color: var(--green);
+    font-weight: 800;
+  }
+  .vote-line.bad { color: var(--red); }
+  .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .metric {
+    gap: 8px;
+    color: #e7ebf4;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .metric span { display: block; color: #9ba2b2; font-weight: 700; }
+  .metric-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #15151a;
+    background: var(--yellow);
+    border-radius: 7px;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+  }
+  .play {
+    width: 100%;
+    height: 32px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--surface-3);
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .play:disabled {
+    cursor: default;
+    color: #858c9c;
+  }
+  .game-card.featured .play { background: linear-gradient(180deg, #07c97d, #079e69); }
+  .game-grid.is-loading .game-card { opacity: .52; }
+  .yoooov-ad {
+    width: 100%;
+    height: 112px;
+    min-height: 112px;
+    max-height: 112px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin: 18px 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255,255,255,.018);
+  }
+  .yoooov-ad.compact-ad {
+    height: 112px;
+    min-height: 112px;
+    max-height: 112px;
+  }
+  .yoooov-ad.ad-row {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 4px 0 18px;
+  }
+  .yoooov-ad-label {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #5f6675;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .yoooov-ad-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #555c6b;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .yoooov-ad.ad-loaded .yoooov-ad-placeholder { display: none; }
+  .yoooov-ad-inner { width: 100%; height: 100%; overflow: hidden; }
+  .yoooov-ad-unit { width: 100%; min-height: 90px; display: block; }
+  .empty-state {
+    grid-column: 1 / -1;
+    padding: 34px;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed var(--line-strong);
+    border-radius: 12px;
+    background: rgba(255,255,255,.025);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  @media (max-width: 900px) {
+    body { min-width: 0; background: var(--shell); }
+    .app-shell { width: 100%; min-height: 100vh; }
+    nav { height: auto; padding: 18px; gap: 18px; align-items: flex-start; }
+    .nav-left { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .nav-links { gap: 14px; flex-wrap: wrap; }
+    .nav-right { margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+    main { width: 100%; padding: 8px 18px 28px; }
+    .promo-wrap { grid-template-columns: 1fr; }
+    .arrow { display: none; }
+    .promo::before { right: 76px; }
+    .promo::after { right: 28px; }
+    .toolbar { align-items: flex-start; gap: 16px; flex-direction: column; }
+    .game-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav>
+      <div class="nav-left">
+        <div class="logo">
+          <div class="logo-mark" aria-label="Yoooov logo"></div>
+          <div class="logo-text">Yoooov<span>.</span></div>
         </div>
-        <div class="card border-danger mb-3" style="min-height:310px; width:100%; border-color: red; border-width: 2px;">
-            <div class="card-body">
-                <h5 class="card-title">Yoooov（有物）</h5>
-                <h4 class="card-title">免费在线游戏</h4>
-                <p class="card-text">Yoooov (有物) 拥有丰富的免费在线游戏，致力于为您提供最有趣的游戏体验。打开Yoooov（有物），即可畅玩所有游戏，无需您下载、登录，更无弹窗干扰。我们的游戏支持台式机、平板电脑、移动设备等多种运行环境。无论是在舒适的家中，还是等车的路边，您都可以通过 Yoooov (有物)享受游戏乐趣。</p>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Yoooov（有物）是什么？</h4>
-                <p class="card-text">Yoooov (有物)总部位于深圳，目前有60名游戏开发者，最小的开发者还在上小学。团队致力于创建一个免费游戏平台，旨在打造一个向所有人开放的在线游乐场。如果您是一位游戏开发者，想要您的游戏在网络上取得成功，欢迎您在了解我司信息后，可以添加我们的微信CubeVon与我们联系，期待与您合作。</p>
-            </div>
+        <div class="nav-links">
+          <a class="nav-link active" href="https://curiku.cn/yoooov_new/">Games</a>
+          <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_school.html">Yoooov School</a>
+          <a class="nav-link" href="https://curiku.cn/yoooov_new/yoooov_challenge.html">Yoooov Challenge</a>
+          <a class="nav-link" href="yoooov_about.html">About</a>
         </div>
-        <footer>
-            <p>&copy; 2024 Yoooov Games. All rights reserved.</p>
-        </footer>
-    </body>
-    <script>
-    function switchLanguage(lang) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-    if (lang === 'en') {
-    section.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-    section.querySelectorAll('.zh').forEach(el => el.style.display = 'none');
-    document.getElementById('language-button').innerHTML = 'English';
-    } else {
-    section.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-    section.querySelectorAll('.zh').forEach(el => el.style.display = 'block');
-    document.getElementById('language-button').innerHTML = '中文'
+      </div>
+      <div class="nav-right">
+        <a class="my-games" href="my_games.html" data-auth="user" hidden>My Games</a>
+        <button class="icon-btn" aria-label="Messages" title="消息" data-auth="user" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 3v-14Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Notifications" title="通知" data-auth="user" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.8 9.7a5.2 5.2 0 0 1 10.4 0c0 5.8 2.3 6.1 2.3 6.1h-15s2.3-.3 2.3-6.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 19h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="login-btn" id="openLogin" type="button">登录</button>
+        <button class="register-btn" id="openRegister" type="button">手机号注册</button>
+        <span class="user-phone" id="userName" data-auth="user" hidden></span>
+        <button class="avatar" id="accountButton" type="button" data-auth="user" aria-label="用户账户" aria-expanded="false" hidden></button>
+        <div class="account-menu" id="accountMenu" hidden>
+          <div class="account-summary"><small id="accountPhone"></small><strong id="accountUsername"></strong></div>
+          <button class="logout-btn" id="logoutButton" type="button">退出登录</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="auth-modal" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerTitle" hidden>
+      <form class="auth-card" id="registerForm" novalidate>
+        <button class="auth-close" id="closeRegister" type="button" aria-label="关闭">×</button>
+        <h2 id="registerTitle">创建 Yoooov 账号</h2>
+        <p class="auth-lead">使用中国大陆手机号注册，并设置用于登录的密码。</p>
+        <label class="auth-field">
+          <span>用户名</span>
+          <div class="auth-input-wrap">
+            <input id="registerUsername" name="username" type="text" autocomplete="username" minlength="2" maxlength="20" placeholder="请输入用户名" required>
+          </div>
+          <div class="field-hint" id="usernameHint">2–20 个字符，支持中文、英文、数字和下划线。</div>
+        </label>
+        <label class="auth-field">
+          <span>手机号码</span>
+          <div class="auth-input-wrap">
+            <b class="phone-prefix">+86</b>
+            <input id="registerPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="11" placeholder="请输入 11 位手机号" required>
+          </div>
+          <div class="field-hint" id="phoneHint">仅用于账号识别，请输入真实有效的手机号。</div>
+        </label>
+        <label class="auth-field">
+          <span>设置密码</span>
+          <div class="auth-input-wrap">
+            <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="64" placeholder="至少 8 位，包含字母和数字" required>
+            <button class="toggle-password" type="button" data-toggle-password>显示</button>
+          </div>
+          <div class="password-meter" id="passwordMeter" data-strength="0"><i></i><i></i><i></i></div>
+          <div class="field-hint" id="passwordHint">建议组合使用大小写字母、数字和符号。</div>
+        </label>
+        <label class="auth-field">
+          <span>确认密码</span>
+          <div class="auth-input-wrap">
+            <input id="registerConfirm" name="confirmPassword" type="password" autocomplete="new-password" maxlength="64" placeholder="请再次输入密码" required>
+          </div>
+          <div class="field-hint" id="confirmHint"></div>
+        </label>
+        <button class="auth-submit" id="registerSubmit" type="submit">注册账号</button>
+        <div class="auth-status" id="registerStatus" role="status" aria-live="polite"></div>
+        <p class="auth-switch">已有账号？<button type="button" id="switchToLogin">直接登录</button></p>
+      </form>
+    </div>
+
+    <div class="auth-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+      <form class="auth-card" id="loginForm" novalidate>
+        <button class="auth-close" id="closeLogin" type="button" aria-label="关闭登录">×</button>
+        <h2 id="loginTitle">登录 Yoooov</h2>
+        <p class="auth-lead">欢迎回来，使用注册手机号和密码登录。</p>
+        <label class="auth-field">
+          <span>手机号码</span>
+          <div class="auth-input-wrap">
+            <b class="phone-prefix">+86</b>
+            <input id="loginPhone" name="phone" type="tel" inputmode="numeric" autocomplete="username" maxlength="11" placeholder="请输入注册手机号" required>
+          </div>
+          <div class="field-hint" id="loginPhoneHint">请输入中国大陆 11 位手机号。</div>
+        </label>
+        <label class="auth-field">
+          <span>登录密码</span>
+          <div class="auth-input-wrap">
+            <input id="loginPassword" name="password" type="password" autocomplete="current-password" maxlength="64" placeholder="请输入登录密码" required>
+            <button class="toggle-password" type="button" data-toggle-login-password>显示</button>
+          </div>
+          <div class="field-hint" id="loginPasswordHint"></div>
+        </label>
+        <button class="auth-submit" id="loginSubmit" type="submit">登录</button>
+        <div class="auth-status" id="loginStatus" role="status" aria-live="polite"></div>
+        <p class="auth-switch">还没有账号？<button type="button" id="switchToRegister">立即注册</button></p>
+      </form>
+    </div>
+
+    <main>
+      <div class="promo-wrap">
+        <div class="arrow" data-promo-dir="-1">‹</div>
+        <section class="promo" aria-label="Referral bonus">
+          <div class="promo-copy">
+            <h1>Get $50 for your friend!</h1>
+            <p>Invite a friend who spends $50 or more in the first 30 days and get $50 free</p>
+          </div>
+        </section>
+        <div class="arrow" data-promo-dir="1">›</div>
+      </div>
+      <div class="dots"><span class="dot" data-promo-index="0"></span><span class="dot active" data-promo-index="1"></span></div>
+
+      <div class="category-head">
+        <div class="category-title">
+          <img class="category-pattern-icon" src="assets/game-collection-pattern.svg" alt="">
+          <div class="games-count">7,021 Games</div>
+        </div>
+      </div>
+
+      <div class="chips">
+        <button class="chip" data-filter="all">All games</button>
+        <button class="chip active" data-filter="roblox"><span class="roblox-mark" style="width:12px;height:12px;border-radius:2px"></span>Roblox</button>
+        <button class="chip" data-filter="fortnite">▣ Fortnite</button>
+        <button class="chip" data-filter="minecraft">✣ Minecraft</button>
+        <button class="chip" data-filter="popularity"><span class="hash">#</span>Popularity</button>
+        <button class="chip" data-filter="woman"><span class="hash">#</span>For woman</button>
+        <button class="chip" data-filter="active"><span class="hash">#</span>Active players</button>
+        <button class="chip" data-filter="high-rate"><span class="hash">#</span>High rate</button>
+        <button class="chip" data-filter="creators-love"><span class="hash">#</span>Creators Love</button>
+        <button class="chip" data-filter="hot"><span class="hash">#</span>Hot</button>
+        <button class="chip" data-filter="rpg"><span class="hash">#</span>RPG</button>
+        <button class="chip" data-filter="ffa"><span class="hash">#</span>FFA</button>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <h3>All Games</h3>
+          <label class="search">
+            <span>⌕</span>
+            <input type="search" placeholder="Search game by ID or Name">
+          </label>
+        </div>
+        <div class="sort">
+          <span class="sort-label">Sort by:</span>
+          <button class="sort-btn active" data-sort="popularity">Popularity</button>
+          <button class="sort-btn" data-sort="price">Price</button>
+          <button class="sort-btn" data-sort="rate">Rate</button>
+          <button class="sort-btn" data-sort="alphabet">Alphabet</button>
+          <button class="filter-btn">Filter</button>
+        </div>
+      </div>
+
+      <section class="game-grid is-loading" id="gameGrid" aria-label="Game list">
+        <article class="game-card featured">
+          <div class="thumb">
+            <div class="thumb-art art-daycare"></div>
+            <div class="badge-row"><span class="badge hot">● Hot</span><span class="badge love">● Creators Love</span></div>
+          </div>
+          <div class="card-body">
+            <h4 class="game-title">Twilight Daycare</h4>
+            <div class="creator-line"><span class="mini">N</span>Nickname <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>9.6</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb">
+            <div class="thumb-art art-racer"></div>
+            <div class="badge-row"><span class="badge hot">● Hot</span></div>
+          </div>
+          <div class="card-body">
+            <h4 class="game-title">Car Dealership Tycoon</h4>
+            <div class="creator-line"><span class="mini" style="background:#7a4637">F</span>FreakyFour <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>2.3</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb"><div class="thumb-art art-football"></div></div>
+          <div class="card-body">
+            <h4 class="game-title">Super NFL Tycoon</h4>
+            <div class="creator-line"><span class="mini" style="background:#8d58ff">N</span>Nickname <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>5.4</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb">
+            <div class="thumb-art art-sky"></div>
+            <div class="badge-row"><span class="badge love">● Creators Love</span></div>
+          </div>
+          <div class="card-body">
+            <h4 class="game-title">Weapon Fighting Simulator</h4>
+            <div class="creator-line"><span class="mini" style="background:#704cff">N</span>Nickname <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>2.3</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb"><div class="thumb-art art-blocks"></div></div>
+          <div class="card-body">
+            <h4 class="game-title">Starving Artists</h4>
+            <div class="creator-line"><span class="mini">A</span>actionJack... <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>9.6</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb"><div class="thumb-art art-sky"></div></div>
+          <div class="card-body">
+            <h4 class="game-title">Shoot Out</h4>
+            <div class="creator-line"><span class="mini" style="background:#6a433c">R</span>real_go7axy <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>9.6</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb">
+            <div class="thumb-art art-runner"></div>
+            <div class="badge-row"><span class="badge hot">● Hot</span></div>
+          </div>
+          <div class="card-body">
+            <h4 class="game-title">Deathrun</h4>
+            <div class="creator-line"><span class="mini">N</span>Nickname <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>5.4</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="thumb"><div class="thumb-art art-football"></div></div>
+          <div class="card-body">
+            <h4 class="game-title">Twilight Daycare</h4>
+            <div class="creator-line"><span class="mini" style="background:#ff4e61">N</span>Nickname <span class="vote-line"><span class="vote-heart">❤</span> 873 <span style="color:#697183">Likes</span></span></div>
+            <div class="metrics"><div class="metric"><span class="metric-icon">🎮</span><div><span>Online</span>1,858</div></div><div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div><span>Rating</span>9.6</div></div></div>
+            <button class="play">View Game</button>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+  <script src="adsense_config.js"></script>
+  <script src="adsense_loader.js?v=6"></script>
+  <script>
+    const grid = document.getElementById('gameGrid');
+    const searchInput = document.querySelector('.search input');
+    const countEl = document.querySelector('.games-count');
+    const toolbarTitle = document.querySelector('.toolbar h3');
+    const chipButtons = Array.from(document.querySelectorAll('.chip'));
+    const sortButtons = Array.from(document.querySelectorAll('.sort-btn'));
+    const filterBtn = document.querySelector('.filter-btn');
+    const myGamesButton = document.querySelector('.my-games');
+    const promo = document.querySelector('.promo');
+    const promoTitle = document.querySelector('.promo h1');
+    const promoText = document.querySelector('.promo p');
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const staticCards = grid ? Array.from(grid.children) : [];
+    const state = {
+      filter: 'roblox',
+      sort: 'popularity',
+      playableOnly: false,
+      ownerUsername: '',
+      promoIndex: 1
+    };
+    let allCards = [];
+    let currentUser = null;
+    const adRows = [
+      createAdRow('gameTop', true),
+      createAdRow('sidebar', true),
+      createAdRow('recommendations', true)
+    ];
+    const promoSlides = [
+      {
+        title: 'Build your first Yoooov game',
+        text: 'Upload, share, and let players discover your web game in minutes',
+        tone: 'builder'
+      },
+      {
+        title: 'Get $50 for your friend!',
+        text: 'Invite a friend who spends $50 or more in the first 30 days and get $50 free',
+        tone: 'bonus'
+      }
+    ];
+
+    function text(value, fallback = '') {
+      return value == null || value === '' ? fallback : String(value);
     }
+
+    function createAdRow(slotKey, compact) {
+      const row = document.createElement('aside');
+      row.className = `yoooov-ad ad-row${compact ? ' compact-ad' : ''}`;
+      row.setAttribute('aria-label', 'Advertisement');
+      row.innerHTML = `
+        <span class="yoooov-ad-label">Advertisement</span>
+        <span class="yoooov-ad-placeholder">Google Ads</span>
+        <ins class="yoooov-ad-unit" data-slot-key="${slotKey}"></ins>
+      `;
+      return row;
+    }
+
+    function creatorAvatarUrl(name) {
+      const safe = String(name || '')
+        .trim()
+        .replace(/[\\\/:*?"<>|]/g, '')
+        .replace(/\s+/g, '_')
+        .replace(/\./g, '')
+        .slice(0, 80) || 'default';
+      return `/yoooov/images/${safe}.png`;
+    }
+
+    function applyCreatorAvatar(miniEl, creatorName) {
+      const initial = (creatorName || '?').trim()[0].toUpperCase();
+      miniEl.textContent = initial;
+      const url = creatorAvatarUrl(creatorName);
+      const img = new Image();
+      img.onload = () => {
+        miniEl.textContent = '';
+        const el = document.createElement('img');
+        el.src = url;
+        el.alt = creatorName;
+        miniEl.appendChild(el);
+      };
+      img.src = url;
+    }
+
+    function compactNumber(value) {
+      const n = Number(value || 0);
+      if (!Number.isFinite(n) || n <= 0) return '0';
+      if (n >= 1000000000) return `${(n / 1000000000).toFixed(n % 1000000000 ? 1 : 0)}B`;
+      if (n >= 1000000) return `${(n / 1000000).toFixed(n % 1000000 ? 1 : 0)}M`;
+      if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 ? 1 : 0)}K`;
+      return String(n);
+    }
+
+    function normalizePath(path) {
+      const value = text(path).trim();
+      if (!value) return '';
+      if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
+      if (value.startsWith('/')) return value;
+      if (/^yoooov\//i.test(value)) return `/${value}`;
+      if (/^images\//i.test(value)) return `/yoooov/${value}`;
+      return `/yoooov/images/${value}`;
+    }
+
+    function normalizeGameLink(link) {
+      const value = text(link, '#').trim();
+      if (!value || value === '#') return '#';
+      if (/^(https?:)?\/\//i.test(value) || value.startsWith('data:')) return value;
+      if (/^\/?yoooov\/games\//i.test(value)) return value.startsWith('/') ? value : `/${value}`;
+      if (/^\/?games\//i.test(value)) return `/yoooov/${value.replace(/^\/+/, '')}`;
+      return value.startsWith('/') ? value : `/${value}`;
+    }
+
+    function numberValue(value) {
+      const raw = text(value).replace(/,/g, '').trim().toLowerCase();
+      const n = parseFloat(raw);
+      if (!Number.isFinite(n)) return 0;
+      if (raw.endsWith('b')) return n * 1000000000;
+      if (raw.endsWith('m')) return n * 1000000;
+      if (raw.endsWith('k')) return n * 1000;
+      return n;
+    }
+
+    function setCardMeta(card, game, index, gameLink, tags) {
+      const title = text(game.GameName, card.querySelector('.game-title')?.textContent || 'Untitled');
+      const creator = text(game.GameCreator, '');
+      const likes = Number(game.Likes || 0);
+      const plays = Number(game.Plays || 0);
+      const views = Number(game.Views || 0);
+      const tagText = (tags || []).join(' ');
+      const haystack = `${title} ${creator} ${tagText}`.toLowerCase();
+      card.dataset.search = haystack;
+      card.dataset.title = title.toLowerCase();
+      card.dataset.tags = tagText.toLowerCase();
+      card.dataset.creator = creator.trim().toLowerCase();
+      card.dataset.likes = String(likes);
+      card.dataset.plays = String(plays);
+      card.dataset.views = String(views);
+      card.dataset.link = gameLink || '#';
+      card.dataset.hot = String((tags || []).some(tag => /hot|热门/i.test(tag)) || index < 2);
+      card.dataset.loved = String((tags || []).some(tag => /love|creator|推荐/i.test(tag)) || likes >= 10);
+    }
+
+    function hydrateStaticCards() {
+      staticCards.forEach((card, index) => {
+        const title = text(card.querySelector('.game-title')?.textContent, 'Untitled');
+        const creator = text(card.querySelector('.creator-line')?.childNodes?.[1]?.textContent, '');
+        const badgeText = text(card.querySelector('.badge-row')?.textContent).toLowerCase();
+        const metricText = Array.from(card.querySelectorAll('.metric div')).map(el => text(el.textContent)).join(' ');
+        const likes = numberValue(card.querySelector('.vote-line')?.textContent);
+        const plays = numberValue(metricText.match(/online\s*([\d.,kmb]+)/i)?.[1] || metricText.match(/plays\s*([\d.,kmb]+)/i)?.[1]);
+        const views = numberValue(metricText.match(/visits\s*([\d.,kmb]+)/i)?.[1] || metricText.match(/views\s*([\d.,kmb]+)/i)?.[1]);
+        const tags = [
+          badgeText.includes('hot') ? 'hot' : '',
+          badgeText.includes('creators love') ? 'creators love' : ''
+        ].filter(Boolean);
+        setCardMeta(card, { GameName: title, GameCreator: creator, Likes: likes, Plays: plays, Views: views }, index, '#', tags);
+
+        const mini = card.querySelector('.mini');
+        if (mini && creator) applyCreatorAvatar(mini, creator);
+
+        const button = card.querySelector('.play');
+        if (button) {
+          button.type = 'button';
+          button.addEventListener('click', () => {
+            const link = card.dataset.link;
+            if (link && link !== '#') window.location.href = link;
+          });
+        }
+      });
+      allCards = staticCards.slice();
+    }
+
+    function coverCandidates(game) {
+      const titleSlug = text(game.GameName, 'default')
+        .toLowerCase()
+        .replace(/[\s-]+/g, '')
+        .replace(/[^a-z0-9._]/g, '')
+        .replace(/\./g, '');
+      const cover = normalizePath(game.cover);
+      const list = cover ? [cover] : [];
+      if (titleSlug) {
+        list.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.png`);
+        list.push(`/yoooov/images/${encodeURIComponent(titleSlug)}.jpg`);
+      }
+      list.push('/yoooov/images/default.png');
+      return [...new Set(list)];
+    }
+
+    function applyCover(img, game) {
+      const candidates = coverCandidates(game);
+      let index = 0;
+      img.onerror = () => {
+        index += 1;
+        if (index < candidates.length) img.src = candidates[index];
+      };
+      img.src = candidates[index];
+    }
+
+    function tagsOf(game) {
+      const tags = Array.isArray(game.tags) ? game.tags : text(game.tags).split(/[,\uFF0C;\uFF1B|\s]+/g);
+      return tags.map(tag => text(tag).trim()).filter(Boolean);
+    }
+
+    function createGameCard(game, index) {
+      const tags = tagsOf(game);
+      const title = text(game.GameName, 'Untitled');
+      const creator = text(game.GameCreator, 'Yoooov Creator');
+      const likes = Number(game.Likes || 0);
+      const isHot = tags.some(tag => /hot|热门/i.test(tag)) || index < 2;
+      const isLoved = tags.some(tag => /love|creator|推荐/i.test(tag)) || likes >= 10;
+      const gameLink = normalizeGameLink(game.gameLink);
+      const detailUrl = game.id ? `game_detail.html?id=${encodeURIComponent(game.id)}` : '';
+
+      const card = document.createElement('article');
+      card.className = `game-card${index === 0 ? ' featured' : ''}`;
+      if (game.id) {
+        card.dataset.gameid = game.id;
+        card.tabIndex = 0;
+        card.setAttribute('role', 'link');
+        card.setAttribute('aria-label', `查看 ${title} 详情`);
+      }
+      setCardMeta(card, game, index, gameLink, tags);
+
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+
+      const img = document.createElement('img');
+      img.className = 'thumb-img';
+      img.alt = title;
+      img.loading = 'lazy';
+      applyCover(img, game);
+      thumb.appendChild(img);
+
+      if (isHot || isLoved) {
+        const badges = document.createElement('div');
+        badges.className = 'badge-row';
+        if (isHot) {
+          const hot = document.createElement('span');
+          hot.className = 'badge hot';
+          hot.textContent = '● Hot';
+          badges.appendChild(hot);
+        }
+        if (isLoved) {
+          const love = document.createElement('span');
+          love.className = 'badge love';
+          love.textContent = '● Creators Love';
+          badges.appendChild(love);
+        }
+        thumb.appendChild(badges);
+      }
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      const h4 = document.createElement('h4');
+      h4.className = 'game-title';
+      h4.textContent = title;
+
+      const creatorLine = document.createElement('div');
+      creatorLine.className = 'creator-line';
+      const mini = document.createElement('span');
+      mini.className = 'mini';
+      applyCreatorAvatar(mini, creator);
+      const creatorName = document.createTextNode(creator);
+      const ratingAvg = Number(game.rating_avg || game.Rating || game.rating || 0);
+      const rating = ratingAvg > 0 ? ratingAvg * 2 : 0;
+      creatorLine.append(mini, creatorName);
+
+      const metrics = document.createElement('div');
+      metrics.className = 'metrics';
+      metrics.innerHTML = `
+        <div class="metric"><span class="metric-icon" style="background:#ff6b7a">♥</span><div><span>Likes</span>${compactNumber(likes)}</div></div>
+        <div class="metric"><span class="metric-icon" style="background:#ffc94d">★</span><div data-rating><span>Rating</span>${rating > 0 ? rating.toFixed(1) : '—'}</div></div>
+      `;
+
+      const button = document.createElement('button');
+      button.className = 'play';
+      button.type = 'button';
+      button.textContent = detailUrl ? 'View Game' : 'Coming Soon';
+      button.disabled = !detailUrl;
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        if (detailUrl) window.location.href = detailUrl;
+      });
+
+      if (detailUrl) {
+        card.addEventListener('click', () => { window.location.href = detailUrl; });
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            window.location.href = detailUrl;
+          }
+        });
+      }
+
+      body.append(h4, creatorLine, metrics, button);
+      card.append(thumb, body);
+      return card;
+    }
+
+    function cardMatchesFilter(card, filter) {
+      if (filter === 'all') return true;
+      if (filter === 'popularity') return true;
+      if (filter === 'hot') return card.dataset.hot === 'true';
+      if (filter === 'creators-love') return card.dataset.loved === 'true';
+      if (filter === 'active') return Number(card.dataset.plays || 0) > 0 || Number(card.dataset.views || 0) > 0;
+      if (filter === 'high-rate') return Number(card.dataset.likes || 0) > 0;
+      const needle = filter.replace('-', ' ');
+      return (card.dataset.search || '').includes(needle) || (card.dataset.tags || '').includes(needle);
+    }
+
+    function shouldFilterLoosely(filter) {
+      if (!['roblox', 'fortnite', 'minecraft'].includes(filter)) return false;
+      return !allCards.some(card => cardMatchesFilter(card, filter));
+    }
+
+    function sortValue(card, sort) {
+      if (sort === 'alphabet') return card.dataset.title || '';
+      if (sort === 'rate') return Number(card.dataset.likes || 0);
+      if (sort === 'price') return Number(card.dataset.price || 0);
+      return Number(card.dataset.views || 0) + Number(card.dataset.plays || 0) + Number(card.dataset.likes || 0);
+    }
+
+    function applyControls() {
+      if (!grid) return;
+      const q = text(searchInput && searchInput.value).trim().toLowerCase();
+      const looseFilter = shouldFilterLoosely(state.filter);
+      const hasPlayableLinks = allCards.some(card => card.dataset.link && card.dataset.link !== '#');
+      const ordered = allCards.slice().sort((a, b) => {
+        if (state.sort === 'alphabet') return text(sortValue(a, 'alphabet')).localeCompare(text(sortValue(b, 'alphabet')));
+        return sortValue(b, state.sort) - sortValue(a, state.sort);
+      });
+
+      document.getElementById('emptyState')?.remove();
+      adRows.forEach(row => row.remove());
+      let visible = 0;
+      let nextAd = 0;
+      ordered.forEach(card => {
+        const haystack = card.dataset.search || card.textContent.toLowerCase();
+        const matchesSearch = !q || haystack.includes(q);
+        const matchesFilter = looseFilter || cardMatchesFilter(card, state.filter);
+        const matchesPlayable = !state.playableOnly || !hasPlayableLinks || (card.dataset.link && card.dataset.link !== '#');
+        const matchesOwner = !state.ownerUsername || card.dataset.creator === state.ownerUsername;
+        const show = matchesSearch && matchesFilter && matchesPlayable && matchesOwner;
+        card.style.display = show ? '' : 'none';
+        grid.appendChild(card);
+        if (show) {
+          visible += 1;
+          if (visible % 8 === 0 && nextAd < adRows.length) {
+            grid.appendChild(adRows[nextAd]);
+            nextAd += 1;
+          }
+        }
+      });
+      window.YoooovAds?.init();
+
+      if (!visible) {
+        const emptyState = document.createElement('div');
+        emptyState.id = 'emptyState';
+        emptyState.className = 'empty-state';
+        emptyState.textContent = state.ownerUsername
+          ? '你还没有发布游戏'
+          : 'No games match the current filters';
+        grid.appendChild(emptyState);
+      }
+
+      if (countEl) countEl.textContent = `${visible.toLocaleString()} Games`;
+      if (toolbarTitle) {
+        toolbarTitle.textContent = state.ownerUsername
+          ? `${currentUser?.username || 'My'} Games`
+          : (state.filter === 'all' ? 'All Games' : chipLabel(state.filter));
+      }
+    }
+
+    function chipLabel(filter) {
+      const chip = chipButtons.find(button => button.dataset.filter === filter);
+      return chip ? chip.textContent.replace('#', '').trim() : 'All Games';
+    }
+
+    function setFilter(filter) {
+      state.ownerUsername = '';
+      myGamesButton?.classList.remove('active');
+      state.filter = filter;
+      chipButtons.forEach(button => button.classList.toggle('active', button.dataset.filter === filter));
+      if (filter === 'popularity') setSort('popularity', false);
+      if (filter === 'active') setSort('popularity', false);
+      if (filter === 'high-rate') setSort('rate', false);
+      applyControls();
+    }
+
+    function setSort(sort, shouldApply = true) {
+      state.sort = sort;
+      sortButtons.forEach(button => button.classList.toggle('active', button.dataset.sort === sort));
+      if (shouldApply) applyControls();
+    }
+
+    function setPlayableOnly(enabled) {
+      state.playableOnly = enabled;
+      if (filterBtn) {
+        filterBtn.classList.toggle('active', enabled);
+        filterBtn.textContent = enabled ? 'Playable' : 'Filter';
+      }
+      applyControls();
+    }
+
+    function setPromo(index) {
+      state.promoIndex = (index + promoSlides.length) % promoSlides.length;
+      const slide = promoSlides[state.promoIndex];
+      if (promoTitle) promoTitle.textContent = slide.title;
+      if (promoText) promoText.textContent = slide.text;
+      if (promo) promo.dataset.tone = slide.tone;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === state.promoIndex));
+    }
+
+    function updateCardRating(card, ratingAvg) {
+      const el = card.querySelector('[data-rating]');
+      if (!el) return;
+      const score = ratingAvg > 0 ? (ratingAvg * 2).toFixed(1) : '—';
+      // replace text node after <span>Rating</span>
+      const nodes = Array.from(el.childNodes);
+      const textNode = nodes.find(n => n.nodeType === Node.TEXT_NODE);
+      if (textNode) {
+        textNode.textContent = score;
+      } else {
+        el.innerHTML = `<span>Rating</span>${score}`;
+      }
+    }
+
+    async function fetchAndApplyRatings(cards) {
+      const toFetch = cards.filter(c => c.dataset.gameid);
+      if (!toFetch.length) return;
+      await Promise.all(toFetch.map(async card => {
+        try {
+          const resp = await fetch('/api/game-info?id=' + encodeURIComponent(card.dataset.gameid));
+          if (!resp.ok) return;
+          const data = await resp.json();
+          if (!data.ok || !data.game) return;
+          const avg = Number(data.game.rating_avg || 0);
+          const count = Number(data.game.rating_count || 0);
+          updateCardRating(card, avg, count);
+        } catch (e) { /* ignore */ }
+      }));
+    }
+
+    async function loadApiGames() {
+      if (!grid) return;
+      try {
+        const response = await fetch('/api/list-games?limit=200');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        const games = Array.isArray(payload) ? payload : (payload && Array.isArray(payload.games) ? payload.games : []);
+        if (!games.length) return;
+
+        const fragment = document.createDocumentFragment();
+        allCards = games.map((game, index) => createGameCard(game, index));
+        allCards.forEach(card => fragment.appendChild(card));
+        grid.replaceChildren(fragment);
+        applyControls();
+        fetchAndApplyRatings(allCards);
+      } catch (err) {
+        console.error('Failed to load games from API:', err);
+        grid.replaceChildren(...staticCards);
+        hydrateStaticCards();
+        applyControls();
+      } finally {
+        grid.classList.remove('is-loading');
+      }
+    }
+
+    hydrateStaticCards();
+    applyControls();
+    chipButtons.forEach(button => button.addEventListener('click', () => setFilter(button.dataset.filter || 'all')));
+    sortButtons.forEach(button => button.addEventListener('click', () => setSort(button.dataset.sort || 'popularity')));
+    if (filterBtn) filterBtn.addEventListener('click', () => setPlayableOnly(!state.playableOnly));
+    document.querySelector('[aria-label="Messages"]')?.addEventListener('click', () => alert('Messages are coming soon.'));
+    document.querySelector('[aria-label="Notifications"]')?.addEventListener('click', () => alert('No new notifications.'));
+    document.querySelectorAll('.arrow').forEach(arrow => {
+      arrow.addEventListener('click', () => setPromo(state.promoIndex + Number(arrow.dataset.promoDir || 1)));
     });
+    dots.forEach(dot => dot.addEventListener('click', () => setPromo(Number(dot.dataset.promoIndex || 0))));
+    if (searchInput) searchInput.addEventListener('input', applyControls);
+    setPromo(state.promoIndex);
+    loadApiGames();
+
+    const registerModal = document.getElementById('registerModal');
+    const registerForm = document.getElementById('registerForm');
+    const registerUsername = document.getElementById('registerUsername');
+    const registerPhone = document.getElementById('registerPhone');
+    const registerPassword = document.getElementById('registerPassword');
+    const registerConfirm = document.getElementById('registerConfirm');
+    const registerSubmit = document.getElementById('registerSubmit');
+    const registerStatus = document.getElementById('registerStatus');
+    const usernameHint = document.getElementById('usernameHint');
+    const phoneHint = document.getElementById('phoneHint');
+    const passwordHint = document.getElementById('passwordHint');
+    const confirmHint = document.getElementById('confirmHint');
+    const passwordMeter = document.getElementById('passwordMeter');
+    const openRegister = document.getElementById('openRegister');
+    const openLogin = document.getElementById('openLogin');
+    const userName = document.getElementById('userName');
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const loginPhone = document.getElementById('loginPhone');
+    const loginPassword = document.getElementById('loginPassword');
+    const loginPhoneHint = document.getElementById('loginPhoneHint');
+    const loginPasswordHint = document.getElementById('loginPasswordHint');
+    const loginStatus = document.getElementById('loginStatus');
+    const loginSubmit = document.getElementById('loginSubmit');
+    const accountButton = document.getElementById('accountButton');
+    const accountMenu = document.getElementById('accountMenu');
+    const accountPhone = document.getElementById('accountPhone');
+    const accountUsername = document.getElementById('accountUsername');
+    const logoutButton = document.getElementById('logoutButton');
+    const userOnlyElements = Array.from(document.querySelectorAll('[data-auth="user"]'));
+
+    function isValidMainlandPhone(value) {
+      return /^1[3-9]\d{9}$/.test(value);
     }
-    AV.init({
-    appId: "vhHhq71X0qsLBO9NwPMmgXfm-gzGzoHsz",
-    appKey: "ral3lhTrNyTaJCCqEBZiSaUQ",
-    serverURL: "https://vhhhq71x.lc-cn-n1-shared.com"
+
+    function validateUsername(showEmpty = false) {
+      const value = registerUsername.value.trim();
+      registerUsername.value = value;
+      if (!value && !showEmpty) {
+        setHint(usernameHint, '2–20 个字符，支持中文、英文、数字和下划线。');
+        return false;
+      }
+      if (!/^[\p{L}\p{N}_]{2,20}$/u.test(value)) {
+        setHint(usernameHint, '用户名需为 2–20 个中文、英文、数字或下划线。', 'error');
+        return false;
+      }
+      setHint(usernameHint, '用户名格式有效。', 'success');
+      return true;
+    }
+
+    function passwordStrength(value) {
+      if (!value) return 0;
+      let score = value.length >= 8 ? 1 : 0;
+      const groups = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/].filter(pattern => pattern.test(value)).length;
+      if (value.length >= 8 && groups >= 2) score = 2;
+      if (value.length >= 12 && groups >= 3) score = 3;
+      return score;
+    }
+
+    function setHint(element, message, type = '') {
+      element.textContent = message;
+      element.className = `field-hint${type ? ` ${type}` : ''}`;
+    }
+
+    function validatePhone(showEmpty = false) {
+      const value = registerPhone.value.replace(/\D/g, '').slice(0, 11);
+      registerPhone.value = value;
+      if (!value && !showEmpty) {
+        setHint(phoneHint, '仅用于账号识别，请输入真实有效的手机号。');
+        return false;
+      }
+      if (!isValidMainlandPhone(value)) {
+        setHint(phoneHint, '请输入有效的中国大陆 11 位手机号码。', 'error');
+        return false;
+      }
+      setHint(phoneHint, '手机号格式有效。', 'success');
+      return true;
+    }
+
+    function validatePassword(showEmpty = false) {
+      const value = registerPassword.value;
+      const strength = passwordStrength(value);
+      passwordMeter.dataset.strength = String(strength);
+      if (!value && !showEmpty) {
+        setHint(passwordHint, '建议组合使用大小写字母、数字和符号。');
+        return false;
+      }
+      if (value.length < 8 || !/[A-Za-z]/.test(value) || !/\d/.test(value)) {
+        setHint(passwordHint, '密码至少 8 位，并且必须同时包含字母和数字。', 'error');
+        return false;
+      }
+      setHint(passwordHint, strength === 3 ? '密码强度：强' : '密码格式有效。', 'success');
+      return true;
+    }
+
+    function validateConfirm(showEmpty = false) {
+      const value = registerConfirm.value;
+      if (!value && !showEmpty) {
+        setHint(confirmHint, '');
+        return false;
+      }
+      if (value !== registerPassword.value) {
+        setHint(confirmHint, '两次输入的密码不一致。', 'error');
+        return false;
+      }
+      setHint(confirmHint, '两次密码一致。', 'success');
+      return true;
+    }
+
+    function showRegister() {
+      registerModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(() => registerPhone.focus(), 0);
+    }
+
+    function hideRegister() {
+      registerModal.hidden = true;
+      document.body.style.overflow = '';
+      registerStatus.textContent = '';
+      registerStatus.className = 'auth-status';
+    }
+
+    function showLogin() {
+      registerModal.hidden = true;
+      loginModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(() => loginPhone.focus(), 0);
+    }
+
+    function hideLogin() {
+      loginModal.hidden = true;
+      document.body.style.overflow = '';
+      loginStatus.textContent = '';
+      loginStatus.className = 'auth-status';
+    }
+
+    function applyGeometryAvatar(seed) {
+      let hash = 0;
+      Array.from(seed || 'Yoooov').forEach(char => {
+        hash = ((hash << 5) - hash + char.codePointAt(0)) | 0;
+      });
+      const value = Math.abs(hash);
+      const hue = value % 360;
+      accountButton.style.setProperty('--geo-a', `hsl(${hue} 88% 58%)`);
+      accountButton.style.setProperty('--geo-b', `hsl(${(hue + 92) % 360} 82% 60%)`);
+      accountButton.style.setProperty('--geo-angle', `${(value % 42) - 12}deg`);
+      accountButton.dataset.geometry = String(value % 3);
+    }
+
+    function saveUserSummary(user) {
+      try {
+        sessionStorage.setItem('yoooov-user', JSON.stringify({
+          phone: user.phone,
+          username: user.username
+        }));
+      } catch (_) {}
+    }
+
+    function showRegisteredUser(user) {
+      const phone = String(user && user.phone || '');
+      const username = String(user && user.username || 'Yoooov 用户');
+      currentUser = { phone, username };
+      const masked = `${phone.slice(0, 3)}****${phone.slice(-4)}`;
+      openRegister.hidden = true;
+      openLogin.hidden = true;
+      userOnlyElements.forEach(element => { element.hidden = false; });
+      userName.textContent = username;
+      accountPhone.textContent = masked;
+      accountUsername.textContent = username;
+      accountButton.setAttribute('title', `${username} 的账户`);
+      applyGeometryAvatar(username);
+    }
+
+    function showLoggedOutUser() {
+      currentUser = null;
+      state.ownerUsername = '';
+      myGamesButton?.classList.remove('active');
+      openRegister.hidden = false;
+      openLogin.hidden = false;
+      userOnlyElements.forEach(element => { element.hidden = true; });
+      userName.textContent = '';
+      accountPhone.textContent = '';
+      accountUsername.textContent = '';
+      accountMenu.hidden = true;
+      accountButton.setAttribute('aria-expanded', 'false');
+    }
+
+    showLoggedOutUser();
+    try {
+      const savedUser = JSON.parse(sessionStorage.getItem('yoooov-user') || 'null');
+      if (savedUser && isValidMainlandPhone(String(savedUser.phone || ''))) showRegisteredUser(savedUser);
+    } catch (_) {}
+    fetch('/api/session', {
+      headers: { 'Accept': 'application/json' },
+      credentials: 'same-origin'
+    }).then(response => response.ok ? response.json() : null)
+      .then(payload => {
+        const user = payload && payload.authenticated ? payload.user : null;
+        const phone = user ? String(user.phone || '') : '';
+        if (isValidMainlandPhone(phone)) {
+          saveUserSummary(user);
+          showRegisteredUser(user);
+        } else if (payload && payload.authenticated === false) {
+          try { sessionStorage.removeItem('yoooov-user'); } catch (_) {}
+          showLoggedOutUser();
+        }
+      }).catch(() => {});
+
+    openRegister?.addEventListener('click', showRegister);
+    openLogin?.addEventListener('click', showLogin);
+    document.getElementById('closeRegister')?.addEventListener('click', hideRegister);
+    document.getElementById('closeLogin')?.addEventListener('click', hideLogin);
+    document.getElementById('switchToLogin')?.addEventListener('click', showLogin);
+    document.getElementById('switchToRegister')?.addEventListener('click', () => {
+      hideLogin();
+      showRegister();
     });
-    var games = [];
-    function fetchGames(){
-    const query = new AV.Query("Games");
-    query.find().then((games) => {
-    this.games = games;
-    games.forEach((game) => {
-    document.querySelector('#pt' + game.id).innerText = game.get('Plays');
-    document.querySelector('#lt' + game.id).innerText = game.get('Likes');
+    accountButton?.addEventListener('click', event => {
+      event.stopPropagation();
+      accountMenu.hidden = !accountMenu.hidden;
+      accountButton.setAttribute('aria-expanded', String(!accountMenu.hidden));
     });
+    logoutButton?.addEventListener('click', async () => {
+      try { sessionStorage.removeItem('yoooov-user'); } catch (_) {}
+      showLoggedOutUser();
+      try {
+        await fetch('/api/logout', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          credentials: 'same-origin'
+        });
+      } catch (_) {}
     });
-    }
-    fetchGames()
-    $('a').click(function(e){
-    let link = $(this).attr("href");
-    games.forEach( (game) => {
-    if(game.get('gameLink') == link) {
-    game.increment('Plays', 1);
-    game.save().then(
-    (game) => {
-    console.log(`保存Plays成功。objectId：${game.id}`);
-    },
-    (error) => {
-    console.log(error)
-    }
-    );
-    }
+    document.addEventListener('click', event => {
+      if (!accountMenu.hidden && !accountMenu.contains(event.target)) {
+        accountMenu.hidden = true;
+        accountButton.setAttribute('aria-expanded', 'false');
+      }
     });
-    
+    registerModal?.addEventListener('click', event => {
+      if (event.target === registerModal) hideRegister();
     });
-    $('button').click(function(e){
-    let nlikes = parseInt($(this).text()) + 1;
-    
-    let like = $(this).attr("id");
-    let likeId = like.slice(5,like.length);
-    let likeType = like.slice(0,5);
-    console.log(likeType);
-    if(likeType == 'likes') {
-    document.querySelector('#lt' + likeId).innerText = nlikes;
-    games.forEach( (game) => {
-    if(game.id == likeId) {
-    game.increment('Likes', 1);
-    game.save().then(
-    (game) => {
-    console.log(`保存Like成功。objectId：${game.id}`);
-    },
-    (error) => {
-    // 异常处理
-    console.log(error);
-    }
-    );
-    }
+    loginModal?.addEventListener('click', event => {
+      if (event.target === loginModal) hideLogin();
     });
-    // Disable the button
-    $(this).prop("disabled", true);
-    // Re-enable the button after 30 seconds
-    setTimeout(() => {
-    $(this).prop("disabled", false);
-    console.log(`Button ${like} is now re-enabled.`);
-    }, 30000); // 30 seconds
-    }
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && registerModal && !registerModal.hidden) hideRegister();
+      if (event.key === 'Escape' && loginModal && !loginModal.hidden) hideLogin();
     });
-    const query = new AV.Query("PageClick");
-    query.get("6768ee4503d7a07961f12db3").then((page) => {
-    let clicks = page.get("clicks");
-    console.log(clicks)
-    page.increment('clicks', 1);
-    page.save().then(
-    (p) => {
-    // 成功保存之后，执行其他逻辑
-    console.log(`保存成功。objectId：${p.id}`);
-    console.log(p.get('clicks'));
-    document.getElementById('counter').innerText = p.get('clicks');
-    },
-    (error) => {
-    console.log(error);
-    }
-    );
+    registerPhone?.addEventListener('input', () => validatePhone(false));
+    registerPhone?.addEventListener('blur', () => validatePhone(true));
+    registerUsername?.addEventListener('input', () => validateUsername(false));
+    registerUsername?.addEventListener('blur', () => validateUsername(true));
+    registerPassword?.addEventListener('input', () => {
+      validatePassword(false);
+      if (registerConfirm.value) validateConfirm(true);
     });
-    function searchGame() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchText");
-    filter = input.value.toUpperCase();
-    }
-    </script>
+    registerPassword?.addEventListener('blur', () => validatePassword(true));
+    registerConfirm?.addEventListener('input', () => validateConfirm(false));
+    registerConfirm?.addEventListener('blur', () => validateConfirm(true));
+    document.querySelector('[data-toggle-password]')?.addEventListener('click', event => {
+      const showing = registerPassword.type === 'text';
+      registerPassword.type = showing ? 'password' : 'text';
+      event.currentTarget.textContent = showing ? '显示' : '隐藏';
+    });
+    loginPhone?.addEventListener('input', () => {
+      loginPhone.value = loginPhone.value.replace(/\D/g, '').slice(0, 11);
+      if (!loginPhone.value) {
+        setHint(loginPhoneHint, '请输入中国大陆 11 位手机号。');
+      } else if (isValidMainlandPhone(loginPhone.value)) {
+        setHint(loginPhoneHint, '手机号格式有效。', 'success');
+      } else {
+        setHint(loginPhoneHint, '请输入有效的中国大陆 11 位手机号码。', 'error');
+      }
+    });
+    loginPassword?.addEventListener('input', () => {
+      setHint(loginPasswordHint, loginPassword.value ? '' : '请输入登录密码。', loginPassword.value ? '' : 'error');
+    });
+    document.querySelector('[data-toggle-login-password]')?.addEventListener('click', event => {
+      const showing = loginPassword.type === 'text';
+      loginPassword.type = showing ? 'password' : 'text';
+      event.currentTarget.textContent = showing ? '显示' : '隐藏';
+    });
+
+    registerForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      registerStatus.textContent = '';
+      registerStatus.className = 'auth-status';
+      if (![validateUsername(true), validatePhone(true), validatePassword(true), validateConfirm(true)].every(Boolean)) return;
+
+      const username = registerUsername.value.trim();
+      const phone = registerPhone.value;
+      registerSubmit.disabled = true;
+      registerSubmit.textContent = '正在注册…';
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ username, phone, password: registerPassword.value })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload.ok === false) {
+          throw new Error(payload.message || payload.error || (response.status === 409 ? '该手机号已注册。' : '注册失败，请稍后重试。'));
+        }
+        const user = payload.user || { phone, username };
+        saveUserSummary(user);
+        showRegisteredUser(user);
+        registerStatus.textContent = '注册成功，欢迎加入 Yoooov！';
+        registerStatus.className = 'auth-status success';
+        registerForm.reset();
+        passwordMeter.dataset.strength = '0';
+        window.setTimeout(hideRegister, 900);
+      } catch (error) {
+        registerStatus.textContent = error.message === 'Failed to fetch'
+          ? '注册服务暂时无法连接，请稍后重试。'
+          : error.message;
+      } finally {
+        registerSubmit.disabled = false;
+        registerSubmit.textContent = '注册账号';
+      }
+    });
+
+    loginForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      loginStatus.textContent = '';
+      loginStatus.className = 'auth-status';
+      const phone = loginPhone.value.replace(/\D/g, '');
+      let valid = true;
+      if (!isValidMainlandPhone(phone)) {
+        setHint(loginPhoneHint, '请输入有效的中国大陆 11 位手机号码。', 'error');
+        valid = false;
+      }
+      if (!loginPassword.value) {
+        setHint(loginPasswordHint, '请输入登录密码。', 'error');
+        valid = false;
+      }
+      if (!valid) return;
+
+      loginSubmit.disabled = true;
+      loginSubmit.textContent = '正在登录…';
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ phone, password: loginPassword.value })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload.ok === false) {
+          throw new Error(payload.message || payload.error || (response.status === 401 ? '手机号或密码错误。' : '登录失败，请稍后重试。'));
+        }
+        const user = payload.user || { phone, username: 'Yoooov 用户' };
+        saveUserSummary(user);
+        showRegisteredUser(user);
+        loginStatus.textContent = '登录成功，欢迎回来！';
+        loginStatus.className = 'auth-status success';
+        loginForm.reset();
+        window.setTimeout(hideLogin, 800);
+      } catch (error) {
+        loginStatus.textContent = error.message === 'Failed to fetch'
+          ? '登录服务暂时无法连接，请稍后重试。'
+          : error.message;
+      } finally {
+        loginSubmit.disabled = false;
+        loginSubmit.textContent = '登录';
+      }
+    });
+  </script>
+<script src="i18n.js"></script>
+</body>
 </html>

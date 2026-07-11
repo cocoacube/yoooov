@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参赛作品 · Yoooov Challenge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap');
+  :root { --shell:#0d0e14; --surface:#171920; --surface-2:#20232c; --surface-3:#292d38; --line:rgba(255,255,255,.08); --strong:rgba(255,255,255,.14); --text:#f4f6fb; --muted:#8c93a3; --green:#05c77e; --yellow:#ffc94d; --cyan:#25d5ff; --violet:#8c59ff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { min-width:1180px; min-height:100vh; background:var(--shell); color:var(--text); font-family:'Space Grotesk','Noto Sans SC',sans-serif; }
+  nav { height:78px; display:flex; align-items:center; justify-content:space-between; padding:0 36px; }
+  .nav-left,.nav-links,.logo { display:flex; align-items:center; }
+  .nav-left { gap:42px; }
+  .logo { gap:10px; color:#fff; text-decoration:none; }
+  .logo-mark { width:36px; height:36px; background:url('assets/yoooov-logo-v1-compact.svg') center/contain no-repeat; }
+  .logo-text { font-size:20px; font-weight:800; }
+  .logo-text span { color:#ff7a28; }
+  .nav-links { gap:28px; }
+  .nav-link { color:var(--muted); text-decoration:none; font-size:13px; font-weight:700; }
+  .nav-link.active,.nav-link:hover { color:#fff; }
+  .back { height:36px; padding:0 16px; display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:#fff; text-decoration:none; font-size:12px; font-weight:800; }
+  main { width:min(1180px,calc(100vw - 96px)); margin:0 auto; padding:16px 0 52px; }
+  .breadcrumb { display:flex; gap:8px; margin-bottom:20px; color:var(--muted); font-size:11px; font-weight:700; }
+  .breadcrumb a { color:var(--muted); text-decoration:none; }
+  .entry-layout { display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:22px; align-items:start; }
+  .game-stage,.info-card,.description-card { border:1px solid var(--line); background:var(--surface); box-shadow:0 16px 34px rgba(0,0,0,.2); }
+  .game-stage { overflow:hidden; border-radius:20px; }
+  .media-section + .media-section { margin-top:22px; }
+  .media-head { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--line); background:var(--surface); }
+  .media-head h2 { font-size:16px; }
+  .media-head span { color:var(--muted); font-size:10px; font-weight:700; }
+  .preview { height:520px; position:relative; display:grid; place-items:center; overflow:hidden; background:var(--preview); }
+  .preview::before { content:""; position:absolute; width:330px; height:330px; border:1px solid rgba(255,255,255,.13); border-radius:50%; box-shadow:0 0 90px rgba(255,255,255,.09); }
+  .preview-mark { position:relative; z-index:1; font-size:96px; font-weight:700; }
+  .play { position:absolute; z-index:2; bottom:26px; left:26px; height:42px; padding:0 20px; border:0; border-radius:11px; background:var(--green); color:#fff; font:inherit; font-size:12px; font-weight:800; cursor:pointer; }
+  .stage-caption { padding:20px 22px; }
+  .stage-caption strong { display:block; font-size:14px; margin-bottom:5px; }
+  .stage-caption span { color:var(--muted); font-size:11px; font-weight:700; }
+  .game-panel { height:520px; position:relative; display:none; overflow:hidden; background:var(--preview); }
+  .game-panel.active { display:block; }
+  .game-panel iframe { position:relative; z-index:5; width:100%; height:100%; border:0; background:#0d0e14; }
+  .game-panel::before { content:""; position:absolute; inset:0; background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size:42px 42px; }
+  .game-hud { position:absolute; z-index:3; top:20px; left:20px; right:20px; display:flex; justify-content:space-between; color:#fff; font-size:11px; font-weight:800; }
+  .game-hud span { padding:8px 11px; border:1px solid rgba(255,255,255,.13); border-radius:9px; background:rgba(13,14,20,.65); }
+  .arena { position:absolute; inset:72px 24px 88px; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:15px; background:rgba(13,14,20,.28); }
+  .player-piece { width:42px; height:42px; position:absolute; left:calc(50% - 21px); bottom:22px; display:grid; place-items:center; border-radius:12px; color:#111; background:#fff; font-size:19px; font-weight:800; transition:left .11s ease, transform .11s ease; box-shadow:0 8px 24px rgba(0,0,0,.3); }
+  .target-piece { width:28px; height:28px; position:absolute; top:35px; left:25%; border-radius:50%; background:var(--yellow); box-shadow:0 0 22px rgba(255,201,77,.5); transition:left .18s ease, top .18s ease; }
+  .game-controls { position:absolute; z-index:3; left:0; right:0; bottom:22px; display:flex; justify-content:center; gap:10px; }
+  .game-control { min-width:94px; height:42px; border:1px solid rgba(255,255,255,.15); border-radius:11px; background:rgba(13,14,20,.72); color:#fff; font:inherit; font-size:11px; font-weight:800; cursor:pointer; }
+  .game-control:hover,.game-control:active { border-color:rgba(5,199,126,.7); background:rgba(5,199,126,.16); }
+  .game-message { position:absolute; z-index:4; inset:0; display:grid; place-items:center; pointer-events:none; color:#fff; font-size:22px; font-weight:800; opacity:0; transition:opacity .18s ease; }
+  .game-message.show { opacity:1; }
+  .side { display:grid; gap:14px; }
+  .info-card { padding:22px; border-radius:16px; }
+  .entry-tag { display:inline-flex; padding:6px 9px; border-radius:8px; background:rgba(5,199,126,.13); color:#aef6d3; font-size:10px; font-weight:800; margin-bottom:14px; }
+  h1 { font-size:29px; line-height:1.18; margin-bottom:11px; }
+  .creator { color:var(--muted); font-size:12px; font-weight:700; margin-bottom:20px; }
+  .stats { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:18px; }
+  .stat { padding:15px 0; }
+  .stat + .stat { padding-left:18px; border-left:1px solid var(--line); }
+  .stat strong { display:block; font-size:18px; margin-bottom:4px; }
+  .stat span { color:var(--muted); font-size:9px; font-weight:800; text-transform:uppercase; }
+  .vote { width:100%; height:40px; border:0; border-radius:10px; background:linear-gradient(180deg,#07c97d,#079e69); color:#fff; font:inherit; font-size:12px; font-weight:800; cursor:pointer; }
+  .vote.voted { color:#9ff1ca; background:var(--surface-3); }
+  .info-title { font-size:12px; font-weight:800; margin-bottom:14px; }
+  .detail-row { display:flex; justify-content:space-between; gap:16px; padding:9px 0; border-bottom:1px solid var(--line); font-size:10px; font-weight:700; }
+  .detail-row:last-child { border-bottom:0; }
+  .detail-row span:first-child { color:var(--muted); }
+  .description-card { margin-top:22px; padding:26px; border-radius:17px; }
+  .description-card h2 { font-size:19px; margin-bottom:12px; }
+  .description-card p { color:var(--muted); font-size:13px; line-height:1.8; font-weight:650; }
+  .features { display:flex; gap:9px; flex-wrap:wrap; margin-top:18px; }
+  .features span { padding:7px 10px; border-radius:8px; background:var(--surface-2); color:#c8ced8; font-size:10px; font-weight:800; }
+  @media (max-width:900px) {
+    body { min-width:0; }
+    nav { height:auto; padding:16px 18px; gap:14px; flex-wrap:wrap; }
+    .nav-links { display:none; }
+    main { width:100%; padding:12px 18px 36px; }
+    .entry-layout { grid-template-columns:1fr; }
+    .preview { height:360px; }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a class="logo" href="index.html"><span class="logo-mark"></span><span class="logo-text">Yoooov<span>.</span></span></a>
+      <div class="nav-links"><a class="nav-link" href="index.html">Games</a><a class="nav-link" href="yoooov_school.html">Yoooov School</a><a class="nav-link active" href="yoooov_challenge.html">Yoooov Challenge</a><a class="nav-link" href="yoooov_about.html">About</a></div>
+    </div>
+    <a class="back" href="yoooov_challenge.html">← 返回参赛作品</a>
+  </nav>
+  <main>
+    <div class="breadcrumb"><a href="yoooov_challenge.html">Yoooov Challenge</a><span>›</span><span id="crumb">参赛作品</span></div>
+    <div class="entry-layout">
+      <div>
+        <section class="game-stage media-section">
+          <div class="media-head"><h2>参赛视频</h2><span>Gameplay Showcase · 60 sec</span></div>
+          <div class="preview" id="videoPanel">
+            <div class="preview-mark" id="previewMark">▦</div>
+            <button class="play" id="videoButton">▶ Play Video</button>
+          </div>
+          <div class="stage-caption"><strong>Official Entry Showcase</strong><span>观看创作者提交的玩法演示与核心机制介绍</span></div>
+        </section>
+        <section class="game-stage media-section">
+          <div class="media-head"><h2>在线试玩</h2><span>Playable Web Build</span></div>
+          <div class="game-panel active" id="gamePanel">
+            <div class="game-hud"><span id="gameTitle">01 宇航员 · PLAYABLE</span><span>Score <strong id="score">0</strong></span></div>
+            <div class="arena" id="arena"><div class="target-piece" id="target"></div><div class="player-piece" id="player">▦</div><div class="game-message" id="gameMessage">+100</div></div>
+            <div class="game-controls"><button class="game-control" data-action="left">A · 向左</button><button class="game-control" data-action="action">S · 行动</button><button class="game-control" data-action="right">D · 向右</button></div>
+          </div>
+          <div class="stage-caption"><strong>Playable Challenge Build</strong><span>使用键盘 A / S / D 或屏幕按钮进行游戏</span></div>
+        </section>
+        <section class="description-card"><h2>作品介绍</h2><p id="description"></p><div class="features" id="features"></div></section>
+      </div>
+      <aside class="side">
+        <section class="info-card">
+          <div class="entry-tag">Yoooov Challenge 07 · Official Entry</div>
+          <h1 id="title">01 宇航员</h1>
+          <div class="creator" id="creator">小龙同学 · 14岁</div>
+          <div class="stats"><div class="stat"><strong id="votes">2,341</strong><span>Community votes</span></div><div class="stat"><strong id="rating">4.9</strong><span>Player rating</span></div></div>
+          <button class="vote" id="voteButton">Vote for this game</button>
+        </section>
+        <section class="info-card">
+          <div class="info-title">Entry Details</div>
+          <div class="detail-row"><span>Category</span><strong id="category">Action</strong></div>
+          <div class="detail-row"><span>Built with</span><strong id="engine">GDevelop</strong></div>
+          <div class="detail-row"><span>Team size</span><strong id="team">Solo creator</strong></div>
+          <div class="detail-row"><span>Submitted</span><strong>June 22, 2026</strong></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+<script>
+  const entries = {
+    astronaut:{title:'01 宇航员',creator:'小龙同学 · 14岁',votes:2341,rating:'4.9',mark:'01',category:'Action Puzzle',engine:'GDevelop',team:'Solo creator',preview:'linear-gradient(135deg,#182b69,#754cff)',description:'迷失在空间站的宇航员只能在 0 和 1 两种状态间切换：0 让世界静止并暴露隐藏轨道，1 让机关启动并推动角色前进。玩家需要判断何时关闭、何时开启，在氧气耗尽前抵达逃生舱。',features:['0/1状态切换','重力谜题','计时挑战','原创音乐']},
+    forest:{title:'森林回声',creator:'雨后彩虹 · 11岁',votes:2187,rating:'4.8',mark:'◆',category:'Story Puzzle',engine:'Roblox Studio',team:'Solo creator',preview:'linear-gradient(135deg,#064d3b,#05c77e)',description:'森林被分成“沉默 0”和“回应 1”两种状态。玩家通过选择是否回应神秘声音改变路径、角色关系和结局，并揭开古树沉睡的原因。',features:['0/1叙事选择','声音线索','探索解谜','多结局']},
+    lava:{title:'熔岩节拍',creator:'炎火编程队 · 15岁',votes:1904,rating:'4.7',mark:'●',category:'Rhythm Action',engine:'Unity',team:'3 creators',preview:'linear-gradient(135deg,#8f271d,#ff704c)',description:'跟随火山节拍完成跳跃、下蹲和冲刺。连续命中节奏可以冷却熔岩，为下一段越来越快的挑战争取时间。',features:['节奏玩法','动态难度','连击系统','团队作品']},
+    ocean:{title:'深海开关',creator:'深海探险队 · 15岁',votes:1621,rating:'4.6',mark:'10',category:'Exploration',engine:'Godot',team:'2 creators',preview:'linear-gradient(135deg,#103757,#25d5ff)',description:'驾驶微型潜艇穿越未知海沟，在“灯光关闭 0”和“灯光开启 1”之间切换：关闭更安全，开启才能发现样本和路径。',features:['0/1灯光机制','深海探索','资源管理','氛围体验']},
+    coin:{title:'金币磁场',creator:'晨光创作室 · 12岁',votes:1455,rating:'4.8',mark:'#',category:'Arcade',engine:'GDevelop',team:'2 creators',preview:'linear-gradient(135deg,#624100,#ffc94d)',description:'改变磁极、跳跃和释放能量，把散落的金币吸入轨道。玩家需要在磁场过载前设计最高效的收集路线。',features:['街机挑战','磁力物理','积分排行','快速重玩']},
+    'reverse-maze':{title:'反向迷宫',creator:'码力全开 · 16岁',votes:1332,rating:'4.5',mark:'%',category:'Puzzle',engine:'Web',team:'Solo creator',preview:'linear-gradient(135deg,#3b176f,#8c59ff)',description:'你不能直接控制角色，只能旋转世界、反转时间和锁定一个物体。熟悉的迷宫规则因此变成全新的空间谜题。',features:['空间谜题','时间反转','极简视觉','Web 技术']}
+  };
+  const key = new URLSearchParams(location.search).get('entry') || 'astronaut';
+  const entry = entries[key] || entries.astronaut;
+  document.title = `${entry.title} · Yoooov Challenge`;
+  document.getElementById('crumb').textContent = entry.title;
+  ['title','creator','rating','category','engine','team','description'].forEach(id => document.getElementById(id).textContent = entry[id]);
+  document.getElementById('votes').textContent = entry.votes.toLocaleString();
+  document.getElementById('previewMark').textContent = entry.mark;
+  document.getElementById('videoPanel').style.setProperty('--preview',entry.preview);
+  document.getElementById('gamePanel').style.setProperty('--preview',entry.preview);
+  document.getElementById('gameTitle').textContent = `${entry.title} · PLAYABLE`;
+  document.getElementById('player').textContent = entry.mark;
+  document.getElementById('features').innerHTML = entry.features.map(item => `<span>${item}</span>`).join('');
+  let voted = false;
+  document.getElementById('voteButton').addEventListener('click',event => {
+    voted = !voted;
+    event.currentTarget.classList.toggle('voted',voted);
+    event.currentTarget.textContent = voted ? 'Voted · Thank you' : 'Vote for this game';
+    document.getElementById('votes').textContent = (entry.votes + (voted ? 1 : 0)).toLocaleString();
+  });
+  document.getElementById('videoButton').addEventListener('click',event => {
+    event.currentTarget.textContent = event.currentTarget.textContent.includes('Play') ? 'Ⅱ Pause Video' : '▶ Play Video';
+  });
+  const gamePanel = document.getElementById('gamePanel');
+
+  let playerPosition = 50;
+  let score = 0;
+  const player = document.getElementById('player');
+  const target = document.getElementById('target');
+  const scoreEl = document.getElementById('score');
+  const message = document.getElementById('gameMessage');
+  function moveTarget() {
+    target.style.left = `${8 + Math.random() * 80}%`;
+    target.style.top = `${20 + Math.random() * 55}%`;
+  }
+  function playAction(action) {
+    if (action === 'left') playerPosition = Math.max(4,playerPosition - 12);
+    if (action === 'right') playerPosition = Math.min(92,playerPosition + 12);
+    player.style.left = `calc(${playerPosition}% - 21px)`;
+    if (action === 'action') {
+      player.style.transform = 'translateY(-38px) scale(1.08)';
+      setTimeout(() => player.style.transform = '',140);
+      const targetPosition = parseFloat(target.style.left || '25');
+      if (Math.abs(playerPosition - targetPosition) < 18) {
+        score += 100;
+        scoreEl.textContent = score;
+        message.classList.add('show');
+        setTimeout(() => message.classList.remove('show'),350);
+        moveTarget();
+      }
+    }
+  }
+  document.querySelectorAll('.game-control').forEach(button => button.addEventListener('click',() => playAction(button.dataset.action)));
+  document.addEventListener('keydown',event => {
+    if (!gamePanel.classList.contains('active')) return;
+    const action = {a:'left',s:'action',d:'right'}[event.key.toLowerCase()];
+    if (action) { event.preventDefault(); playAction(action); }
+  });
+  moveTarget();
+  const submissionId = new URLSearchParams(location.search).get('submission');
+  if (submissionId) {
+    fetch(`/api/challenge-submissions/${encodeURIComponent(submissionId)}`)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('作品不存在')))
+      .then(payload => {
+        const item = payload.submission;
+        document.title = `${item.title} · Yoooov Challenge`;
+        document.getElementById('crumb').textContent = item.title;
+        document.getElementById('title').textContent = item.title;
+        document.getElementById('creator').textContent = item.creatorName;
+        document.getElementById('category').textContent = item.category;
+        document.getElementById('engine').textContent = item.engine;
+        document.getElementById('description').textContent = item.description || item.summary;
+        document.getElementById('features').replaceChildren(...(item.inputs || []).filter(Boolean).map(value => {
+          const tag = document.createElement('span'); tag.textContent = value; return tag;
+        }));
+        document.getElementById('votes').textContent = '0';
+        document.getElementById('rating').textContent = '—';
+        if (item.cover) document.getElementById('videoPanel').style.background = `url("${String(item.cover).replace(/["\\]/g, '')}") center/cover`;
+        if (item.video) {
+          const panel = document.getElementById('videoPanel');
+          panel.innerHTML = `<video controls playsinline style="width:100%;height:100%;object-fit:contain" src="${String(item.video).replace(/["<>]/g, '')}"></video>`;
+        }
+        if (item.playUrl && /^(https?:\/\/|\/)/i.test(item.playUrl)) {
+          gamePanel.innerHTML = `<iframe src="${String(item.playUrl).replace(/["<>]/g, '')}" allow="fullscreen; gamepad; autoplay" title="${item.title.replace(/["<>]/g, '')}"></iframe>`;
+        }
+      })
+      .catch(error => { document.getElementById('description').textContent = error.message; });
+  }
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

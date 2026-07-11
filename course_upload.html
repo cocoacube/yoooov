@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoooov School · 上传课程</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --shell: #0d0e14;
+    --surface: #171920;
+    --surface-2: #20232c;
+    --surface-3: #292d38;
+    --line: rgba(255,255,255,.09);
+    --line-strong: rgba(255,255,255,.16);
+    --text: #f4f6fb;
+    --soft: #c9cfdb;
+    --muted: #8c93a3;
+    --green: #05c77e;
+    --red: #ff5968;
+    --yellow: #ffc94d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: var(--shell);
+    color: var(--text);
+    font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  }
+  button, input, textarea, select { font: inherit; }
+  button { cursor: pointer; }
+
+  nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-left, .nav-links, .logo, .nav-actions { display: flex; align-items: center; }
+  .nav-left { gap: 42px; }
+  .logo { gap: 10px; color: #fff; text-decoration: none; }
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    background: url('assets/yoooov-logo-v1-compact.svg') center / contain no-repeat;
+  }
+  .logo-text { font-size: 20px; font-weight: 800; }
+  .logo-text span { color: #ff7a28; }
+  .nav-links { gap: 26px; }
+  .nav-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; }
+  .nav-link:hover, .nav-link.active { color: #fff; }
+  .nav-actions { gap: 10px; }
+
+  main {
+    width: min(1280px, calc(100vw - 64px));
+    margin: 0 auto;
+    padding: 28px 0 64px;
+  }
+  .page-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .eyebrow {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
+  .page-head p { color: var(--muted); font-size: 13px; }
+  .head-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .back-link {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 13px;
+    margin-top: 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    color: var(--soft);
+    background: rgba(255,255,255,.02);
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .back-link:hover { border-color: rgba(5,199,126,.55); color: #fff; }
+  .save-state { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+  .auth-band {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid var(--yellow);
+    background: var(--surface);
+  }
+  .auth-band.verified { border-left-color: var(--green); }
+  .auth-copy strong { display: block; font-size: 14px; margin-bottom: 4px; }
+  .auth-copy span { color: var(--muted); font-size: 12px; }
+  .auth-controls { display: flex; gap: 8px; }
+  .auth-controls input { width: 240px; }
+
+  .workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px;
+    align-items: start;
+  }
+  .form-section {
+    padding: 24px 0 28px;
+    border-top: 1px solid var(--line);
+  }
+  .form-section:first-child { border-top: 0; padding-top: 0; }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .section-title { font-size: 17px; font-weight: 800; }
+  .section-note { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .field { display: grid; gap: 7px; min-width: 0; }
+  .field.full { grid-column: 1 / -1; }
+  label { color: var(--soft); font-size: 12px; font-weight: 800; }
+  .required::after { content: " *"; color: var(--red); }
+  input, textarea, select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    background: var(--surface-2);
+    color: #fff;
+    padding: 0 12px;
+    transition: border-color .16s ease, box-shadow .16s ease;
+  }
+  input, select { height: 42px; }
+  textarea { min-height: 104px; padding-top: 11px; resize: vertical; line-height: 1.55; }
+  input:focus, textarea:focus, select:focus {
+    border-color: rgba(5,199,126,.7);
+    box-shadow: 0 0 0 3px rgba(5,199,126,.1);
+  }
+  input::placeholder, textarea::placeholder { color: #656c7b; }
+  input[type="file"] { padding: 8px 10px; }
+  .hint { color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+  .lesson-list { display: grid; gap: 12px; }
+  .lesson-card {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .lesson-index {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    color: var(--green);
+    font-weight: 800;
+    font-size: 13px;
+  }
+  .lesson-fields {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) 120px;
+    gap: 10px;
+  }
+  .lesson-fields .wide { grid-column: 1 / -1; }
+  .lesson-actions { display: flex; gap: 6px; }
+  .icon-action {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--surface-2);
+    color: var(--soft);
+    font-weight: 800;
+  }
+  .icon-action:hover { color: #fff; border-color: var(--line-strong); }
+  .icon-action.danger:hover { color: var(--red); border-color: rgba(255,89,104,.5); }
+
+  .btn {
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .btn:hover { border-color: rgba(255,255,255,.3); }
+  .btn-primary { border: 0; background: var(--green); color: #07150f; }
+  .btn-primary:hover { background: #13d98e; }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  .publish-panel {
+    position: sticky;
+    top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .panel-section { padding: 18px; border-bottom: 1px solid var(--line); }
+  .panel-section:last-child { border-bottom: 0; }
+  .panel-title { font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+  .cover-preview {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  .cover-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .summary-row strong { color: var(--soft); }
+  .publish-actions { display: grid; gap: 8px; }
+  .status {
+    min-height: 18px;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .status.error { color: var(--red); }
+  .status.success { color: var(--green); }
+
+  .locked {
+    pointer-events: none;
+    opacity: .48;
+    filter: saturate(.45);
+  }
+
+  @media (max-width: 920px) {
+    nav { padding: 14px 18px; height: auto; align-items: flex-start; }
+    .nav-left { gap: 18px; flex-direction: column; align-items: flex-start; }
+    .nav-links { gap: 14px; flex-wrap: wrap; }
+    main { width: min(100% - 32px, 720px); padding-top: 20px; }
+    .workspace { grid-template-columns: 1fr; }
+    .publish-panel { position: static; }
+    .auth-band { grid-template-columns: 1fr; }
+    .auth-controls input { width: 100%; }
+    .auth-controls { width: 100%; }
+    .field-grid { grid-template-columns: 1fr; }
+    .field.full { grid-column: auto; }
+    .lesson-card { grid-template-columns: 38px minmax(0, 1fr); }
+    .lesson-actions { grid-column: 2; }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7264754231767067"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">Yoooov<span>.</span></span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Games</a>
+        <a class="nav-link active" href="yoooov_school.html">Yoooov School</a>
+        <a class="nav-link" href="yoooov_challenge.html">Yoooov Challenge</a>
+        <a class="nav-link" href="yoooov_about.html">About</a>
+      </div>
+    </div>
+    <div class="nav-actions"></div>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <div>
+        <div class="eyebrow">Course Studio</div>
+        <h1>上传视频课程</h1>
+        <p>创建课程基础信息，并按学习顺序组织一系列教学视频。</p>
+        <div class="head-actions">
+          <a class="back-link" href="yoooov_school.html">← 返回课程中心</a>
+          <a class="back-link" href="course_manage.html">课程管理 →</a>
+        </div>
+      </div>
+      <div class="save-state" id="saveState">尚未保存</div>
+    </header>
+
+    <section class="auth-band" id="authBand">
+      <div class="auth-copy">
+        <strong id="authTitle">上传验证</strong>
+        <span id="authText">课程上传使用与游戏上传相同的上传密码。</span>
+      </div>
+      <div class="auth-controls">
+        <input id="uploadPasscode" type="password" autocomplete="current-password" placeholder="输入上传密码">
+        <button class="btn" type="button" id="togglePassword" aria-label="显示或隐藏密码">显示</button>
+        <button class="btn btn-primary" type="button" id="verifyUpload">验证</button>
+        <button class="btn" type="button" id="clearVerify" hidden>清除验证</button>
+      </div>
+    </section>
+
+    <form id="courseForm">
+      <div class="workspace locked" id="workspace">
+        <div class="form-main">
+          <section class="form-section">
+            <div class="section-head">
+              <div>
+                <div class="section-title">基础信息</div>
+                <div class="section-note">这些信息将展示在课程列表和课程详情页。</div>
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field full">
+                <label class="required" for="courseTitle">课程名称</label>
+                <input id="courseTitle" name="title" required maxlength="120" placeholder="例如：制作你的第一张 Roblox Obby 地图">
+              </div>
+              <div class="field">
+                <label class="required" for="teacher">讲师</label>
+                <input id="teacher" name="teacher" required maxlength="80" placeholder="讲师姓名或团队名称">
+              </div>
+              <div class="field">
+                <label class="required" for="tool">创作工具</label>
+                <select id="tool" name="tool" required>
+                  <option value="">请选择</option>
+                  <option>Scratch</option>
+                  <option>Roblox Studio</option>
+                  <option>Python</option>
+                  <option>Unity</option>
+                  <option>Game Art</option>
+                  <option>Game Business</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty" required>
+                  <option value="">请选择</option>
+                  <option value="beginner">入门</option>
+                  <option value="easy">简单</option>
+                  <option value="intermediate">进阶</option>
+                  <option value="advanced">高级</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ageRange">适合年龄</label>
+                <input id="ageRange" name="ageRange" placeholder="例如：8-12 岁">
+              </div>
+              <div class="field">
+                <label for="category">课程方向</label>
+                <select id="category" name="category">
+                  <option value="tutorial">游戏创作教程</option>
+                  <option value="tools">创作工具</option>
+                  <option value="business">游戏商业化</option>
+                  <option value="art">美术与设计</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="access">访问方式</label>
+                <select id="access" name="access">
+                  <option value="free">免费</option>
+                  <option value="member">会员</option>
+                  <option value="paid">付费</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label class="required" for="summary">课程简介</label>
+                <textarea id="summary" name="summary" required maxlength="300" placeholder="用一两句话说明孩子将完成什么作品、学会哪些能力。"></textarea>
+                <div class="hint"><span id="summaryCount">0</span>/300</div>
+              </div>
+              <div class="field full">
+                <label for="description">详细介绍</label>
+                <textarea id="description" name="description" placeholder="学习目标、所需准备、最终成果和课程特色。"></textarea>
+              </div>
+              <div class="field full">
+                <label for="tags">标签</label>
+                <input id="tags" name="tags" placeholder="用逗号分隔，例如：Roblox, 3D, 地图设计">
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="section-head">
+              <div>
+                <div class="section-title">视频课程内容</div>
+                <div class="section-note">每一课可填写视频地址或选择本地视频文件，发布时按当前顺序保存。</div>
+              </div>
+              <button class="btn" type="button" id="addLesson">添加课节</button>
+            </div>
+            <div class="lesson-list" id="lessonList"></div>
+          </section>
+        </div>
+
+        <aside class="publish-panel">
+          <div class="panel-section">
+            <div class="panel-title">课程封面</div>
+            <div class="cover-preview" id="coverPreview">16:9 课程封面预览</div>
+            <div class="field">
+              <label for="coverFile">上传封面</label>
+              <input id="coverFile" name="coverFile" type="file" accept="image/png,image/jpeg,image/webp">
+              <div class="hint">建议 1280 × 720，PNG、JPG 或 WebP。</div>
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label for="coverUrl">或使用封面地址</label>
+              <input id="coverUrl" name="coverUrl" type="url" placeholder="https://...">
+            </div>
+          </div>
+          <div class="panel-section">
+            <div class="panel-title">发布设置</div>
+            <div class="field">
+              <label for="publishStatus">状态</label>
+              <select id="publishStatus" name="status">
+                <option value="draft">草稿</option>
+                <option value="published">立即发布</option>
+                <option value="scheduled">定时发布</option>
+              </select>
+            </div>
+            <div class="field" id="scheduleField" style="margin-top:10px;display:none">
+              <label for="publishAt">发布时间</label>
+              <input id="publishAt" name="publishAt" type="datetime-local">
+            </div>
+          </div>
+          <div class="panel-section">
+            <div class="panel-title">课程概览</div>
+            <div class="summary-row"><span>课节数量</span><strong id="lessonCount">0</strong></div>
+            <div class="summary-row"><span>预计总时长</span><strong id="totalDuration">0 分钟</strong></div>
+            <div class="summary-row"><span>必填信息</span><strong id="requiredState">待完善</strong></div>
+          </div>
+          <div class="panel-section">
+            <div class="publish-actions">
+              <button class="btn" type="button" id="saveDraft">保存草稿</button>
+              <button class="btn btn-primary" type="submit" id="publishCourse">发布课程</button>
+            </div>
+            <div class="status" id="status" role="status"></div>
+          </div>
+        </aside>
+      </div>
+    </form>
+  </main>
+
+<template id="lessonTemplate">
+  <article class="lesson-card">
+    <div class="lesson-index">1</div>
+    <div class="lesson-fields">
+      <div class="field">
+        <label class="required">课节标题</label>
+        <input class="lesson-title" required maxlength="120" placeholder="例如：认识 Roblox Studio">
+      </div>
+      <div class="field">
+        <label class="required">时长（分钟）</label>
+        <input class="lesson-duration" type="number" min="1" max="300" required value="10">
+      </div>
+      <div class="field wide">
+        <label>视频地址</label>
+        <input class="lesson-url" type="url" placeholder="https://...">
+      </div>
+      <div class="field wide">
+        <label>或上传视频文件</label>
+        <input class="lesson-file" type="file" accept="video/mp4,video/webm,video/ogg">
+      </div>
+      <div class="field wide">
+        <label>课节说明</label>
+        <textarea class="lesson-description" placeholder="这一课的任务和学习目标。"></textarea>
+      </div>
+    </div>
+    <div class="lesson-actions">
+      <button class="icon-action move-up" type="button" title="上移" aria-label="上移">↑</button>
+      <button class="icon-action move-down" type="button" title="下移" aria-label="下移">↓</button>
+      <button class="icon-action danger remove-lesson" type="button" title="删除" aria-label="删除">×</button>
+    </div>
+  </article>
+</template>
+
+<script>
+  const form = document.getElementById('courseForm');
+  const workspace = document.getElementById('workspace');
+  const lessonList = document.getElementById('lessonList');
+  const lessonTemplate = document.getElementById('lessonTemplate');
+  const uploadPasscode = document.getElementById('uploadPasscode');
+  const statusEl = document.getElementById('status');
+  let verifiedPasscode = '';
+  let lessonSequence = 0;
+
+  function setStatus(message, type = '') {
+    statusEl.textContent = message;
+    statusEl.className = `status${type ? ` ${type}` : ''}`;
+  }
+
+  function setAuthState(verified) {
+    if (!verified) verifiedPasscode = '';
+    document.getElementById('authBand').classList.toggle('verified', verified);
+    workspace.classList.toggle('locked', !verified);
+    document.getElementById('authTitle').textContent = verified ? '上传密码已验证' : '上传验证';
+    document.getElementById('authText').textContent = verified
+      ? '现在可以编辑并发布课程。'
+      : '课程上传使用与游戏上传相同的上传密码。';
+    uploadPasscode.hidden = verified;
+    document.getElementById('togglePassword').hidden = verified;
+    document.getElementById('verifyUpload').hidden = verified;
+    document.getElementById('clearVerify').hidden = !verified;
+  }
+
+  async function verifyUploadPasscode() {
+    const passcode = uploadPasscode.value.trim();
+    if (!passcode) {
+      setStatus('请输入上传密码。', 'error');
+      return;
+    }
+    const button = document.getElementById('verifyUpload');
+    button.disabled = true;
+    button.textContent = '验证中...';
+    try {
+      const response = await fetch('/api/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify', passcode })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.errorMsg || data.error || '上传密码验证失败');
+      verifiedPasscode = passcode;
+      uploadPasscode.value = '';
+      setAuthState(true);
+      setStatus('验证成功，可以开始编辑课程。', 'success');
+    } catch (error) {
+      setAuthState(false);
+      setStatus(error.message === 'Failed to fetch' ? '无法连接课程管理接口。' : error.message, 'error');
+    } finally {
+      button.disabled = false;
+      button.textContent = '验证';
+    }
+  }
+
+  function addLesson(data = {}) {
+    lessonSequence += 1;
+    const card = lessonTemplate.content.firstElementChild.cloneNode(true);
+    card.dataset.lessonId = data.id || `lesson-${lessonSequence}`;
+    card.querySelector('.lesson-title').value = data.title || '';
+    card.querySelector('.lesson-duration').value = data.duration || 10;
+    card.querySelector('.lesson-url').value = data.videoUrl || '';
+    card.querySelector('.lesson-description').value = data.description || '';
+    card.querySelector('.remove-lesson').addEventListener('click', () => {
+      if (lessonList.children.length <= 1) {
+        setStatus('课程至少需要保留一个课节。', 'error');
+        return;
+      }
+      card.remove();
+      updateLessonSummary();
+    });
+    card.querySelector('.move-up').addEventListener('click', () => {
+      if (card.previousElementSibling) lessonList.insertBefore(card, card.previousElementSibling);
+      updateLessonSummary();
+    });
+    card.querySelector('.move-down').addEventListener('click', () => {
+      if (card.nextElementSibling) lessonList.insertBefore(card.nextElementSibling, card);
+      updateLessonSummary();
+    });
+    card.querySelectorAll('input, textarea').forEach(input => input.addEventListener('input', updateLessonSummary));
+    lessonList.appendChild(card);
+    updateLessonSummary();
+  }
+
+  function updateLessonSummary() {
+    const cards = Array.from(lessonList.children);
+    let total = 0;
+    cards.forEach((card, index) => {
+      card.querySelector('.lesson-index').textContent = index + 1;
+      total += Number(card.querySelector('.lesson-duration').value || 0);
+      card.querySelector('.move-up').disabled = index === 0;
+      card.querySelector('.move-down').disabled = index === cards.length - 1;
+    });
+    document.getElementById('lessonCount').textContent = cards.length;
+    document.getElementById('totalDuration').textContent = `${total} 分钟`;
+    updateRequiredState();
+  }
+
+  function updateRequiredState() {
+    const basicsReady = ['courseTitle', 'teacher', 'tool', 'difficulty', 'summary']
+      .every(id => document.getElementById(id).value.trim());
+    const lessonsReady = Array.from(lessonList.children).every(card => {
+      const title = card.querySelector('.lesson-title').value.trim();
+      const url = card.querySelector('.lesson-url').value.trim();
+      const file = card.querySelector('.lesson-file').files[0];
+      return title && (url || file);
+    });
+    const ready = basicsReady && lessonsReady;
+    const state = document.getElementById('requiredState');
+    state.textContent = ready ? '已完善' : '待完善';
+    state.style.color = ready ? 'var(--green)' : '';
+    return ready;
+  }
+
+  function lessonPayload(card, index) {
+    return {
+      id: card.dataset.lessonId,
+      position: index + 1,
+      title: card.querySelector('.lesson-title').value.trim(),
+      duration: Number(card.querySelector('.lesson-duration').value || 0),
+      videoUrl: card.querySelector('.lesson-url').value.trim(),
+      description: card.querySelector('.lesson-description').value.trim()
+    };
+  }
+
+  function buildFormData(status) {
+    const data = new FormData();
+    const fields = ['title', 'teacher', 'tool', 'difficulty', 'ageRange', 'category', 'access', 'summary', 'description', 'tags', 'coverUrl', 'publishAt'];
+    fields.forEach(name => {
+      const input = form.elements[name];
+      data.append(name, input ? input.value.trim() : '');
+    });
+    data.set('status', status);
+    data.append('passcode', verifiedPasscode);
+    const coverFile = document.getElementById('coverFile').files[0];
+    if (coverFile) data.append('cover', coverFile);
+    const lessons = Array.from(lessonList.children).map(lessonPayload);
+    data.append('lessons', JSON.stringify(lessons));
+    Array.from(lessonList.children).forEach((card, index) => {
+      const file = card.querySelector('.lesson-file').files[0];
+      if (file) data.append(`lessonVideo_${index + 1}`, file);
+    });
+    return data;
+  }
+
+  async function submitCourse(status) {
+    if (!verifiedPasscode) {
+      setStatus('请先完成上传密码验证。', 'error');
+      uploadPasscode.focus();
+      return;
+    }
+    if (!form.reportValidity() || !updateRequiredState()) {
+      setStatus('请补全基础信息，并为每个课节提供视频地址或视频文件。', 'error');
+      return;
+    }
+    const submitButtons = [document.getElementById('saveDraft'), document.getElementById('publishCourse')];
+    submitButtons.forEach(button => button.disabled = true);
+    setStatus(status === 'draft' ? '正在保存草稿...' : '正在上传并发布课程...');
+    try {
+      const response = await fetch('/api/courses', { method: 'POST', body: buildFormData(status) });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.errorMsg || data.error || '课程保存失败');
+      document.getElementById('saveState').textContent = status === 'draft' ? '草稿已保存' : '课程已发布';
+      setStatus(status === 'draft' ? '课程草稿保存成功。' : '课程发布成功。', 'success');
+    } catch (error) {
+      setStatus(error.message === 'Failed to fetch'
+        ? '无法连接课程管理接口，请确认 /api/courses 已部署。'
+        : error.message, 'error');
+    } finally {
+      submitButtons.forEach(button => button.disabled = false);
+    }
+  }
+
+  document.getElementById('verifyUpload').addEventListener('click', verifyUploadPasscode);
+  document.getElementById('togglePassword').addEventListener('click', event => {
+    uploadPasscode.type = uploadPasscode.type === 'password' ? 'text' : 'password';
+    event.currentTarget.textContent = uploadPasscode.type === 'password' ? '显示' : '隐藏';
+  });
+  uploadPasscode.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      verifyUploadPasscode();
+    }
+  });
+  document.getElementById('clearVerify').addEventListener('click', () => {
+    setAuthState(false);
+    setStatus('已清除上传验证。', 'success');
+    uploadPasscode.focus();
+  });
+  document.getElementById('addLesson').addEventListener('click', () => addLesson());
+  document.getElementById('saveDraft').addEventListener('click', () => submitCourse('draft'));
+  document.getElementById('publishStatus').addEventListener('change', event => {
+    document.getElementById('scheduleField').style.display = event.target.value === 'scheduled' ? 'grid' : 'none';
+  });
+  document.getElementById('summary').addEventListener('input', event => {
+    document.getElementById('summaryCount').textContent = event.target.value.length;
+    updateRequiredState();
+  });
+  document.querySelectorAll('#courseForm input, #courseForm textarea, #courseForm select').forEach(input => {
+    input.addEventListener('input', updateRequiredState);
+  });
+  document.getElementById('coverFile').addEventListener('change', event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const img = new Image();
+    img.alt = '课程封面预览';
+    img.src = URL.createObjectURL(file);
+    img.onload = () => URL.revokeObjectURL(img.src);
+    document.getElementById('coverPreview').replaceChildren(img);
+  });
+  document.getElementById('coverUrl').addEventListener('change', event => {
+    const url = event.target.value.trim();
+    if (!url) return;
+    const img = new Image();
+    img.alt = '课程封面预览';
+    img.src = url;
+    document.getElementById('coverPreview').replaceChildren(img);
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    submitCourse(document.getElementById('publishStatus').value);
+  });
+  form.addEventListener('input', () => {
+    document.getElementById('saveState').textContent = '有未保存的更改';
+  });
+
+  addLesson({ title: '课程介绍', duration: 5 });
+  setAuthState(false);
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>
